@@ -1,0 +1,21 @@
+@ test text!
+
+#说明#
+
+这是我用柳线写的地 N 篇文章, 但现在改版掉了
+新的界面就是这个样子, 如果在 Webkit 浏览器是可以看到的
+支持基础的代码 `coding if fun` 标记功能, 还有粗体 #buld here#
+另外的链接像 http:code.clm 会被识别, 具体就不清楚了
+`<>`
+代码块的例子比如
+  code indented with two spaces
+  everything is OK so far
+    good
+    blocks like
+  well...
+
+代码的被支持的,, 还后啦
+
+#评论#
+
+评论被我丢到另一个文件去来了, 编辑下方链接即可

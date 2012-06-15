@@ -1,0 +1,40 @@
+
+body {
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: 'wenquanyi micro hei', 'microsoft yahei';
+  letter-spacing: 1px;
+  padding: 20px 60px;
+  line-height: 24px;
+}
+
+.code_block, .inline_code, a {
+  font-family: 'wenquanyi micro hei mono', 'monospace';
+  background-color: hsl(20,90%,95%);
+  -webkit-box-shadow: -2px 2px 10px hsl(50,40%,80%);
+  -webkit-border-radius: 2px;
+  padding: 0px 4px;
+}
+
+.code_block {
+  width: 800px;
+  margin-left: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: hsl(240,80%,80%);
+}
+
+p {
+  margin: 0px;
+}
+
+.title {
+  color: red;
+}
+
+#dsq-combo-widget {
+  margin-top: 100px;
+  width: 800px;
+}
