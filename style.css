@@ -1,11 +1,19 @@
 
+::-webkit-scrollbar {
+  width: 4px;
+  background: hsl(30,30%,90%);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  background: hsl(0,20%,70%);
+}
+
 body {
   font-size: 14px;
   box-sizing: border-box;
   font-family: 'wenquanyi micro hei', 'microsoft yahei';
   letter-spacing: 1px;
-  padding: 20px 60px;
-  line-height: 24px;
+  line-height: 30px;
 }
 
 .code_block, .inline_code, a {
@@ -17,7 +25,10 @@ body {
 }
 
 .code_block {
-  width: 800px;
+  width: 700px;
+}
+
+.code_block>.code_block {
   margin-left: 15px;
 }
 
@@ -37,4 +48,29 @@ p {
 #disqus_thread {
   margin-top: 100px;
   width: 800px;
+}
+
+#home {
+  position: fixed;;
+  top: 100px;
+  left: 0px;
+  padding: 2px 6px;
+}
+
+#wrap {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+
+#list {
+  margin-top: 40px;
+  padding-right: 20px;
+  width: 40%;
+  height: 500px;
+  text-align: right;
+  overflow-y: scroll;
+}
+
+#about {
+  padding: 100px 20px;
 }

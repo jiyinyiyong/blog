@@ -64,7 +64,7 @@ make_html = (arr) ->
   html
 
 make_page = (arr) ->
-  content = "<title>#{title}</title>"
+  content = "<title>#{title}</title><a id='home' href='../index.html'>Home</a>"
   content+= '<link rel="stylesheet" href="../style.css">'
   for line in arr
     if typeof line is 'object'
