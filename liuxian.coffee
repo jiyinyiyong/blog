@@ -73,7 +73,7 @@ make_page = (arr) ->
       if line is '' then line = '&nbsp;'
       line = comment_line line
       content += "<p>#{line}</p>"
-  content
+  "<div id='article'>#{content}</div>"
 
 # console.log make_page (make_array (data.split '\n'))
 
