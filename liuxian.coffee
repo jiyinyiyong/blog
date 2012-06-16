@@ -63,29 +63,6 @@ make_html = (arr) ->
       html += "<p class='code_line'>#{line}</p>"
   html
 
-make_page = (arr) ->
-  content = "<title>#{title}</title><a id='home' href='../index.html'>Home</a>"
-  content+= '<link rel="stylesheet" href="../style.css">'
-  for line in arr
-    if typeof line is 'object'
-      content += "<div class='code_block'>#{make_html line}</code></div>"
-    else
-      if line is '' then line = '&nbsp;'
-      line = comment_line line
-      content += "<p>#{line}</p>"
-  "<div id='article'>#{content}</div>"
-
-# console.log make_page (make_array (data.split '\n'))
-
-render = (str) ->
-  arr = str.split '\n'
-  make_page (make_array arr)
-
-fs = require 'fs'
-
-file = process.argv[2]
-match = file.split '.'
-
 disqus =
   """   <div id="disqus_thread"></div>
         <script type="text/javascript">
@@ -102,6 +79,29 @@ disqus =
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
         """
+
+make_page = (arr) ->
+  content = "<title>#{title}</title><a id='home' href='../index.html'>Home</a>"
+  content+= '<link rel="stylesheet" href="../style.css">'
+  for line in arr
+    if typeof line is 'object'
+      content += "<div class='code_block'>#{make_html line}</code></div>"
+    else
+      if line is '' then line = '&nbsp;'
+      line = comment_line line
+      content += "<p>#{line}</p>"
+  "<div id='article'>#{content}#{disqus}</div>"
+
+# console.log make_page (make_array (data.split '\n'))
+
+render = (str) ->
+  arr = str.split '\n'
+  make_page (make_array arr)
+
+fs = require 'fs'
+
+file = process.argv[2]
+match = file.split '.'
 
 fs.readFile file, 'utf-8', (err, data) ->
   fs.writeFile match[0]+'.html', (render data) + disqus
