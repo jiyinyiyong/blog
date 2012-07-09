@@ -61,7 +61,7 @@ pre {
 }
 
 #wrap {
-  display: -webkit-box;
+  display: box;
   box-orient: horizontal;
 }
 
