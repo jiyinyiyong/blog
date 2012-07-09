@@ -1,51 +1,47 @@
 #!/usr/bin/coffee
-
 # this command named /usr/local/bin/liuxian
 
 title = ''
+add_title = (str) ->
+  title = str[1..].trim()
+  "<pre class='title'>#{title}</pre>"
+
+list = (a) -> Array.isArray a
+
+code_array = (arr) ->
+  arr
 
 make_array = (arr) ->
-  scope_lines = []
+  lines = []
 
   for line in arr
-    last_index = scope_lines.length - 1
-    if line[0] is '@'
-      title = line[1..].trim()
-      scope_lines.push "<p class='title'>#{title}</p>"
-    else if last_index < 0
-      scope_lines.push line.trimRight()
-    else
-      empty_line = line.match /^\s*$/
-      if empty_line?
-        if (typeof scope_lines[last_index]) is 'object'
-          scope_lines[last_index].push ''
-        else scope_lines.push ''
-      else
-        code_line = line.match /^\s\s.+$/
-        if code_line?
-          if (typeof scope_lines[last_index]) is 'object'
-            scope_lines[last_index].push line[2..]
-          else scope_lines.push [line[2..]]
-        else scope_lines.push line
+    tail = lines.length - 1
+    if line[0] is '@' then lines.push (add_title line)
+    else if line.trim().length is 0
+      if list lines[tail] then lines[tail].push ''
+      else lines.push ''
+    else if line[0..1] is '  '
+      if (list lines[tail]) then lines[tail].push line[2..]
+      else lines.push [line[2..]]
+    else lines.push line.trimRight()
 
-  output_array = []
-  for item in scope_lines
-    if (typeof item) is 'object'
+  output = []
+  for item in lines
+    if list item
       stack = []
       while item[-1..-1][0] is ''
-        stack.push '&nbsp;'
+        stack.push ' '
         item.pop()
-      output_array.push (make_array item)
-      output_array.push space for space in stack
-    else output_array.push item
-
-  output_array
+      output.push (make_array item)
+      output.push space for space in stack
+    else output.push item
+  output
 
 mark_line = (line) ->
   line.replace(/>/g,'&gt;')
     .replace(/</g,'&lt')
-    .replace(/\t/g,'&nbsp;')
-    .replace(/\s/g, '&nbsp;')
+    .replace(/\t/g,' ')
+    .replace(/\s/g, ' ')
 
 comment_line = (line) ->
   line = line
@@ -56,42 +52,58 @@ comment_line = (line) ->
 make_html = (arr) ->
   html = ""
   for line in arr
-    if typeof line is 'object'
+    if list line
       html += "<div class='code_block'>#{make_html line}</div>"
     else
-      if line is '' then line = '&nbsp;'
+      if line is '' then line = ' '
       line = mark_line line
-      html += "<p class='code_line'>#{line}</p>"
+      html += "<pre>#{line}</pre>"
   html
 
-disqus =
-  """   <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'jiyinyiyong'; // required: replace example with your forum shortname
+disqus = """
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'jiyinyiyong';
+        // required: replace example with your forum shortname
 
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        """
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            if (document.getElementsByTagName('head')[0]) {
+              document.getElementsByTagName('body')[0].appendChild(dsq);
+            }
+        })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="http://disqus.com/?ref_noscript">
+        comments powered by Disqus.
+      </a>
+    </noscript>
+    <a href="http://disqus.com" class="dsq-brlink">
+      comments powered by
+      <span class="logo-disqus">
+        Disqus
+      </span>
+    </a>
+  </div>
+  """
 
 make_page = (arr) ->
-  content = "<title>#{title}</title><a id='home' href='../index.html'>Home</a>"
+  content = "<a id='home' href='../index.html'>Home</a>"
   content+= '<link rel="stylesheet" href="../style.css">'
   for line in arr
     if typeof line is 'object'
-      content += "<div class='code_block'>#{make_html line}</code></div>"
+      content += "<pre class='code_block'>#{make_html line}</code></pre>"
     else
-      if line is '' then line = '&nbsp;'
+      if line is '' then line = ' '
       line = comment_line line
-      content += "<p>#{line}</p>"
-  "<div id='article'>#{content}#{disqus}</div>"
+      content += "<pre>#{line}</pre>"
+  "<title>#{title}</title><div id='article'>#{content}#{disqus}</div>"
 
 # console.log make_page (make_array (data.split '\n'))
 
@@ -105,5 +117,5 @@ file = process.argv[2]
 match = file.split '.'
 
 fs.readFile file, 'utf-8', (err, data) ->
-  fs.writeFile match[0]+'.html', (render data) + disqus
+  fs.writeFile match[0]+'.html', (render data)
   console.log match[0]+'.html'
