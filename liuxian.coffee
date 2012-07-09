@@ -48,9 +48,10 @@ mark_line = (line) ->
     .replace(/\s/g, '&nbsp;')
 
 comment_line = (line) ->
-  line = line.replace(/`([^`]*[^\\`]+)`/g, '<code class="inline_code">$1</code>')
+  line = line
+    .replace(/#([^`]*[^\\])#/g, '<b>$1</b>')
+    .replace(/`([^`]*[^\\`]+)`/g, '<code class="inline_code">$1</code>')
     .replace(/(https?:(\/\/)?(\S+))/g, '<a href="$1">$3</a>')
-    .replace(/#(.*[^\\])#/g, '<b>$1</b>')
 
 make_html = (arr) ->
   html = ""
@@ -105,3 +106,4 @@ match = file.split '.'
 
 fs.readFile file, 'utf-8', (err, data) ->
   fs.writeFile match[0]+'.html', (render data) + disqus
+  console.log match[0]+'.html'

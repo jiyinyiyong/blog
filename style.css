@@ -27,6 +27,8 @@ body {
 
 .code_block {
   width: 700px;
+  padding: 4px 12px;
+  font-size: 12px;
 }
 
 .code_block>.code_block {
