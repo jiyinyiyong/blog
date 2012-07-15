@@ -18,8 +18,8 @@
   (. lib echo s)
   (. lib
     (echo s)
-    (inspect s))
-    (alert)
+    (inspect s)
+    (alert))
 `.` 将 `lib` 的方法添加到一个内部可访问的作用域, 简化书写
 不过问题是覆盖还是可能发生, 需要其他规则来辅助
 

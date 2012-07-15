@@ -69,3 +69,7 @@ http://code.google.com/p/goagent/
 http://code.google.com/p/switchysharp/wiki/SwitchySharp_GFW_List_2
 
 进入 `~/.config/` 目录修改 `dirs` 的名字, 对应主目录的文件名
+
+配置 github ssh key 的命令
+https://help.github.com/articles/generating-ssh-keys
+  ssh-keygen -t rsa -C "jiyinyiyong@gmail.com"
