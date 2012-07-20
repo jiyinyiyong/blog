@@ -39,7 +39,7 @@ make_array = (arr) ->
 
 mark_line = (line) ->
   line.replace(/>/g,'&gt;')
-    .replace(/</g,'&lt')
+    .replace(/</g,'&lt;')
     .replace(/\t/g,' ')
     .replace(/\s/g, ' ')
 

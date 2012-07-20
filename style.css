@@ -23,6 +23,7 @@ body {
   background-color: hsl(20,90%,98%);
   box-shadow: 0px 0px 6px hsl(50,40%,80%);
   padding: 0px 4px;
+  white-space: normal;
 }
 
 .code_block {
@@ -33,6 +34,10 @@ body {
 
 .code_block > .code_block {
   margin-left: 2px;
+}
+
+.code_block > pre {
+  white-space: normal;
 }
 
 a {
