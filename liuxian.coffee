@@ -117,6 +117,9 @@ fs = require 'fs'
 file = process.argv[2]
 match = file.split '.'
 
+month = process.env.PWD[-5..].replace('/', '')
+
 fs.readFile file, 'utf-8', (err, data) ->
-  fs.writeFile "../../../posts/#{match[0]}.html", (render data)
-  console.log match[0]+'.html'
+  target = "../../../posts/#{month}#{match[0]}.html"
+  fs.writeFile target, (render data)
+  console.log target
