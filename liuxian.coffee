@@ -118,5 +118,5 @@ file = process.argv[2]
 match = file.split '.'
 
 fs.readFile file, 'utf-8', (err, data) ->
-  fs.writeFile "../posts/#{match[0]}.html", (render data)
+  fs.writeFile "../../../posts/#{match[0]}.html", (render data)
   console.log match[0]+'.html'
