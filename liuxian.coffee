@@ -8,8 +8,11 @@ add_title = (str) ->
 
 list = (a) -> Array.isArray a
 
-code_array = (arr) ->
-  arr
+mark_line = (line) ->
+  line.replace(/>/g,'&gt;')
+    .replace(/</g,'&lt;')
+    .replace(/\t/g,' ')
+    .replace(/\s/g, ' ')
 
 make_array = (arr) ->
   lines = []
@@ -23,7 +26,7 @@ make_array = (arr) ->
     else if line[0..1] is '  '
       if (list lines[tail]) then lines[tail].push line[2..]
       else lines.push [line[2..]]
-    else lines.push line.trimRight()
+    else lines.push (mark_line line.trimRight())
 
   output = []
   for item in lines
@@ -36,12 +39,6 @@ make_array = (arr) ->
       output.push space for space in stack
     else output.push item
   output
-
-mark_line = (line) ->
-  line.replace(/>/g,'&gt;')
-    .replace(/</g,'&lt;')
-    .replace(/\t/g,' ')
-    .replace(/\s/g, ' ')
 
 comment_line = (line) ->
   line = line
