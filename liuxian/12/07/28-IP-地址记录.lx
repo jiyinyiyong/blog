@@ -1,0 +1,78 @@
+
+@ 记录我的 IP 地址
+
+家里老的电脑装上一台 Ubuntu, 但管理 Ubuntu 的细节家里没人
+我寻思以后远程 ssh 登录管理应该不错的, 但是 IP 地方没有办法, 求助论坛
+http://forum.ubuntu.org.cn/viewtopic.php?f=48&t=381745
+我得到的思路是从本地不停往服务段发送信息, 更新设置
+于是我想到干脆 Heroku 放一个应用, 我这里访问过去看 IP 的更新
+
+大致想法是这样, 客户端通过 URL 的参数发送过去 IP, 附带密码
+IP 可以通过调用 `ifconfig` 然后解析字符串获得, 可行
+发送用 nodejs 模拟一个请求, 然后就是网页的更新部分了
+
+服务器的代码基本是这样的:
+  url = require 'url'
+  http = require 'http'
+  querystring = require 'querystring'
+
+  history = []
+  f = (n) -> if n < 10 then '0' + n else n
+  time = ->
+    now = new Date()
+    m = f (now.getMonth() + 1)
+    d = f now.getDate()
+    h = f now.getHours()
+    n = f now.getMinutes()
+    s = f now.getSeconds()
+    "#{m}/#{d} #{h}:#{n}:#{s}"
+  gen = (obj) ->
+    "<code>#{obj.time} -- #{obj.ip}</code><br>"
+
+  server = http.createServer (req, res) ->
+    obj = url.parse req.url
+    # console.log obj
+    p = obj.pathname
+    if p is '/update'
+      {ip, passwd} = querystring.parse obj.query
+      if ip? and passwd is 'home'
+        stemp = time()
+        if history[0]?.time[...-1] is stemp[...-1]
+          history.shift()
+        history.unshift ip: ip, time: stemp
+      res.end ''
+    else if p is '/'
+      res.writeHead 200, 'Content-Type': 'text/html'
+      res.end history.map(gen).join('')
+    else res.end ''
+
+  port = process.env.PORT or 8000
+  server.listen port
+
+然后发送有现成的 `http.get()` 可用:
+http://nodejs.org/api/http.html#http_http_get_options_callback
+但我法先调试起来不对, 就先将代码运行到 Heroku 上去
+安装 `ruby1.9.1` 并添加淘宝的镜像来安装 `heroku` 命令工具.
+http://ruby.taobao.org/
+安装完成 `heroku` 先登录, 注意终端使用了代理的话登录出错,
+之后俺下面的手法配置 Heroku 环境, 注意要 key
+https://devcenter.heroku.com/articles/nodejs
+http://stackoverflow.com/questions/6356267/can-i-run-coffeescript-in-heroku
+  heroku keys:clear
+  heroku keys:add ~/.ssh/id_rsa.pub
+然后按 Git 的步骤推一遍就成功了
+http://address-log.herokuapp.com/
+
+客户端的代码是
+  http = require 'http'
+  send = ->
+    ip = '12.34'
+    url = "http://address-log.herokuapp.com/update?ip=#{ip}&passwd=home"
+    p = http.get url, (res) -> console.log res
+    p.on 'error', (err) -> console.log err
+  setInterval send, 1000
+
+代码我放到 GitCafe 上去了, 对然短到没有必要:
+http://gitcafe.com/jiyinyiyong/address-log
+实际用的参数应该是一分钟一次更新, 或者更长, repo 里会改, 还有密码
+为了环境随着开机启动, 还要在系统里设置登录启动
