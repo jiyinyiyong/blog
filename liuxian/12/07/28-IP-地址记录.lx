@@ -25,7 +25,7 @@ IP 可以通过调用 `ifconfig` 然后解析字符串获得, 可行
     h = f now.getHours()
     n = f now.getMinutes()
     s = f now.getSeconds()
-    "#{m}/#{d} #{h}:#{n}:#{s}"
+    "#{m}/#{d} #{h}:#{n}"
   gen = (obj) ->
     "<code>#{obj.time} -- #{obj.ip}</code><br>"
 
@@ -40,6 +40,7 @@ IP 可以通过调用 `ifconfig` 然后解析字符串获得, 可行
         if history[0]?.time[...-1] is stemp[...-1]
           history.shift()
         history.unshift ip: ip, time: stemp
+        if history.length > 100 then history.pop()
       res.end ''
     else if p is '/'
       res.writeHead 200, 'Content-Type': 'text/html'
@@ -47,7 +48,7 @@ IP 可以通过调用 `ifconfig` 然后解析字符串获得, 可行
     else res.end ''
 
   port = process.env.PORT or 8000
-  server.listen port
+server.listen port
 
 然后发送有现成的 `http.get()` 可用:
 http://nodejs.org/api/http.html#http_http_get_options_callback
@@ -64,15 +65,24 @@ http://stackoverflow.com/questions/6356267/can-i-run-coffeescript-in-heroku
 http://address-log.herokuapp.com/
 
 客户端的代码是
-  http = require 'http'
-  send = ->
-    ip = '12.34'
-    url = "http://address-log.herokuapp.com/update?ip=#{ip}&passwd=home"
-    p = http.get url, (res) -> console.log res
-    p.on 'error', (err) -> console.log err
-  setInterval send, 1000
+  #!/usr/bin/coffee
 
-代码我放到 GitCafe 上去了, 对然短到没有必要:
+  http = require 'http'
+  exec = require('child_process').exec
+
+  send = ->
+    exec 'ifconfig', (error, stdout, stderr) ->
+      match = stdout.match /183\.147\.\d+\.\d+/g
+      console.log match
+      ip = match[0]
+      url = "http://address-log.herokuapp.com/update?ip=#{ip}&passwd=home"
+      p = http.get url, (res) -> 0
+      p.on 'error', (err) -> console.log err
+  send()
+setInterval send, 60000
+
+代码我放到 GitCafe 上去了, 虽然短到没有必要:
 http://gitcafe.com/jiyinyiyong/address-log
 实际用的参数应该是一分钟一次更新, 或者更长, repo 里会改, 还有密码
 为了环境随着开机启动, 还要在系统里设置登录启动
+还有 `client.coffee` 的 `#!` 书写随本机改
