@@ -86,3 +86,10 @@ http://gitcafe.com/jiyinyiyong/address-log
 实际用的参数应该是一分钟一次更新, 或者更长, repo 里会改, 还有密码
 为了环境随着开机启动, 还要在系统里设置登录启动
 还有 `client.coffee` 的 `#!` 书写随本机改
+
+晚上想了想, 搜索和调试了一下, Heroku 查看 IP 的方式如下:
+  getClientIp = (req) ->
+    x_ip = req.headers['x-forwarded-for']
+    unless x_ip? then x_ip = req.connection.remoteAddress
+    x_ip
+本想写 Ajax 手法获取 JSON 刷新页面的, 没成功, 算了
