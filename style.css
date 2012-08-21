@@ -44,6 +44,7 @@ body {
 a {
   text-decoration: none;
   color: hsl(240,80%,80%);
+  white-space: nowrap;
 }
 
 pre {

@@ -24,7 +24,7 @@ $ ->
     if cursor is end
       if end is 0 then 'end'
       else delay 10, -> sort arr, (end - 1), 0
-    else
+    else delay 10, ->
       if arr[cursor] > arr[cursor+1]
         [arr[cursor], arr[cursor+1]] = [arr[cursor+1], arr[cursor]]
       paint arr
