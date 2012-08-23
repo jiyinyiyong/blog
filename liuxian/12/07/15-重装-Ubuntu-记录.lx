@@ -71,6 +71,7 @@ https://extensions.gnome.org/extension/104/netspeed/
 https://extensions.gnome.org/extension/208/panel-settings/
 https://extensions.gnome.org/extension/106/remove-user-name/
 https://extensions.gnome.org/extension/38/windows-alt-tab/
+https://extensions.gnome.org/extension/79/hide-dash/
 注意设置默认桌面数量的命令是这样的:
   gsettings set org.gnome.shell.overrides dynamic-workspaces false ;
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 6 ;
@@ -95,3 +96,7 @@ https://help.github.com/articles/generating-ssh-keys
 在 `/usr/local/bin/` 部署下面两个脚本, 另外还有 `liuxian`
 `narkcown`: http://gist.github.com/2626097
 `pgup`: https://gist.github.com/2959922
+
+在 `/etc/hosts` 加入访问 Google 英文版的 IP:
+  74.125.71.94 google.com
+  74.125.71.94 www.google.com
