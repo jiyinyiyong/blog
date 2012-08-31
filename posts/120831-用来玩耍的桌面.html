@@ -1,0 +1,30 @@
+<title>用来玩耍的桌面</title><meta charset='utf-8'>  <div id='article'><a id='home' href='../index.html'>Home</a><link rel="stylesheet" href="../style.css"><pre> </pre><pre><pre class='title'>用来玩耍的桌面</pre></pre><pre> </pre><pre>前几天 RSS 里刷了两篇关于 Linux 桌面的博文, 让人很感兴趣</pre><pre>我英语不够, 没细看, 兼容性之类问题我还不知怎样去看待</pre><pre>"How Apple Killed the Linux Desktop and Why That Doesn’t Matter"</pre><pre><a href="http://www.wired.com/wiredenterprise/2012/08/osx-killed-linux/">www.wired.com/wiredenterprise/2012/08/osx-killed-linux/</a></pre><pre>"What Killed the Linux Desktop"</pre><pre><a href="http://tirania.org/blog/archive/2012/Aug-29.html">tirania.org/blog/archive/2012/Aug-29.html</a></pre><pre>冲桌面这个重要的话题, 我还是有相当的吐槽的欲望的</pre><pre>而且 GNOME 的桌面经过那么多时间也慢慢快自己做发行版了</pre><pre>"A bright future for GNOME"</pre><pre><a href="http://www.slideshare.net/juanjosanchezpenas/brightfuture-gnome">www.slideshare.net/juanjosanchezpenas/brightfuture-gnome</a></pre><pre>随着 Firefox 工具的更新, 浏览器使用命令行也有了进步</pre><pre><a href="https://hacks.mozilla.org/2012/08/new-firefox-command-line-helps-you-develop-faster/">hacks.mozilla.org/2012/08/new-firefox-command-line-helps-you-develop-faster/</a></pre><pre>随着 Wayland 临近, 真的能有很多很多的遐想</pre><pre> </pre><pre>此前我像不满编程语言那样去探索和试想自己实现一个好用桌面, 也是失败的</pre><pre>现在能回想起当时很多还不错的想法, 索性现在也理一遍, 当时的笔记</pre><pre><a href="http://learning-notes.diandian.com/post/2012-03-18/14488613">learning-notes.diandian.com/post/2012-03-18/14488613</a></pre><pre>笔记里很多例子和 Firefox Ubiquity 呈现的理念是一致的</pre><pre>就是给界面增加一个终端接收命令行的输入, 然后和图形界面进行交互</pre><pre><a href="https://addons.mozilla.org/en-US/firefox/addon/mozilla-labs-ubiquity/">addons.mozilla.org/en-US/firefox/addon/mozilla-labs-ubiquity/</a></pre><pre><a href="http://lifehacker.com/5145709/make-ubiquity-your-ultimate-firefox-commander">lifehacker.com/5145709/make-ubiquity-your-ultimate-firefox-commander</a></pre><pre>相对于 TermKit 终端当中的图形, 调用外部数据的图形效果更丰富</pre><pre> </pre><pre>我的观点, 对设计师和程序员而言, 桌面不是好用的组件就完了的</pre><pre>因为具备操作代码的能力, 系统的 API 能成为非常有用的工具</pre><pre>同时由于代码是开放的, 就有必要是正在用桌面的人往 repo 贡献代码</pre><pre>或者进一步说, 桌面就像是应用的开发, 像 Node 分开成为各种模块</pre><pre>然后模块可以看代码自己 folk, 自己处理依赖, 而不臃肿的依赖</pre><pre>就像应用程序开发者能 require 模块添加组装工具一样, 桌面必须可以</pre><pre> </pre><pre>浏览器的成功让我觉得很多手法其实可以参照网页而进行创造</pre><pre>比如传统的平铺窗口管理用 CSS 的布局和浮动进行定位</pre><pre>窗口位置的操作用 JS 操作 DOM 类似的手法去修改样式和属性</pre><pre>另外让桌面能直接打开其他主机上的数据形成可操作的界面</pre><pre>再者是画布和背景之类的定义以及配置, 用接口快速更改程序</pre><pre>对我而言需要的接口清晰的机制, 而不是界面做出清晰的功能</pre><pre>还有是像 socket.io 这样快速连接来自不同客户的网页进行通信的机制</pre><pre>我想现在通过网页想做, 但限于接口而无法完成的, 通过桌面不要再难以实现吧</pre><pre> </pre><pre>Linux 环境惯于多个桌面, 但类比浏览器多个标签, 多个环境也是需要的吧</pre><pre>在一个桌面里调试另一个桌面总是需要的, 否则难以应对调试出错</pre><pre>再为了平铺足够多来源不同的页面需要尺寸超出屏幕的桌布</pre><pre>那么, 常用的工具只要罗列在桌面, 不使用时也不必去关闭了, 等待刷新即可</pre><pre>而我最天真的想法还是希望组件能拖出, 之前有博文描述过了</pre><pre> </pre><pre>但想来要做一款桌面不会是轻松的, 也不现实, 也没有足够好的社区</pre><pre>Linux 平台几款桌面慢慢都成了吐槽的对象, 其难度可想而知</pre><pre>好在 GNOME3 已经采取扩展的方式了, 期待情形渐渐转好</pre><pre>我弄不清是否浏览器有一天会真的成为桌面, 就像 FirefxOS 那样</pre><pre>那样也好, 至少浏览器裸露的 API 其实对玩代码的人们来说非常之便利</pre><pre>如果桌面有原生的调用 API 和连接其他主机的程序的能力, 操作就能更简便</pre><pre>我先在恐怕只能这样想象一个可能的未来, 它远未来到</pre><pre>而同时占大多数的普通用户应该不会有兴趣, 就像他们对浏览器没兴趣</pre><pre> </pre><pre>好了, 那最后, 假设成了, 桌面上有个命令行界面, 有图形</pre><pre>然后可以写代码来操纵桌面, 就这样:</pre><pre> </pre><pre class='code_block'><pre>set a get-selection!</pre><pre>print translate en-2-cn a</pre><pre> </pre><pre>set b get-weather (me read location)</pre><pre>print b summary</pre><pre> </pre><pre>set friend net conect 192.168.1.116</pre><pre>set path /home/chen/pics/</pre><pre>send friend picture-from-file (+ path movie-screenshot.png)</pre><pre>set c picture-search path</pre><pre>send friend c</pre><pre>print status-of friend</pre><pre> </pre><pre>friend event-on * msg-x</pre><div class='code_block'><pre>notification show msg-x small</pre><pre>notification pop (call gtalk (friend gtalk))</pre></div></code></pre><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div></div>
