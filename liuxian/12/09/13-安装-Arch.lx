@@ -159,6 +159,10 @@ http://bbs.51osos.com/thread-5381-1-1.html
 通过 `ntpdate asia.pool.ntp.org` 同步时间
 http://blog.163.com/drzxqing@126/blog/static/59351445201011132447778/
 http://blog.sina.com.cn/s/blog_5f66526e0100q1xd.html
+觉得还是不行, 按下面链接的的一个方案添加了服务
+http://blog.samsonis.me/2009/02/archlinux%E4%B8%8B%E7%9A%84%E6%97%B6%E9%97%B4%E6%97%B6%E5%8C%BA%E8%AE%BE%E7%BD%AE/
+结果还是不行, 按下面的将调整后的时间保存
+https://bbs.archlinuxcn.org/viewtopic.php?id=308
 Twitter `ssl error` 需要安装 `python2-pyopenssl` 这个包
 终端不能显示 utf-8 字符的问题, 我修改了 locale 以后重启很奇怪地才成功
 按文档是在 `/etc/rc.conf` 添加 `LOCALE="en_US.UTF-8"`
@@ -172,3 +176,8 @@ https://github.com/keithw/mosh/issues/98
 最后, 还是有两个明显的问题没解决
 一个是字体渲染, 太虚的感觉, 好像是老问题, 中文办法没有
 一个是 Mosh 登陆 VPS, 登陆边上的 Ubuntu 都没问题的, 奇怪了
+
+字体问题, 网上说有不补丁, 都是 Ubuntu 的后缀, 装了没效果
+http://followning.blog.163.com/blog/static/141333234201142223841775/
+我最后是, 在论坛求助最后完成的, 两个 `lcd` 的包, `yurt` 装的
+http://forum.ubuntu.org.cn/viewtopic.php?f=105&t=386662&p=2840767&e=2840767
