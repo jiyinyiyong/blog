@@ -1,0 +1,30 @@
+<title>ssh config 文件配置等近期琐碎配置</title><meta charset='utf-8'>  <div id='article'><a id='home' href='../index.html'>Home</a><link rel="stylesheet" href="../style.css"><pre> </pre><pre><pre class='title'>ssh config 文件配置等近期琐碎配置</pre></pre><pre> </pre><pre>补考前一天晚上正好 Robin 来办公室配置他的电脑</pre><pre>我看到他的 <code class="inline_code">~/.ssh/config</code> 配置就跟他学了那一段配置</pre><pre>大概意思是为 host 取别名, 并设置具体的信息方便登录</pre><pre>文件内容:</pre><pre class='code_block'><pre>host info</pre><pre>user jiyinyiyong</pre><pre>hostname jiyinyiyong.info</pre><pre>port 22</pre><pre>identityFile ~/.ssh/id_rsa</pre></code></pre><pre>更多细节可以参考下面链接:</pre><pre><a href="http://www.lainme.com/doku.php/blog/2011/01/%E4%BD%BF%E7%94%A8ssh_config">www.lainme.com/doku.php/blog/2011/01/%E4%BD%BF%E7%94%A8ssh_config</a></pre><pre><a href="http://www.csser.com/board/4f53875c55bdcb545c000d05">www.csser.com/board/4f53875c55bdcb545c000d05</a></pre><pre>命令行工具往往隐藏了好多技巧, 要发现还是不容易的</pre><pre>虽然, 其中很多的确不够实用:</pre><pre><a href="http://heikezhi.com/2011/08/26/ssh-productivity-tips/">heikezhi.com/2011/08/26/ssh-productivity-tips/</a></pre><pre> </pre><pre> </pre><pre>再有我在服务器配置 Nginx 的 Node 反向代理遇到了问题</pre><pre>原先我只是抄的网上的配置例子, 他看了以后做了简化</pre><pre>虽然发现 Nginx 没跑起来, 但配置文件我做一下记录:</pre><pre class='code_block'><pre>server {</pre><div class='code_block'><pre>listen 80;</pre><pre>server_name linux.domain;</pre><pre>access_log /var/log/nginx/linux-club.log;</pre><pre>error_log /var/log/nginx/linux-club-error.log;</pre><pre>location / {</pre><div class='code_block'><pre>proxy_set_header X-Real-IP $remote_addr;</pre><pre>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</pre><pre>proxy_set_header Host $http_host;</pre></div></div><pre>#   proxy_set_header X-NginX-Proxy true;</pre><div class='code_block'><div class='code_block'><pre>proxy_pass http://127.0.0.1:3000;</pre></div></div><pre>#   proxy_redirect off;</pre><div class='code_block'><pre>}</pre></div><pre>}</pre></code></pre><pre>后来他直接给配了 Apache 作为反向代理了, 网站是可以访问的</pre><pre>此前我还以为只有 Nginx 能搭配 Node, 对反向代理缺乏了解</pre><pre class='code_block'><pre>&lt;VirtualHost *:80&gt;</pre><div class='code_block'><div class='code_block'><div class='code_block'><pre>ServerName linux.domain</pre><pre>ServerAdmin jiyinyiyong@qq.com</pre><pre>ProxyPass / http://127.0.0.1:3000/</pre><pre>ProxyPassReverse / http://127.0.0.1:3000/</pre></div><pre> </pre><pre> &lt;proxy  http://127.0.0.1:3000&gt;</pre><div class='code_block'><pre>AllowOverride None</pre><pre>Order Deny,Allow</pre><pre>allow from all</pre></div><pre> &lt;/proxy&gt;</pre></div></div><pre>&lt;/VirtualHost&gt;</pre></code></pre><pre> </pre><pre>另外 Node 现在尝试用 <code class="inline_code">forever</code> 命令跑了, 我的 <code class="inline_code">alias</code> 是这样的:</pre><pre class='code_block'><pre>alias start-club='cd /app-path/; forever start -a -l /log-path/out.log -o /log-path/out.log -e /log-path/err.log app.js'</pre><pre>alias stop-club='cd /app-path/; forever stop app.js;'</pre></code></pre><pre>详细的情况参考论坛和 Github 上的链接就好了</pre><pre><a href="http://www.bishen.org/content/25925993071">www.bishen.org/content/25925993071</a></pre><pre><a href="http://cnodejs.org/topic/5048b5b4bcd422b444096540">cnodejs.org/topic/5048b5b4bcd422b444096540</a></pre><pre><a href="https://github.com/nodejitsu/forever">github.com/nodejitsu/forever</a></pre><pre> </pre><pre>前几天发现 byobu 真的是远程管理非常强大的工具</pre><pre>比如保存状态, 切换终端等等实用的功能. 甚至还有分屏和视野搜索之类的</pre><pre>我刚开始在服务器上遇到个去年启动的 byobu, 当时很幼稚地给关了..</pre><pre>学习的花没有文档是不行了, 主要看链接和自带的帮助命令:</pre><pre><a href="https://help.ubuntu.com/community/Byobu">help.ubuntu.com/community/Byobu</a></pre><pre><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-screen/">www.ibm.com/developerworks/cn/linux/l-cn-screen/</a></pre><pre> </pre><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div></div>

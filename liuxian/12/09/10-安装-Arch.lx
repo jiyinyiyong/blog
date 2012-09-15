@@ -171,13 +171,14 @@ Mosh 的问题只好添加参数来连接, 弄不清楚具体
   mosh root@server4 --server="LANG=$LANG mosh-server"
 https://github.com/keithw/mosh/issues/98
 
-#结尾#
-
-最后, 还是有两个明显的问题没解决
-一个是字体渲染, 太虚的感觉, 好像是老问题, 中文办法没有
-一个是 Mosh 登陆 VPS, 登陆边上的 Ubuntu 都没问题的, 奇怪了
-
-字体问题, 网上说有不补丁, 都是 Ubuntu 的后缀, 装了没效果
+字体问题, 网上说有补丁, 都是 Ubuntu 的后缀, 装了没效果
 http://followning.blog.163.com/blog/static/141333234201142223841775/
-我最后是, 在论坛求助最后完成的, 两个 `lcd` 的包, `yurt` 装的
-http://forum.ubuntu.org.cn/viewtopic.php?f=105&t=386662&p=2840767&e=2840767
+我最后是, 在论坛求助最后完成的, 具体不如完成还是不清晰, 参考我的帖
+http://forum.ubuntu.org.cn/viewtopic.php?f=105&t=386662
+https://groups.google.com/forum/?fromgroups=#!topic/archlinux-cn/-6KGX4VQAmQ
+然后到字体初步解决为止关于安装软件的命令, 也许有用
+https://gist.github.com/3721169
+我猜测是先装上提到过的 `-ubuntu` 结尾的包, 还有 `-infinality` 结尾的包
+再就是尽可能多地安装可能遇到的字体
+到今天我还是遇到怀疑来源于 webfonts 的字体不能正常显示, 还在装
+总之问题都是没有解决的, 有了解的大侠请指点一下
