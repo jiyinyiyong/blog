@@ -1,0 +1,30 @@
+<title>还不会的语法解析</title><meta charset='utf-8'>  <div id='article'><a id='home' href='../index.html'>Home</a><link rel="stylesheet" href="../style.css"><pre> </pre><pre><pre class='title'>还不会的语法解析</pre></pre><pre> </pre><pre>解析是做编程语言之前很简单的一步吧, 现在勉强有个头绪, 记录下</pre><pre>看 typeof 做的 Moe 里的资料, 语法解析要学的东西真是会很多</pre><pre><a href="http://typeof.net/moe/grammar.html">typeof.net/moe/grammar.html</a></pre><pre>我之前学解析的例子是 LispyScript 转化 JS 的源码, 比较清晰</pre><pre><a href="https://github.com/santoshrajan/lispyscript/blob/master/lib/ls.js">github.com/santoshrajan/lispyscript/blob/master/lib/ls.js</a></pre><pre>然后我之后用 coffee 仿写, 突然发现成功了, 虽然比较简单的</pre><pre><a href="https://github.com/jiyinyiyong/scirpus/blob/gh-pages/src/to_aray.coffee">github.com/jiyinyiyong/scirpus/blob/gh-pages/src/to_aray.coffee</a></pre><pre>其实我的思路和 LispyScript 有些差别, 层次上并不相同</pre><pre>另外对 Markdown 也写了一点过滤代码, 思路比较简单的</pre><pre><a href="https://gist.github.com/3673285">gist.github.com/3673285</a></pre><pre>这个意思就是先设置全局的状态表示各种状态, 用 token 收集标识符</pre><pre>每到一个字符都在特定的环境然后对 token 做操作</pre><pre>然后检测 token 的数组进行折叠, 形成语法树</pre><pre>Lispy 的做法是把几个步骤放到一起去做了, 因此就比较难懂</pre><pre> </pre><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div></div>
