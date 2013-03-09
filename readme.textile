@@ -1,0 +1,7 @@
+
+h2. 我的博客
+
+访问 http://jiyinyiyong.github.com/blog/ 查看
+使用 Marked 和 Highlight.js 对文本进行标记
+通过 `html.coffee` 中的脚本执行到 HTML 的编译
+代码还用到 Jade, Stylus 这些标记语言

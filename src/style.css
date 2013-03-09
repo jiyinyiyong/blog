@@ -1,0 +1,99 @@
+
+::-webkit-scrollbar {
+  width: 4px;
+  background: hsl(30,30%,90%);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 4px;
+  background: hsl(0,20%,70%);
+}
+
+body {
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: 'wenquanyi micro hei', 'microsoft yahei';
+  letter-spacing: 1px;
+  line-height: 28px;
+  margin: 0px;
+  text-shadow: 0px 0px 7px hsl(0,30%,80%);
+}
+
+.code_block, .inline_code, a {
+  font-family: 'wenquanyi micro hei mono', 'monospace';
+  /*background-color: hsl(20,90%,98%);*/
+  box-shadow: 0px 0px 2px hsl(50,40%,90%);
+  padding: 0px 2px;
+  margin: 0px 2px;
+  white-space: normal;
+}
+
+.code_block {
+  width: 800px;
+  padding: 0px 14px;
+  font-size: 12px;
+}
+
+.code_block > .code_block {
+  margin-left: 2px;
+}
+
+.code_block > pre {
+  white-space: normal;
+}
+
+a {
+  text-decoration: none;
+  color: hsl(240,80%,80%);
+  white-space: nowrap;
+}
+
+pre {
+  margin: 0px;
+  max-width: 700px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 28px;
+}
+
+.title {
+  color: red;
+}
+
+#disqus_thread {
+  margin-top: 100px;
+  width: 700px;
+}
+
+#home {
+  position: fixed;;
+  top: 100px;
+  left: 0px;
+  padding: 2px 6px;
+}
+
+#list {
+  box-sizing: border-box;
+  padding: 40px 0px 100px 400px;
+}
+
+#list>a {
+  display: block;
+  box-shadow: none;
+}
+
+#about {
+  position: fixed;
+  padding: 100px 60px;
+}
+
+#article {
+  margin-left: 140px;
+  padding-left: 80px;
+  box-shadow: 0px 0px 42px hsl(0,90%,90%);
+}
+
+#wrap > #list > a {
+  display: block;
+  background: none;
+  box-shadow: none;
+}

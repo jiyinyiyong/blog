@@ -1,0 +1,54 @@
+
+mixin post(name, title)
+  a(href="posts/#{name}.html")= title
+
+mixin link(name, title)
+  a(href="#{name}")= title
+
+html
+  head
+    title 题叶
+    link(href='http://fonts.googleapis.com/css?family=Marcellus',
+      rel='stylesheet',type='text/css')
+    link(rel='stylesheet',href='src/index.css')
+    meta(charset='utf-8')
+    //- script(src="http://dev:7777/doodle.js")
+  body
+    #about
+      span JiyinYiyong, 题叶
+    #list
+      div Year 2013
+      mixin post("130309-重新启用博客", "重新启用博客")
+      mixin link("http://www.douban.com/group/topic/37157568/", "简单")
+      mixin link("https://github.com/Bodule/Bodule/issues/6", "Component + SourceMaps 的模块化方案前景怎样?")
+      mixin link("https://github.com/jiyinyiyong/metro-wm-concept/issues/1", "为什么 Metro 风格我认为适合 Linux")
+      mixin link("https://github.com/jiyinyiyong/banyan/issues/1", "一个不切实际的前端模块化方案")
+      mixin link("https://github.com/jiyinyiyong/cirru-script/issues/3", "为什么我讨厌括号")
+      mixin link("https://github.com/jiyinyiyong/cirru-script/issues/2", "函数不是最基础的语法")
+      mixin link("https://github.com/jiyinyiyong/cirru-script/issues/1", "Cirru 语法的思考")
+      div Year 2012
+      mixin post("120919-关于学习的观点", "关于学习的观点")
+      mixin post("120915-还不会的语法解析", "还不会的语法解析")
+      mixin post("120915-ssh-config-配置等等", "ssh-config-配置等等")
+      mixin post("120910-安装-Arch", "安装-Arch")
+      mixin post("120904-并行的时间", "并行的时间")
+      mixin post("120901-字符串作为要素", "字符串作为要素")
+      mixin post("120831-用来玩耍的桌面", "用来玩耍的桌面")
+      mixin post("120829-dataURL-传输文件", "dataURL-传输文件")
+      mixin post("120829-寻找漂亮的语言", "寻找漂亮的语言")
+      mixin post("120823-模式匹配和对象的想法", "模式匹配和对象的想法")
+      mixin post("120821-doodle-刷新页面", "doodle-刷新页面")
+      mixin post("120811-重写聊天应用的感想", "重写聊天应用的感想")
+      mixin post("120806-参考-coffee-设想语法", "参考-coffee-设想语法")
+      mixin post("120805-OAuth-登录-Github-及微博", "OAuth-登录-Github-及微博")
+      mixin post("120804-VPS-Node-应用配置", "VPS-Node-应用配置")
+      mixin post("120728-IP-地址记录", "IP-地址记录")
+      mixin post("120725-里坊-网页的嵌套", "里坊-网页的嵌套")
+      mixin post("120720-未来的灯市", "未来的灯市")
+      mixin post("120715-重装-Ubuntu-记录", "重装-Ubuntu-记录")
+      mixin post("120714-Cirru-可能的遐想", "Cirru-可能的遐想")
+      mixin post("120712-用网络来沟通的构思", "用网络来沟通的构思")
+      mixin post("120709-Cirru-编辑器的重写", "Cirru-编辑器的重写")
+      mixin post("120624-开始学-Clojure-的模块机制", "开始学-Clojure-的模块机制")
+      mixin post("120623-暑假前关于编程和学习的想法", "暑假前关于编程和学习的想法")
+      mixin post("120615-关于这个博客和柳线", "关于这个博客和柳线")
