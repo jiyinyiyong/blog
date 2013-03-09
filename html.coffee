@@ -17,6 +17,7 @@ post_dir = "./posts/"
 names = filename.split("/")[1..]
 target = path.join post_dir, names.join("").replace /md$/, "html"
 
+meta = "<meta charset='utf-8'>"
 content = fs.readFileSync filename, "utf8"
 body = "<div class='article'>#{marked content}</div>"
 
@@ -28,6 +29,6 @@ doodle = "<script src='http://dev:7777/doodle.js'></script>"
 home = "<div class='home'><a href='../index.html '>Home</a></div>"
 font = "<link href='http://fonts.googleapis.com/css?family=Marcellus'
   rel='stylesheet' type='text/css'>"
-result = title + font + style + home + body + disqus
+result = title + meta + font + style + home + body + disqus
 
 fs.writeFileSync target, result
