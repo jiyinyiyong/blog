@@ -1,0 +1,45 @@
+<title>130329-做不到的事.md</title><meta charset='utf-8'><link href='http://fonts.googleapis.com/css?family=Marcellus'  rel='stylesheet' type='text/css'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>做不到的事情</h2>
+<p>实习比我想象的累, 也积压下来好些想法, 而且 RSS 也没心思看了<br>总觉得不如半个月前我那么热衷于代码了, 是应该冷静一下<br>对于 OO 和 FP 越发觉得迷惘, 但很难说清从哪里解开这个麻烦<br>同事虽然各种写代码, 但对这些问题从来不谈, FP 只有在王垠的博客里<br>不看 RSS 了我倾向看新闻, 比如腾讯科技和 SN, 蛮好的<br>离开学校再没那么多心情去看自己喜欢的书, 同时抱怨太难学不会<br>学校同学在眼里也意外地感到亲切, 很庆幸我还有一群能说话的人</p>
+<h4>JS 环境方面</h4>
+<p>JS 包管理和脚手架是一直困扰我的问题, 现在依然头大<br>脚手架, 以前用 Bash 脚本写 <code>coffee jade stylus doodle</code> 几个编译命令<br>之后用 <code>cake</code>, 因为 Bash 脚本关闭时会出问题, <code>cake</code> 解决了<br>后来尝试用 Grunt, 但之前文章也写了, 诸多问题啊<br>于是打算自己写一套 <code>rain-boots</code> 避免几个问题, 可时间上不够<br>另外大的场景架构, 我没有任何经验, 最后想着回去用 <code>cake</code></p>
+<p>包管理是和模块加载一起的问题, 之前做了多种猜想, 没有结果<br>我觉得最好的是用 WebSockets 来形成传输通道. 只是明显过于理想化<br>实际上也就在 SeaJS/SPM 和 RequireJS/jamjs 方向上犹豫<br>我个人喜欢 SeaJS 风格, 但社区发展晚. 我也没本事做一些什么<br>昨晚尝试了一遍 jamjs, 印象不错, 只是安装却出了问题<br>大概是我的操作系统重装时谬清理干净, 遗留下来的麻烦<br>也觉得 Linux 用着, 也是基础没打好, 于是出现各种不顺了</p>
+<h4>社区讨论</h4>
+<p>SN 出现之后唤起了我很大的热情, 希望袭击能参与其中<br>于是我在上回帖, 希望自己能融入进去. 否则只怕更疏远的感觉了<br>有一个中文版的 HN 曾经是我长期盼望的, 终于盼到了<br>也因为期待太久, 我对界面上的期待远远超出了@Fenng 所想的<br>为了特定的讨论形式而设计一套 UI, 这是再平常不过的逻辑<br>无论怎么说, 我现在脑海里都有了一套想法, 只是苦于无法表达<br>要是从前, 我会写一个网页直接发在微博, 现在不是从前了</p>
+<p>我很想有一个地方, 像用 Node 评测或者王垠发了博客, 大家会一起讨论<br>HN 的风俗, 搜集精彩的文章放在一个列表, 这是极好的<br>SN 现在没有高质量的评论, 而我非常期待的就是大牛们能说说话<br>如果王垠不说, 相信函数式的人也会少很多, 我也在迷茫着<br>编程比起文学的丰富在于其真实, 也在于其严密<br>这样一本无从读起的书, 没有前人讲解开导真是难以置信的<br>纵然在 Github 也遇到同龄人说着我全然不懂的话题, 也认了</p>
+<p>有机会我还是想用代码把我脑海里想的东西表达出来<br>过去两年多我都只是这么做的, 从只会拼图片到学 HTML<br>还有后来用 CoffeeScript 写界面录视频, 成了我的功课<br>在公司也说, 要擅长表达自己以及产品, 而这也是我努力的<br>因为沉默, 我感到了沟通其实会是多么有用, 一定不放弃</p>
+<h3>代码的抽象</h3>
+<p>我最近接触的代码的 OO 风格的, 类和消息观念很鲜明<br>Clojure 里说 Java OO 并不好, 我不清楚这在 DOM 上是否亦然<br>OO 中我开始认识到的是对交互很高明的抽象, 而且十分有用<br>FP 编程我看到的是无处不再的对过程的抽象, 也非常棒<br>至于王垠说的高深的编译器知识, 我只能尝试接受是别的观念了<br>没有人给出清晰的说法, 在不同场景也会不同, 这是难处</p>
+<p>我沿着自己的路看到一个是 <code>this</code> 引用的问题, 在 JS 里<br>JS 每个函数都有 <code>this</code>, <code>this</code> 又会因为函数一等公民而被覆写<br>随着两方面特性出现在同一门语言中, 我就开始琢磨提问题了<br><a href="http://segmentfault.com/q/1010000000183613">http://segmentfault.com/q/1010000000183613</a><br>在 SegmentFault 提问没有让我豁然开朗的答案, 不好</p>
+<p>而我之前思考的, <code>this</code> 或许只是作用域设计不完全的产物<br>想象着代码其实就是一个个关系不同的作用域, 相互发生关系<br>每个作用域有操作和数据, 也会调用其他作用域的操作和数据<br>那么编程的模型应该是很简单, 是无处不在的消息和调用<br>这对编码没有太大帮助, 却是一个很好玩的开端, 至少我觉得<br><a href="https://github.com/jiyinyiyong/cirru-script/issues/4">https://github.com/jiyinyiyong/cirru-script/issues/4</a></p>
+<h3>不能毕业</h3>
+<p>另外是头疼的不能毕业的问题, 身边的人都努力提醒我了<br>可我从高考起对某些科目都开始产生心里阴影了<br>就像伴随我成长的诸多心结一样, 久久不能解开, 总是有隐患<br>虽然高中记得很多难过, 可也是我很怀念的一段经历<br>我努力在网上出现, 也一半出于现实当中的不如意, 谁懂<br>晚上心烦把笔记写完再撤. 浪费点电.. 晚安</p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
