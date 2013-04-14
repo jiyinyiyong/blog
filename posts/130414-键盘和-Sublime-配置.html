@@ -1,0 +1,97 @@
+<title>130414-键盘和-Sublime-配置.md</title><meta charset='utf-8'><link href='http://fonts.googleapis.com/css?family=Marcellus'  rel='stylesheet' type='text/css'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>我的键盘和 Sublime Text 配置</h2>
+<p>之前有在 Gist 上做备份, Gist 又增加了个人搜索的功能<br>可能是搜索关键词不清晰, 搜索有些麻烦, 另外我也想记一些说明</p>
+<h3>键位映射</h3>
+<p>Xmodmap 的配置写在 <code>~/.Xmodmap</code> 文件里, Gist 在:<br><a href="https://gist.github.com/jiyinyiyong/a03fd3767e04a8508755">https://gist.github.com/jiyinyiyong/a03fd3767e04a8508755</a><br>Arch 上需要手动执行 <code>xmodmap ~/.Xmodmap</code> 在每次重启时候重载<br>按说要 X 在启动时每次读取配置起作用的, 可我没能搞定很久了<br>文件内容:</p>
+<pre><code><span class="title">keycode</span>  <span class="number">18</span> = <span class="number">9</span> bar
+<span class="title">keycode</span>  <span class="number">19</span> = <span class="number">0</span> backslash
+<span class="title">keycode</span>  <span class="number">20</span> = minus underscore
+
+<span class="title">keycode</span>  <span class="number">34</span> = parenleft parenright
+<span class="title">keycode</span>  <span class="number">35</span> = bracketleft bracketright
+<span class="title">keycode</span>  <span class="number">47</span> = colon semicolon
+<span class="title">keycode</span>  <span class="number">48</span> = quotedbl apostrophe
+
+<span class="title">keycode</span>  <span class="number">51</span> = braceleft braceright</code></pre>
+<p>之前求助@lilydjwg 被推荐用 Fcitx 插件来替代 Xmodmap 映射键位<br>实际使用感觉对进入桌面的速度有明显影响, 最后放弃了<br>另外写钩子在启动 X 自动加载配置的方案, 以后还得再测</p>
+<p>这个脚本主要的功能是调整括号引号冒号的位置<br><code>&quot; &#39;</code> 被交换, <code>: ;</code> 也交换了, 这是针对 CoffeeScript 改的<br>三个括号, 考虑到编辑器自动补全, 被同意放在 <code>p</code> 键右边<br>一次是 <code>( [ {</code>, 加上 <code>Shift</code> 后依次是 <code>) ] }</code><br>受影响的键位也跟着做了调整, <code>9 0</code> 上依次是 <code>| \</code> 两个</p>
+<h3>Sublime Text 配置</h3>
+<p>受键位的影响, Sublime 的快捷键出错, 设置了这两行:</p>
+<pre><code class="lang-json">[
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+["</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"indent"</span> }</span>,
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+("</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"unindent"</span> }</span>
+]</code></pre>
+<p>另外完整的配置是这样的, 后面我将做一些解释:<br><a href="https://gist.github.com/jiyinyiyong/5275061">https://gist.github.com/jiyinyiyong/5275061</a></p>
+<pre><code class="lang-json">{
+  "<span class="attribute">draw_centered</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">font_face</span>": <span class="value"><span class="string">"Monaco"</span></span>,
+  "<span class="attribute">font_options</span>":
+  <span class="value">[
+    <span class="string">"subpixel_antialias"</span>
+  ]</span>,
+  "<span class="attribute">font_size</span>": <span class="value"><span class="number">10</span></span>,
+  "<span class="attribute">highlight_line</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">highlight_modified_tabs</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">ignored_packages</span>":
+  <span class="value">[
+    <span class="string">"Vintage"</span>
+  ]</span>,
+  "<span class="attribute">indent_guide_options</span>":
+  <span class="value">[
+    <span class="string">"draw_normal"</span>,
+    <span class="string">"draw_active"</span>
+  ]</span>,
+  "<span class="attribute">line_padding_top</span>": <span class="value"><span class="number">1</span></span>,
+  "<span class="attribute">match_brackets_angle</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">shift_tab_unindent</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">show_tab_close_buttons</span>": <span class="value"><span class="literal">false</span></span>,
+  "<span class="attribute">soda_classic_tabs</span>": <span class="value"><span class="literal">false</span></span>,
+  "<span class="attribute">space_auto_indent</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">tab_size</span>": <span class="value"><span class="number">2</span></span>,
+  "<span class="attribute">binary_file_patterns</span>": <span class="value">[<span class="string">"node_modules/*"</span>] </span>,
+  "<span class="attribute">translate_tabs_to_spaces</span>": <span class="value"><span class="literal">true</span>
+}</span></code></pre>
+<p><code>draw_centered</code> 是让代码不靠到左边界, 主要是稍微好看一些吧<br>字体用的 <code>Monaco</code>, Github 用的 <code>Consolas</code> 类似, 我分辨不出来<br>我不用 Vintage, 容易造成误操作, 况且 Sublime 快捷键已经很强<br>个人更期待缩进线跟随光标而不是行头, 跟着光标更灵活</p>
+<p><code>binary_file_patterns</code> 是 Goto Anything 功能的配置<br>可以屏蔽 Node 模块里的文件, 这样搜索范围就缩小了<br><a href="https://twitter.com/radagaisus/status/290095794520993792">https://twitter.com/radagaisus/status/290095794520993792</a></p>
+<h3>缩进</h3>
+<p><code>indent_guide</code> 是缩进线, Sublime 有三类缩进线, 具体见帖子<br><a href="http://www.sublimetext.com/forum/viewtopic.php?f=2&amp;t=9267">http://www.sublimetext.com/forum/viewtopic.php?f=2&amp;t=9267</a><br>为此我稍微改动了自带的主题, 用来突出重要的一条<br><a href="https://gist.github.com/jiyinyiyong/5047540">https://gist.github.com/jiyinyiyong/5047540</a></p>
+<p>缩进我采用的是两个空格, 首先制表符在 Github 上很难看, 又不好控制<br>其次 CoffeeScript 规范是两空格, 缩进深的时候也不太远<br>然后让 tab 自动转为空格, 这 Sublime 大概有处理, 并不是全局的</p>
+<p>另外我有个插件里定义过行头空格键插入两个空格<br>首先 Backspace 原本就能直接删除两个空格的<br>我的办法有些 Hack, 不通用, 如果 Sublime 以后能支持就好了<br>我是写在一个插件里, 但没控制好, 全局都起作用了, 临时这样用着<br><a href="https://github.com/jiyinyiyong/Cirru.subl/blob/master/Default.sublime-keymap">https://github.com/jiyinyiyong/Cirru.subl/blob/master/Default.sublime-keymap</a></p>
+<pre><code class="lang-json">[
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">" "</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"insert_snippet"</span></span>, "<span class="attribute">args</span>": <span class="value">{"<span class="attribute">contents</span>": <span class="value"><span class="string">"  "</span>}</span></span>, "<span class="attribute">context</span>":
+    <span class="value">[
+      { "<span class="attribute">key</span>": <span class="value"><span class="string">"setting.space_auto_indent"</span></span>, "<span class="attribute">operator</span>": <span class="value"><span class="string">"equal"</span></span>, "<span class="attribute">operand</span>": <span class="value"><span class="literal">true</span> }</span>,
+      { "<span class="attribute">key</span>": <span class="value"><span class="string">"selection_empty"</span></span>, "<span class="attribute">operator</span>": <span class="value"><span class="string">"equal"</span></span>, "<span class="attribute">operand</span>": <span class="value"><span class="literal">true</span></span>, "<span class="attribute">match_all</span>": <span class="value"><span class="literal">true</span> }</span>,
+      { "<span class="attribute">key</span>": <span class="value"><span class="string">"preceding_text"</span></span>, "<span class="attribute">operator</span>": <span class="value"><span class="string">"regex_contains"</span></span>, "<span class="attribute">operand</span>": <span class="value"><span class="string">"^\\s*$"</span></span>, "<span class="attribute">match_all</span>": <span class="value"><span class="literal">true</span> }</span>
+    ]
+  }</span>
+]</code></pre>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
