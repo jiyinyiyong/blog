@@ -47,11 +47,12 @@
   "<span class="attribute">soda_classic_tabs</span>": <span class="value"><span class="literal">false</span></span>,
   "<span class="attribute">space_auto_indent</span>": <span class="value"><span class="literal">true</span></span>,
   "<span class="attribute">tab_size</span>": <span class="value"><span class="number">2</span></span>,
-  "<span class="attribute">binary_file_patterns</span>": <span class="value">[<span class="string">"node_modules/*"</span>] </span>,
+  "<span class="attribute">binary_file_patterns</span>": <span class="value">[<span class="string">"node_modules/*"</span>]</span>,
+  "<span class="attribute">file_exclude_patterns</span>": <span class="value">[<span class="string">"node_modules/*"</span>]</span>,
   "<span class="attribute">translate_tabs_to_spaces</span>": <span class="value"><span class="literal">true</span>
 }</span></code></pre>
 <p><code>draw_centered</code> 是让代码不靠到左边界, 主要是稍微好看一些吧<br>字体用的 <code>Monaco</code>, Github 用的 <code>Consolas</code> 类似, 我分辨不出来<br>我不用 Vintage, 容易造成误操作, 况且 Sublime 快捷键已经很强<br>个人更期待缩进线跟随光标而不是行头, 跟着光标更灵活</p>
-<p><code>binary_file_patterns</code> 是 Goto Anything 功能的配置<br>可以屏蔽 Node 模块里的文件, 这样搜索范围就缩小了<br><a href="https://twitter.com/radagaisus/status/290095794520993792">https://twitter.com/radagaisus/status/290095794520993792</a></p>
+<p><code>binary_file_patterns</code> 是 Goto Anything 功能的配置<br>可以屏蔽 Node 模块里的文件, 这样搜索范围就缩小了<br><a href="https://twitter.com/radagaisus/status/290095794520993792">https://twitter.com/radagaisus/status/290095794520993792</a><br><code>file_exclude_patterns</code> 可以屏蔽搜索时的模块文件<br><a href="http://sublimetext.userecho.com/topic/19456-exclude-filesfolders-from-project-by-specifying-regex-or-relative-path-from-project-root/">http://sublimetext.userecho.com/topic/19456-exclude-filesfolders-from-project-by-specifying-regex-or-relative-path-from-project-root/</a></p>
 <h3>缩进</h3>
 <p><code>indent_guide</code> 是缩进线, Sublime 有三类缩进线, 具体见帖子<br><a href="http://www.sublimetext.com/forum/viewtopic.php?f=2&amp;t=9267">http://www.sublimetext.com/forum/viewtopic.php?f=2&amp;t=9267</a><br>为此我稍微改动了自带的主题, 用来突出重要的一条<br><a href="https://gist.github.com/jiyinyiyong/5047540">https://gist.github.com/jiyinyiyong/5047540</a></p>
 <p>缩进我采用的是两个空格, 首先制表符在 Github 上很难看, 又不好控制<br>其次 CoffeeScript 规范是两空格, 缩进深的时候也不太远<br>然后让 tab 自动转为空格, 这 Sublime 大概有处理, 并不是全局的</p>

@@ -77,7 +77,8 @@ https://gist.github.com/jiyinyiyong/5275061
   "soda_classic_tabs": false,
   "space_auto_indent": true,
   "tab_size": 2,
-  "binary_file_patterns": ["node_modules/*"] ,
+  "binary_file_patterns": ["node_modules/*"],
+  "file_exclude_patterns": ["node_modules/*"],
   "translate_tabs_to_spaces": true
 }
 ```
@@ -90,6 +91,8 @@ https://gist.github.com/jiyinyiyong/5275061
 `binary_file_patterns` 是 Goto Anything 功能的配置
 可以屏蔽 Node 模块里的文件, 这样搜索范围就缩小了
 https://twitter.com/radagaisus/status/290095794520993792
+`file_exclude_patterns` 可以屏蔽搜索时的模块文件
+http://sublimetext.userecho.com/topic/19456-exclude-filesfolders-from-project-by-specifying-regex-or-relative-path-from-project-root/
 
 ### 缩进
 
