@@ -25,9 +25,9 @@ html {
 }
 body {
   background: #fafafa;
-  width: 1060px;
-  margin: 0px auto;
-  padding: 50px;
+  width: 800px;
+  margin: 0px;
+  padding: 40px;
   font-family: Marcellus, 'wenquanyi micro hei';
   line-height: 30px;
 }
@@ -36,11 +36,24 @@ body {
   color: #fff;
 }
 .home {
+  position: fixed;
+  right: 60px;
+  top: 60px;
+}
+.home a {
   font-size: 20px;
+  font-family: Marcellus, "wenquanyi micro hei";
+  color: #b3b3b3;
 }
 a {
   text-decoration: none;
   color: #00f;
+  display: inline-block;
+  max-height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: monaco, consolas, monospace;
+  color: #a3a3f5;
 }
 .article {
   margin: 100px 0px 200px;

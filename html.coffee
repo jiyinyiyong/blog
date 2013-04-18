@@ -27,8 +27,6 @@ style = "<link rel='stylesheet' href='../src/page.css' />" +
   href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'>"
 doodle = "<script src='http://dev:7777/doodle.js'></script>"
 home = "<div class='home'><a href='../index.html '>Home</a></div>"
-font = "<link href='http://fonts.googleapis.com/css?family=Marcellus'
-  rel='stylesheet' type='text/css'>"
-result = title + meta + font + style + home + body + disqus
+result = title + meta + style + home + body + disqus
 
 fs.writeFileSync target, result
