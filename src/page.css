@@ -58,6 +58,12 @@ a {
 .article {
   margin: 100px 0px 200px;
 }
+.article ::-webkit-scrollbar-track {
+  background: #fff;
+}
+.article ::-webkit-scrollbar-thumb {
+  background: #242424;
+}
 p {
   margin: 0px;
   padding: 16px 0px;
@@ -68,6 +74,7 @@ pre {
   font-family: monaco, consolas, monospace;
   font-size: 14px;
   padding: 0px 4px;
+  overflow-x: auto;
 }
 blockquote {
   box-shadow: 0px 0px 6px #ccc;

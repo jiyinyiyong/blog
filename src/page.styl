@@ -14,6 +14,8 @@
   background white
   border-radius 2px
 
+
+
 html
   background hsl(0,0,14)
   color hsl(0,0,14)
@@ -58,6 +60,12 @@ a
 
 .article
   margin 100px 0px 200px
+  
+  ::-webkit-scrollbar-track
+    background white
+
+  ::-webkit-scrollbar-thumb
+    background hsl(0,0,14)
 
 p
   margin 0px
@@ -68,6 +76,7 @@ p code, pre
   font-family monaco, consolas, monospace
   font-size 14px
   padding 0px 4px
+  overflow-x auto
 
 blockquote
   box-shadow 0px 0px 6px hsl(0,0,80)
