@@ -11,6 +11,7 @@
 }
 ::-webkit-scrollbar-thumb {
   background: #fff;
+  border-radius: 4px;
 }
 @font-face {
   font-family: 'Marcellus';
@@ -21,39 +22,38 @@
 body {
   margin: 0px;
   font-family: Marcellus, "wenquanyi micro hei";
-  color: #999;
+  background-color: #242424;
 }
 a {
   display: block;
-  color: #999;
   text-decoration: none;
-  box-shadow: 0px 1px 0px rgba(128,128,128,0);
-  padding-left: 100px;
+  color: #b3b3b3;
+  box-shadow: 0px 1px 0px rgba(0,0,0,0);
   line-height: 36px;
-  margin-left: 60px;
-  -webkit-transition-duration: 0.8s;
+  -webkit-transition-duration: 0.4s;
+  padding-left: 160px;
+  margin-left: 40px;
 }
 a:hover {
-  -webkit-transition-duration: 0.4s;
-  box-shadow: 0px 1px 0px #808080;
+  box-shadow: 0px 1px 0px #b3b3b3;
 }
 #background {
   position: fixed;
-  width: 100%;
-  height: 50%;
+  width: 400px;
+  height: 100%;
   bottom: 0px;
-  background-color: #242424;
+  background-color: #fafafa;
 }
 #about {
   position: fixed;
   width: 200px;
   font-size: 16px;
+  top: 20%;
   padding: 40px;
-  bottom: 50%;
 }
 #list {
   position: absolute;
-  left: 220px;
+  left: 200px;
   width: 800px;
   padding: 240px 40px 400px;
 }
