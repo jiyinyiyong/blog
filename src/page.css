@@ -16,6 +16,12 @@
 html {
   background: #f0f0f0;
 }
+@font-face {
+  font-family: 'Marcellus';
+  font-style: normal;
+  font-weight: 400;
+  src: url("Marcellus.woff"), local('Marcellus-Regular');
+}
 body {
   background: #f7f7f7;
   width: 960px;
