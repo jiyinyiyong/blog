@@ -38,16 +38,21 @@ keycode  51 = braceleft braceright
 
 ### Sublime Text 配置
 
-受键位的影响, Sublime 的快捷键出错, 设置了这两行:
+受键位的影响, Sublime 的快捷键出错, 设置了前两行:
 
 ```json
 [
   { "keys": ["ctrl+["], "command": "indent" },
-  { "keys": ["ctrl+("], "command": "unindent" }
+  { "keys": ["ctrl+("], "command": "unindent" },
+  { "keys": ["ctrl+tab"], "command": "next_view" },
+  { "keys": ["ctrl+shift+tab"], "command": "prev_view" }
 ]
 ```
 
-另外完整的配置是这样的, 后面我将做一些解释:
+后两行是为了 `ctrl tab` 能更直观而调整的,
+http://sublimetext.userecho.com/topic/30368-make-ctrltab-only-cycle-tabs-in-current-group-and-in-order-of-appearance/
+
+另外 Settings 完整的配置是这样的, 后面我将做一些解释:
 https://gist.github.com/jiyinyiyong/5275061
 
 ```json

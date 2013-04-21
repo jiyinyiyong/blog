@@ -15,12 +15,15 @@
 <p>之前求助@lilydjwg 被推荐用 Fcitx 插件来替代 Xmodmap 映射键位<br>实际使用感觉对进入桌面的速度有明显影响, 最后放弃了<br>另外写钩子在启动 X 自动加载配置的方案, 以后还得再测</p>
 <p>这个脚本主要的功能是调整括号引号冒号的位置<br><code>&quot; &#39;</code> 被交换, <code>: ;</code> 也交换了, 这是针对 CoffeeScript 改的<br>三个括号, 考虑到编辑器自动补全, 被同意放在 <code>p</code> 键右边<br>一次是 <code>( [ {</code>, 加上 <code>Shift</code> 后依次是 <code>) ] }</code><br>受影响的键位也跟着做了调整, <code>9 0</code> 上依次是 <code>| \</code> 两个</p>
 <h3>Sublime Text 配置</h3>
-<p>受键位的影响, Sublime 的快捷键出错, 设置了这两行:</p>
+<p>受键位的影响, Sublime 的快捷键出错, 设置了前两行:</p>
 <pre><code class="lang-json">[
   { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+["</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"indent"</span> }</span>,
-  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+("</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"unindent"</span> }</span>
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+("</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"unindent"</span> }</span>,
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+tab"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"next_view"</span> }</span>,
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+tab"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"prev_view"</span> }</span>
 ]</code></pre>
-<p>另外完整的配置是这样的, 后面我将做一些解释:<br><a href="https://gist.github.com/jiyinyiyong/5275061">https://gist.github.com/jiyinyiyong/5275061</a></p>
+<p>后两行是为了 <code>ctrl tab</code> 能更直观而调整的,<br><a href="http://sublimetext.userecho.com/topic/30368-make-ctrltab-only-cycle-tabs-in-current-group-and-in-order-of-appearance/">http://sublimetext.userecho.com/topic/30368-make-ctrltab-only-cycle-tabs-in-current-group-and-in-order-of-appearance/</a></p>
+<p>另外 Settings 完整的配置是这样的, 后面我将做一些解释:<br><a href="https://gist.github.com/jiyinyiyong/5275061">https://gist.github.com/jiyinyiyong/5275061</a></p>
 <pre><code class="lang-json">{
   "<span class="attribute">draw_centered</span>": <span class="value"><span class="literal">true</span></span>,
   "<span class="attribute">font_face</span>": <span class="value"><span class="string">"Monaco"</span></span>,

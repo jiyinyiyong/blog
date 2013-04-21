@@ -1,0 +1,109 @@
+<title>130421-Bower-Grunt-入门笔记.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>浏览器模块化, Bower, Grunt 相关</h2>
+<p>原文在 coffee-js/languages Issues 里, 话题不符, 转移<br><a href="https://github.com/coffee-js/languages/issues/51">https://github.com/coffee-js/languages/issues/51</a></p>
+<p>寒假花了不少时间在模块化的问题上边, 也感到独自一个弄不除什么花头<br>大概外边公司里实用方案很多, 我挖 Github 上文档反而多余<br>JS 模块化的 <code>require</code> 更多用 AMD 规范, 而且有各种实现<br>但这只是一个加载器, 对比 Node  的模块化方案, 很多工具是却是的</p>
+<h3>Bower</h3>
+<p>一个是用配置文件声明, 单独完成上传下载的功能, 这是用 Bower 来完成的<br>Bower 来自 Twitter, 仅仅是包管理的工具, 而不具备其他功能<br>主页上的文档对用途说明比较详细: <a href="http://twitter.github.com/bower/">http://twitter.github.com/bower/</a><br>还有已有的模块在网上可以看: <a href="http://sindresorhus.com/bower-components/">http://sindresorhus.com/bower-components/</a><br>Bower 的模块都放在 Github 上, 通过 Git 的协议拷贝模块<br>存在 tag 时会下载 tag 里的压缩包, 否则直接 clone 源代码<br>其他的教程在网上可以找到, 但我不知道国内哪些在用的:<br><a href="http://net.tutsplus.com/tutorials/tools-and-tips/meet-bower-a-package-manager-for-the-web/">http://net.tutsplus.com/tutorials/tools-and-tips/meet-bower-a-package-manager-for-the-web/</a></p>
+<p>Bower 常用的命令是 <code>bower search</code> <code>bower install</code> <code>bower register</code><br>首先, 在项目里要有的 <code>component.json</code> 文件, 类似 Node 的 <code>package.json</code><br>里边写上名字版本之类, 并且用 <code>dependencies</code> 声明依赖以及版本<br>版本号遵循 Semver 的规范, 看命名的方式, 似乎 Node 也是...<br><a href="https://github.com/kainy/semver/blob/master/semver_zh.md">https://github.com/kainy/semver/blob/master/semver_zh.md</a><br>写了依赖之后, 用 <code>bower install</code> 就会下载对应的模块文件了<br>文件会在 <code>~/.bower/</code> 目录下缓存, 以便下次安装. 当然也有命令清除缓存<br>此外一个简便的 <code>--save</code> 参数, 用来自动在 <code>component.json</code>  文件增加模块</p>
+<pre><code class="lang-bash"><span class="comment">bower</span> <span class="comment">install</span> <span class="comment">jquery</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">save</code></pre>
+<p>模块的安装文件是在 <code>components/</code> 里面, 这个命名并不好<br>首先 Bash 里两个 <code>component</code> 开头不好办, 其次还跟 Component 项目不兼容<br>也许以后会换一个 <code>bower.json</code> 的文件名, 至少现在还不支持的<br><a href="https://github.com/twitter/bower/issues/110">https://github.com/twitter/bower/issues/110</a></p>
+<p>Bower 没有 Node 那样的中心仓库, 而仅仅是 Github 加上服务器是的模块列表<br>其他大概就是命令行上做的功能来支持了. 说真的, 麻烦真不小<br>刚开始我尝试在 Bower 上注册了 SeaJS, SeaJS 的 repo 没用 <code>compoent.json</code> 文件<br>下载后自动增加了这个文件, 但是下载非常耗时间, 因为 repo 本身非常大<br>后来才意识到这是从 Github 下载 repo 我发避免的问题<br>另外 Bower 注销模块也非常麻烦, 所以重命名跟着遥遥无期了<br><a href="https://github.com/twitter/bower/issues/120">https://github.com/twitter/bower/issues/120</a></p>
+<p>Bower 的模块和 Node 明显的差别是没有深度的嵌套..<br>因为前端的模块极容易污染全部变量, 再怎么嵌套也没有太多的意思<br>但这也许可以是致命的一个麻烦吧...</p>
+<h3>Grunt 的构建工具</h3>
+<p>Grunt 的功能就偏向于前端实用的一些编译打包操作了<br>类似 Rake Cake 主要就是写 Task, 然后在命令行是启动 Task<br><a href="http://gruntjs.com/">http://gruntjs.com/</a><br><a href="http://benalman.com/news/2012/08/why-grunt/">http://benalman.com/news/2012/08/why-grunt/</a><br>好处在于其配置文件更清晰, 不似 Cake 都得手写一遍<br>另外更难的是大量的插件, 保证了大多时候只要配置就足以完成操作<br>Grunt 的配置文件是 <code>Gruntfile.coffee</code> 或者 <code>Grunrtfine.js</code><br><a href="https://github.com/Takazudo/gruntExamples">https://github.com/Takazudo/gruntExamples</a><br>当然要属官网的文档最清晰, 外边英文的教程就难懂<br><a href="http://takazudo.github.com/blog/entry/2012-04-14-grunt-coffee.html">http://takazudo.github.com/blog/entry/2012-04-14-grunt-coffee.html</a><br><a href="http://net.tutsplus.com/tutorials/javascript-ajax/meeting-grunt-the-build-tool-for-javascript/">http://net.tutsplus.com/tutorials/javascript-ajax/meeting-grunt-the-build-tool-for-javascript/</a><br>中文的也有一些, 大概有类似经验看了马上就懂了. 我花了点时间<br><a href="http://www.cnblogs.com/lhb25/archive/2013/01/24/grunt-for-javascript-project-a.html">http://www.cnblogs.com/lhb25/archive/2013/01/24/grunt-for-javascript-project-a.html</a><br><a href="http://ambar.li/blog/2012/11/30/grunt-intro/">http://ambar.li/blog/2012/11/30/grunt-intro/</a></p>
+<p>我在网上找到一些教程, 慢慢看懂了里边的意思<br><a href="https://github.com/Takazudo/gruntExamples/tree/master/tutorialthings">https://github.com/Takazudo/gruntExamples/tree/master/tutorialthings</a><br>最简单的 Gruntfile 可以是下边这样的, 类似 Cake:</p>
+<pre><code class="lang-coffee"><span class="keyword">module</span>.exports = (grunt) -&gt;
+
+  grunt.initConfig
+    <span class="symbol">log:</span>
+      <span class="symbol">foo:</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+      <span class="symbol">bar:</span> <span class="string">'hello world'</span>
+      <span class="symbol">baz:</span> <span class="keyword">false</span>
+
+  grunt.registerMultiTask <span class="string">'log'</span>, <span class="string">'Log stuff.'</span>, -&gt;
+    grunt.log.writeln <span class="string">"<span class="subst">#{<span class="variable">@target</span>}</span>: <span class="subst">#{<span class="variable">@data</span>}</span>"</span>
+
+  grunt.registerTask <span class="string">'default'</span>, [<span class="string">'log'</span>]</code></pre>
+<p>实际一些, 用编译 CoffeeScipt 的插件做例子:<br>Grunt 模块的命名方式都是 <code>grunt-</code> 打头, <code>contrib</code> 是官方维护的模块<br>比如编译 coffee 的: <a href="https://github.com/gruntjs/grunt-contrib-coffee">https://github.com/gruntjs/grunt-contrib-coffee</a><br>首先要有全局安装的 <code>grunt-cli</code> 模块, 项目里要有 <code>grunt</code> 模块<br>接着用 NPM 下载对应的编译模块, :</p>
+<pre><code class="lang-bash"><span class="comment">npm</span> <span class="comment">install</span> <span class="comment">grunt</span>-<span class="comment">contrib</span>-<span class="comment">coffee</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">save</span>-<span class="comment">dev</code></pre>
+<p>下载完成是 <code>Gruntfile</code>, 我是用 coffee 写的..</p>
+<pre><code class="lang-coffee">module.exports = (grunt) -&gt;
+
+  grunt.initConfig
+    <span class="method">coffee:</span>
+      <span class="method">compile:</span>
+        <span class="method">options:</span>
+          <span class="method">bare:</span> yes
+        <span class="method">files:</span>
+          <span class="comment">"page/main.js"</span>: <span class="comment">"action/main.coffee"</span>
+
+  grunt.loadNpmTasks <span class="comment">"grunt-contrib-coffee"</span>
+  grunt.registerTask <span class="comment">"dev"</span>, [<span class="comment">"coffee"</span>]</code></pre>
+<p>Gruntfile 里需要是 <code>module.exports</code>, 否则无法正常使用..<br>接着是 <code>initConfig</code>, 传入的是对某个 task 的配置<br>这里的 <code>coffee</code> 是在 <code>grunt-contrib-coffee</code> 里定义的, 所以配置要在那边生效<br><code>loadNpmTasks</code> 加载 NPM 模块, 看其他的编译模块也是类似的写法<br>中间的 <code>options</code> 和 <code>files</code> 参照文档很好懂, 只是没试过能不能直接写目录..</p>
+<p>上边的 <code>compile</code> 需要注意, <code>compile</code> 这里名字是随意取的..<br>Grunt 的 Task 分两种, <code>registerTask</code> 和 <code>registerMultiTask</code><br>两者的区别就是前者只能加一个任务.. 后者可以按名字加多个任务<br>后者比如  <code>connect</code> 插件的配置, <code>coffee</code> 插件也是这种情况<br><a href="https://github.com/gruntjs/grunt-contrib-connect">https://github.com/gruntjs/grunt-contrib-connect</a></p>
+<pre><code class="lang-js">grunt.initConfig({
+  <span class="method">connect:</span> {
+    <span class="method">site1:</span> {
+      <span class="method">options:</span> {
+        <span class="method">port:</span> <span class="number">9000</span>,
+        <span class="method">base:</span> <span class="string">'www-roots/site1'</span>
+      }
+    },
+    <span class="method">site2:</span> {
+      <span class="method">options:</span> {
+        <span class="method">port:</span> <span class="number">9001</span>,
+        <span class="method">base:</span> <span class="string">'www-roots/site2'</span>
+      }
+    }
+  }
+});</code></pre>
+<p>另外不错的是监视文件改动执行任务的插件, 对编译语言的用户比较实用<br><a href="https://github.com/gruntjs/grunt-contrib-watch">https://github.com/gruntjs/grunt-contrib-watch</a><br>此外 Grunt 提供了不少 API, 给开发插件提供方便, 不过,, 我还不会...<br><a href="https://github.com/gruntjs/grunt/wiki">https://github.com/gruntjs/grunt/wiki</a><br>当然简单的插件仅仅像是 Cakefile 里的一个任务,,<br><a href="https://github.com/gruntjs/grunt-contrib-clean/blob/master/tasks/clean.js">https://github.com/gruntjs/grunt-contrib-clean/blob/master/tasks/clean.js</a></p>
+<p>还一个我用到的功能是项目模版, Grunt 内置了一些, 但我自己弄了一个<br><a href="http://gruntjs.com/project-scaffolding">http://gruntjs.com/project-scaffolding</a><br>安装命令后在 <code>~/.grunt-init/</code> 下可以创建文件, 需要包含一下文件:</p>
+<pre><code><span class="keyword">my</span>/template.js
+<span class="keyword">my</span>/<span class="keyword">rename</span>.json
+<span class="keyword">my</span>/root/</code></pre>
+<p><code>root</code> 里是项目模版的文件夹, <code>rename.json</code> 是一些名字的映射<br>主要是 <code>template.js</code> 文件来控制文件内容的拷贝等等过程<br>我自己凑出来一个很简化的版本... <a href="https://github.com/jiyinyiyong/page-template/">https://github.com/jiyinyiyong/page-template/</a></p>
+<pre><code class="lang-coffee">exports<span class="variable">.description</span> = <span class="string">"Template for my Webkit-only pages"</span>
+
+exports<span class="variable">.notes</span> = <span class="string">"run `npm install` and `bower install`"</span>
+
+exports<span class="variable">.warnOn</span> = <span class="string">'*'</span>
+
+exports<span class="variable">.template</span> = (grunt, init, done) -&gt;
+  init<span class="variable">.process</span> {}, [], (err, props) -&gt;
+    files = init<span class="variable">.filesToCopy</span> props
+    init<span class="variable">.copyAndProcess</span> files, props
+    done()</code></pre>
+<p>实际上复杂太多. 真的很难用,, 请看有注释的源码....<br><a href="https://github.com/gruntjs/grunt-init-jquery/blob/master/template.js">https://github.com/gruntjs/grunt-init-jquery/blob/master/template.js</a><br>另外这里不能用 CoffeeScript, 太气人了...</p>
+<p>我想 Grunt 的思路, 还是用配置文件取代 Bash 命令中间的麻烦<br>并且提供一些基础的文件操作和各种 Log 的接口, 方便开发<br>只是多多少少接口的设计上不那么亲近, 日常使用不是很开心..</p>
+<h3>其他</h3>
+<p>总之前端的功能很邪门地便复杂了, 我想说浏览器真心太复杂了<br>写代码的人们忙着赚钱, 搞来搞去一切都不再是那么好玩的东西<br>另外 Component 项目, 像 SeaJS 作者讨论帖说的, 调试时需要分离的文件<br>但现在其他方面的进展让我挺期待的 <a href="http://component.io/">http://component.io/</a></p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
