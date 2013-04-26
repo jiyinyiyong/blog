@@ -84,6 +84,8 @@ https://gist.github.com/jiyinyiyong/5275061
   "tab_size": 2,
   "binary_file_patterns": ["node_modules/*"],
   "file_exclude_patterns": ["node_modules/*"],
+  "hot_exit": false,
+  "remember_open_files": false,
   "translate_tabs_to_spaces": true
 }
 ```
@@ -98,6 +100,13 @@ https://gist.github.com/jiyinyiyong/5275061
 https://twitter.com/radagaisus/status/290095794520993792
 `file_exclude_patterns` 可以屏蔽搜索时的模块文件
 http://sublimetext.userecho.com/topic/19456-exclude-filesfolders-from-project-by-specifying-regex-or-relative-path-from-project-root/
+
+`hot_exit` 和 `remember_open_files` 保证重启 Sublime 后单独目录
+对此我另外在做的设置是 `gnome-terminal --working-directory=/opt/s`
+这样的目的是[在初次打开终端能快速定位到我的代码目录][cd-terminal]
+然后 Sublime 每次每次打开都是单独的项目, Goto Anything 就很方便了
+
+[cd-terminal]: http://segmentfault.com/q/1010000000191726#a-1020000000194300
 
 ### 缩进
 
