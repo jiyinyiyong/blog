@@ -61,6 +61,7 @@ Google `archlinux forum sublime text font too thin` 找到了
 我照做. 重启 Sublime 果然好多了, 似乎 IBus 候选词也好多了
 有遇到过提示, 又把配置移到 `~/.config/fonts.conf` 过去
 不过重启后发现又出现问题了, 只好把配置移回去
+最后的解决方案是将配置写到 `~/.config/fontconfig/fonts.conf`
 
 #### 壁纸
 
