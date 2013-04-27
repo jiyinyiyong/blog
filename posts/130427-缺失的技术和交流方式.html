@@ -1,0 +1,47 @@
+<title>130427-缺失的技术和交流方式.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>缺失的技术, 缺失的交流方式</h2>
+<p>最近一些和 <a href="http://weibo.com/u/3316956660">@alex00zoe</a> 很多<a href="http://weibo.com/1651843872/3f4dLKafp3">相似</a>的<a href="http://weibo.com/1651843872/3f4dLoDCOb">想法</a>被翻出来<br>当时不会写代码, 但很想改进互联网上先进交流的方式<br>实时的文本传送, 任意操作管道化的消息流, 卡片化的单元<br>以及简单清晰的桌面形态, 不受局限的控制台, 如此等等<br>Google Wave 更让我们逐渐感受到了神奇的方向, 满腔热情<br>再感慨后来真去学技术了, 想法渐渐泯没, 至于不敢动手做东西</p>
+<h4>技术</h4>
+<p>关于技术, <a href="https://github.com/coffee-js/languages/issues/56">&quot;怎样做一名黑客&quot;</a>里的观念影响我很深<br>特别是: <strong>一个问题应该被解决一次, 减少重复性的工作</strong><br>往后, 当我发现面对的问题其实越发巨大时, 就更觉得这很重要<br>我们可以有一个社区, 别人解决了问题, 我们就能快速前进<br>但如果问题被解决一次, 还要再用复杂的步骤跟进, 意义就不大了</p>
+<p>同样, 问题的解决方案也应该便于查找, 否则就造成重复解决<br>甚至于, 我们真需要一个词典一样的网站, 统一记录解决方案<br>拿 Node 社区做例子吧, 大量的模块, 允许工作被只解决一次然后重用<br>同时, 需要各种统一的<a href="http://eirikb.github.io/nipster/">搜索</a>和<a href="https://github.com/joyent/node/wiki/modules">索引</a>来统一大家的方案<br>只是 Node 社区的结果看, 还是问题被解决很多次, 甚至没解决<br>实际上 Node 社区在各个方面的探索我已經非常开心了</p>
+<p>还有比如字符串, <a href="http://www.yinwang.org/blog-cn/2013/04/20/editor-ide/">字符串的转义和解析</a>, 这些也是重复性的<br>因为人们要再脑子里转义才能看懂, 事实上计算机更懂<br>人类的思考无外乎在脑子里模拟现实世界的场景, 预知答案<br>当计算机能做得更好, 大部分过程就不值得人们亲自做了<br>让计算机暴露给人的内容更直观, 让计算机更强大, 这才好<br>考虑下 HTML 的标签, 文件目录的转义, 相对图形到底是难是易?</p>
+<p>我当初认定, 描述想法里的东西, 应该尽量少学技术, 因为技术太多了<br>于是我从据说简单的 CoffeeScript 入手, 从前端往后端学<br>但现在, 明显, 扯上了 OOP, FP, Stream, Event Drivent, Unix Style...<br>一大堆同样是不轻松的, 而且难度也不断增加, 让人望而生畏<br>也可想, 要在图形界面上做理想的玩意多头疼了..<br>我暗想未来有图形化编辑器管理所有代码细节, 那时人们才轻松吧</p>
+<h3>工具</h3>
+<p>开发者常用的工具, 桌面和 Shell, Shell 更是深入计算机必经的道路<br>但 Shell 提供的是一个接触计算机运行的途径, 并不是好的工具<br>一方面, 图形界面目前设计上的臃肿, 无法媲美任务逻辑的抽象<br>甚至人们语言也不如编程语言描述世界来得精细<br>Shell 里的文件, 需要机械的访问, 而人们需要的更是一个活的细胞<br>可以接收和触发事件, 把事件串联, 来完成更复杂的任务<br>也就是说我们需要更上层的工具, 可我们只有各种 Shell<br>终端里不断增强的补全和历史分析, 同时带来的是更多的复杂</p>
+<p>而桌面最大的问题时展开大量的窗口和应用如何定位<br>以及大量的未打开的应用怎样选择, 怎样相互切换<br>甚至在同一窗口, 其中的标签, 菜单, 如何快速切换<br>我比较倾向的方案是全局的搜索, 以及扩展空间避免重叠<br>只是<a href="https://github.com/jiyinyiyong/chuangling">越想尝试越感到</a>底层的技术积累难以达到..<br>另一方面是软件<a href="http://www.douban.com/people/Dexter_Yy/status/1102081594/">如何组合</a>使用, 而不是每次安装新软件</p>
+<p>全局搜索最让我信服的是 <a href="http://lucifr.com/2011/08/31/sublime-text-2-tricks-and-tips/#goto_everything">Sublime 的 Goto Anything</a> 搜索功能<br>这在 <a href="https://developers.google.com/chrome-developer-tools/docs/shortcuts">Chrome</a> 开发工具甚至更多 IDE 都有方案<br><a href="https://github.com/#js-command-bar-field">Github 搜索框里的 <code>?</code></a> 点击后也有类似思路的跳转功能<br>回到大量的窗口和标签的问题上来, 也就有了可以尝试的方案<br>我没测试, 大致想应该是 <a href="http://blog.mozilla.org/blog/2010/08/24/firefox-4-beta-updated-with-sync-and-panorama/">Firefox Panorama</a> 那样铺开应用, 等待搜索</p>
+<p>还有就像声明变量未必要手动回收内存一样, 文件和窗口类似<br>当人们能管理更多的桌面上的组件, 手动关闭就成了麻烦<br>于是会期待自动保存, 自动关闭, 以及等等方案来简化人们的心思<br>设计无非是为人们创造更好的解决方案, 当我们能做到的时候</p>
+<p>关于代码编辑器, 想象一下代码被机器管理到每一个函数<br>当要检索和调试代码的时候, 用着作用域找到, 而不用按行跳转<br>引用他人的代码, 不是安装模块, 而是指明引用即可<br>并且在代码的运行时里编写和调试代码, 随时查看代码状态<br>保存数据到文件不在是打开关闭文件, 仅仅是写入数据到变量<br>不再是读取文本, 而是读取数据, 意味着直接可以各种操作无需转化<br>有在图形上编写分析图形界面, 以此调试和改进</p>
+<h3>世界</h3>
+<p>我想在互联网发展的初期, 通感大概是会广泛适用的<br>渐渐我们想在现实世界, 也像的网上似的, 见到人, 找到其主页<br>甚至于我路上看到人, 会想有个<code>赞</code>可以点一下, 或者评论加好友之类<br>世界对于人们而言就像是世界对于计算机, 仅仅是数据<br>数据意味着可以分享和操作, 折腾出更多想法和实现出来<br>如果未来这样的理解的数据被连接在一起, 应该是非常大一个世界<br>于是真有些理解未来人感到二十世纪是多么原始了..</p>
+<p>类似的技术还有对感官的编程, 这在<a href="http://www.soku.com/t/nisearch/刀剑神域/">科幻小说</a>里常有<br>可以推想, 大脑应该能容纳比感官脑产生的多得多的对世界的感觉<br>当我们有技术对感官进行操纵, 在脑海里渲染各种多姿多彩的事物<br>比如超出物理的色域还多的颜色, 还有声音等等各种感觉, 甚至更远<br>似乎那是文学和艺术才探讨的问题, 我就当科幻小说等着了</p>
+<p>作为技术宅, 有种感觉就是世界少了一些我们喜欢的交流方式<br>相对碰面搭讪, 我想到更多是社交网站上的平和, 而不是迁徙去见面<br>但不管怎么说, 人们都是每天行在在街上, 抛头露面, 还僵硬着相互不说话的<br>有这样的心的隔阂在, 技术进化能带来的改变就会有很多很多<br>但学技术去的时候, 我还是怀疑着, 做一个人应不应该这样活着<br>为了改变, 去学技术, 等待这生命长度以外的变化, 是不是错了</p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
