@@ -1,0 +1,106 @@
+<title>130512-my-page-tools.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>我的页面调试工具</h2>
+<h3>缘起</h3>
+<p>昨天参加 Ruby 沙龙, 紧张不说, 听到@Saito 讲前端开发我最关心的<br>幻灯片后来在 Ruby 中文帖子里看到了, 大致回顾了下<br><a href="https://speakerdeck.com/saito/middle-scale-f2e-application">https://speakerdeck.com/saito/middle-scale-f2e-application</a><br>原先演讲时有开发的演示, 项目的例子详细是幻灯片中无法感受到的<br>印象比较深的是用 Ruby 加 AppleScript 脚本完成了浏览器刷新<br>另外大量的 Ruby 工具来完成了代码的转换, 相对来说我陌生很多<br>总之感觉是目不暇接, 对 Ruby 工具链多点感想那样</p>
+<h3>我和 Node</h3>
+<p>Node 这边相关工具更多, 我长期的习惯是用 JS 去完成这些<br>可惜我距离独挡一面的开发者距离很远很远, 一些想法都没能付诸行动<br>看到 Ruby 中文社区走在 Node 中文社区前头有些不甘心吧<br>也打算整理一下我的, 做一个阶段性的总结, 等以后再写更好的</p>
+<ul>
+<li>Nginx</li>
+</ul>
+<p>我的平台是基于 Nginx 和 JSON 的, 前端后端分离<br>现在是 CORS 的 HTTP 请求, 以后要用 Socket.IO 来交换数据<br>缺陷是我的开发环境只是小项目的简单代码用用, 稍大的项目尝试都没有<br>另外后端入门太浅, 前端正在努力追赶, 希望框架开发有一天能加快吧<br>这些天见识了 Backbone 一些功能是开始佩服了, 希望能学会吧<br>总之文件放在 Nginx 静态文件服务器就完了, 配置如下:</p>
+<pre><code class="lang-nginx"><span class="title">server</span> {
+  <span class="title">listen</span>       <span class="number">80</span>;
+  <span class="title">server_name</span>  localhost;
+
+  <span class="comment">#charset koi8-r;</span>
+
+  <span class="comment">#access_log  logs/host.access.log  main;</span>
+
+  <span class="title">location</span> / {
+      <span class="title">root</span>   /opt/s/;
+      <span class="title">index</span>  <span class="built_in">off</span>;
+      <span class="title">autoindex</span> <span class="built_in">on</span>;
+  }
+}</code></pre>
+<ul>
+<li><code>doodle</code></li>
+</ul>
+<p>页面自动刷新我用的是 <code>doodle</code> 命令, 自己基于 WebSockets 折腾的<br><a href="https://github.com/jiyinyiyong/doodle">https://github.com/jiyinyiyong/doodle</a><br>在 Chrome 调试基本的功能是可行的, 用法分前端后端两部分<br>后端用 <code>doodle path/</code> 加入要监听的目录, 以及脚本和 WebSocket 的服务<br>前端加一个 <code>&lt;script&gt;</code> 标签引入脚本, 监听信号完成刷新功能<br>这样一旦编辑器使用 <code>ctrl + s</code> 浏览器端大部分情况就能自动刷新<br>这种调试在双屏时的好处是我体会到的, 虽然扭头的确不方便</p>
+<ul>
+<li>目录结构</li>
+</ul>
+<p>一般目录结构的设置是这样的, 具体大概不是固定的<br>因为我用的是 Jade, Stylus, CoffeeScript, 就有编译的问题<br>于是用 <code>coffee/</code> 单独放代码, <code>layout</code> 放界面用的 HTML 和 CSS<br>JS 代码用 Browserify 或者 commonjs-everywhere 来编译, 就有 <code>lib/</code> 文件的差别<br><code>server.coffee</code> 在我写的代码里很少去用, 还没尝试加后端<br>同时关于测试也没有做到, 仅仅可能放一些基本的测试例子<br><code>dev.coffee</code> 只是把一些 Bash 脚本用 Node 跑起来, 叫 <code>calabash</code></p>
+<pre><code>coffee/
+  main<span class="variable">.coffee</span>
+  lib/coffee
+layout/
+  index<span class="variable">.jade</span>
+  page<span class="variable">.styl</span>
+
+lib/
+
+dev<span class="variable">.coffee</span>
+build/
+  main<span class="variable">.js</span>
+  main<span class="variable">.map</span>
+  index<span class="variable">.html</span>
+  page<span class="variable">.css</span>
+
+<span class="variable">.gitignore</span>
+package<span class="variable">.json</span>
+
+server<span class="variable">.coffee</span>
+test/test<span class="variable">.coffee</span></code></pre>
+<ul>
+<li><code>calabash</code></li>
+</ul>
+<p>说 Grunt 是面向这方面的建构和自动化的工具, 本来应该很好的<br>可是 Grunt 不是对 Node 友好的一个工具, 我原本尝试自己做一个<br><a href="https://github.com/jiyinyiyong/rain-boots">https://github.com/jiyinyiyong/rain-boots</a><br>可 <code>rain-boots</code> 觉得具体实现难度好大, 目前还是搁浅的状态<br>于是写了一个 <code>calabash</code> 模块, 仅仅用来管理终端命令</p>
+<pre><code class="lang-coffee"><span class="function"><span class="title">require</span><span class="params">(<span class="string">"calabash"</span>)</span>.<span class="title">do</span> "<span class="title">first</span> <span class="title">parameter</span> <span class="title">as</span> <span class="title">comment</span>",
+  "<span class="title">pkill</span> -<span class="title">f</span> <span class="title">doodle</span>"
+  "<span class="title">coffee</span> -<span class="title">o</span> <span class="title">lib</span>/ -<span class="title">wbc</span> <span class="title">coffee</span>/"
+  "<span class="title">jade</span> -<span class="title">o</span> <span class="title">build</span>/ -<span class="title">wP</span> <span class="title">layout</span>/"
+  "<span class="title">style</span> -<span class="title">o</span> <span class="title">build</span>/ -<span class="title">w</span> <span class="title">layout</span>/"
+  "<span class="title">node</span>-<span class="title">dev</span> <span class="title">server</span>.<span class="title">coffee</span>"
+  "<span class="title">doodle</span> <span class="title">build</span>/"</code></pre>
+<p>文件完全是用 coffee 的语法糖简化脚本的<br>用 <code>node-dev dev.coffee &amp;</code> 启动和自动加载</p>
+<ul>
+<li>Browserify 和 commonjs-everywhere</li>
+</ul>
+<p>兼容 CommonJS 语法将模块打包的方案大概都有着问题<br>RubyMotion 大概也遇到类似, <code>require</code> 机制并不是完全的和 CommonJS 一致<br>我理解这些工具检测的是字符串, 而不是在运行时中找到模块<br>这样某些模块的支持就存在缺陷, 加上兼容前端模块少也就成问题了<br>我在 Github 遇到 Zepto 完全认为兼容这不必要, 我伤心啊</p>
+<p>Component 我还得再看一下, 也许机制上有在改善<br>一个是 SourceMap 的进展, 还有是 Component 模块实在更多<br>Web 很大很大一块就是前端的 JS, 相信 TJ 是在这样努力<br>但 Component 方案和 CommonJS 存在着差别, 我很是不放下心</p>
+<p>commonjs-everywhere 的监视编译命令是这样的:</p>
+<pre><code class="lang-bash"><span class="comment">cjsify</span> <span class="literal">-</span><span class="comment">o</span> <span class="comment">build/build</span>.<span class="comment">js</span> <span class="literal">-</span><span class="comment">w</span> <span class="comment">coffee/main</span>.<span class="comment">coffee</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">build/build</span>.<span class="comment">map</code></pre>
+<p>而 Browserify 对 coffee 和文件监视都相对不友好</p>
+<pre><code class="lang-bash">browserify -o build/build<span class="variable">.js</span> -d lib/main<span class="variable">.js</span> <span class="preprocessor"># 没有测试</span></code></pre>
+<p>我想说没有十全十美的方案, 现在还是挺烦人的</p>
+<h3>关心的问题</h3>
+<p>简单的项目来说, 这个脚手架我用得已经感觉不错了<br>可要像 Node 那样顺手, 还要需要整个社区一起努力做出来<br>我到底是 Node/CoffeeScript 忠实的用户...<br>前端的开发者对于 Node 的熟悉程度, 我真的不觉得国内有多么乐观<br>我在学校事情完以后要努力花时间在上边, 以便更熟悉开发<br>而且先我的视野渐渐也更清晰一些了, 希望有个好结局</p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
