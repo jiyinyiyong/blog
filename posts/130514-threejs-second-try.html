@@ -1,0 +1,202 @@
+<title>130514-threejs-second-try.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>再次尝试 Three.js 绘制图形</h2>
+<p>起因是之前版本的 <a href="http://weibo.com/1651843872/zwGDOyd2c">Snowflake</a> 被导师说答辩会遇到些困难, 要加功能<br>就是说, 3D, 我现在可以企及的版本是 Three.js , 也需要努力</p>
+<p>此前尝试过用 Three.js 写了个 3D 旋转的平面, 但更多不得要领<br>晚上我想是否可以刻意区分开去学习每个部分的对象怎么调用, 来完成学习<br>用 Bower 安装了 Three.js , 不过耽搁了没开始, 明晚再看看吧</p>
+<p><a href="https://github.com/mrdoob/three.js/wiki/Getting-Started">https://github.com/mrdoob/three.js/wiki/Getting-Started</a><br><a href="http://threejs.org/docs/58/#Manual/Introduction/Creating_a_scene">http://threejs.org/docs/58/#Manual/Introduction/Creating_a_scene</a><br><a href="http://stackoverflow.com/questions/14716336/how-to-drag-a-scene-in-three-js">http://stackoverflow.com/questions/14716336/how-to-drag-a-scene-in-three-js</a></p>
+<h2>基本的 Demo, 画一个 Cube</h2>
+<p>调试的页面 <code>index.jade</code> 内容:</p>
+<pre><code class="lang-jade"><span class="title">doctype</span> <span class="number">5</span>
+html
+  head
+    meta(charset=<span class="string">"utf-8"</span>)
+    title 3js
+    script(src=<span class="string">"../components/threejs/build/three.js"</span>)
+    script(defer, src=<span class="string">"build.js"</span>)
+    link(rel=<span class="string">"stylesheet"</span>, href=<span class="string">"page.css"</span>)
+  body<span class="comment">#main</span></code></pre>
+<p>这是两个教程上都写的开篇的代码:<br><a href="https://github.com/mrdoob/three.js/wiki/Getting-Started">https://github.com/mrdoob/three.js/wiki/Getting-Started</a><br><a href="http://threejs.org/docs/58/#Manual/Introduction/Creating_a_scene">http://threejs.org/docs/58/#Manual/Introduction/Creating_a_scene</a></p>
+<pre><code class="lang-coffee">scene = new THREE<span class="variable">.Scene</span>
+ratio = window<span class="variable">.innerWidth</span> / window<span class="variable">.innerHeight</span>
+camera = new THREE<span class="variable">.PerspectiveCamera</span> <span class="number">75</span>, ratio, <span class="number">0.1</span>, <span class="number">1000</span>
+
+renderer = new THREE<span class="variable">.WebGLRenderer</span>
+renderer<span class="variable">.setSize</span> window<span class="variable">.innerWidth</span>, window<span class="variable">.innerHeight</span>
+document<span class="variable">.body</span><span class="variable">.appendChild</span> renderer<span class="variable">.domElement</span>
+
+geometry = new THREE<span class="variable">.CubeGeometry</span> <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>
+material = new THREE<span class="variable">.MeshBasicMaterial</span> color: <span class="number">0x00ff00</span>
+cube = new THREE<span class="variable">.Mesh</span> geometry, material
+scene<span class="variable">.add</span> cube
+
+camera<span class="variable">.position</span><span class="variable">.z</span> = <span class="number">5</span>
+
+<span class="keyword">do</span> render = -&gt;
+  requestAnimationFrame render
+  renderer<span class="variable">.render</span> scene, camera
+  cube<span class="variable">.rotation</span><span class="variable">.x</span> += <span class="number">0.01</span>
+  cube<span class="variable">.rotation</span><span class="variable">.y</span> += <span class="number">0.01</span></code></pre>
+<p>仅仅是这样的时候, Three.js 的使用是非常清晰的</p>
+<h2>画直线</h2>
+<pre><code class="lang-coffee">
+scene = new THREE<span class="variable">.Scene</span>
+ratio = window<span class="variable">.innerWidth</span> / window<span class="variable">.innerHeight</span>
+camera = new THREE<span class="variable">.PerspectiveCamera</span> <span class="number">45</span>, ratio, <span class="number">0.1</span>, <span class="number">500</span>
+camera<span class="variable">.position</span><span class="variable">.set</span> <span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>
+camera<span class="variable">.lookAt</span> (new THREE<span class="variable">.Vector3</span> <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)
+
+renderer = new THREE<span class="variable">.WebGLRenderer</span>
+renderer<span class="variable">.setSize</span> window<span class="variable">.innerWidth</span>, window<span class="variable">.innerHeight</span>
+document<span class="variable">.body</span><span class="variable">.appendChild</span> renderer<span class="variable">.domElement</span>
+
+geometry = new THREE<span class="variable">.CubeGeometry</span>
+geometry<span class="variable">.vertices</span><span class="variable">.push</span> (new THREE<span class="variable">.Vector3</span> -<span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)
+geometry<span class="variable">.vertices</span><span class="variable">.push</span> (new THREE<span class="variable">.Vector3</span> <span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>)
+geometry<span class="variable">.vertices</span><span class="variable">.push</span> (new THREE<span class="variable">.Vector3</span> <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)
+material = new THREE<span class="variable">.LineBasicMaterial</span> color: <span class="number">0x0000ff</span>
+line = new THREE<span class="variable">.Line</span> geometry, material
+scene<span class="variable">.add</span> line
+
+renderer<span class="variable">.render</span> scene, camera</code></pre>
+<p>直线完成, 不过是静态的. 动画是 <code>requestAnimationFrame</code> 写的<br>这里还是能看出来清晰的界面渲染次序, 以及常用的 API<br>Three.js 支持的几个 Feature, 我把上边出现的从中间断开:<br><a href="https://github.com/mrdoob/three.js/wiki/Features">https://github.com/mrdoob/three.js/wiki/Features</a></p>
+<ul>
+<li>Renderers: WebGL, \<canvas\>, \<svg\>, CSS3D, DOM, Software; effects: anaglyph, crosseyed, stereo and more</li>
+<li>Scenes: add and remove objects at run-time; fog</li>
+<li>Cameras: perspective and orthographic; controllers: trackball, FPS, path and more</li>
+<li>Animation: morph and keyframe</li>
+<li>Materials: Lambert, Phong and more - all with textures, smooth-shading and more</li>
+<li>Geometry: plane, cube, sphere, torus, 3D text and more; modifiers: lathe, extrude and tube</li>
+<li><p>Objects: meshes, particles, sprites, lines, ribbons, bones and more - all with level of detail</p>
+</li>
+<li><p>Lights: ambient, direction, point, spot and hemisphere lights; shadows: cast and receive</p>
+</li>
+<li>Shaders: access to full WebGL capabilities; lens flare, depth pass and extensive post-processing library</li>
+<li>Loaders: binary, image, JSON and scene</li>
+<li>Utilities: full set of time and 3D math functions including frustum, quaternion, matrix, UVs and more</li>
+<li>Export/Import: utilities to create Three.js-compatible JSON files from within: Blender, CTM, FBX, 3D Max, and OBJ</li>
+<li>Support: API documentation is under construction, public forum and wiki in full operation</li>
+<li>Examples: More than 150 files of coding examples plus fonts, models, textures, sounds and other support files</li>
+</ul>
+<h2>Camera</h2>
+<p><code>Camera</code> 用到的都是 <code>PerspectiveCamera</code>, 锥形的视野,<br>从 <code>Camera</code> 继承, 默认有如下的四个属性<br><a href="http://threejs.org/docs/58/#Reference/Cameras/PerspectiveCamera">http://threejs.org/docs/58/#Reference/Cameras/PerspectiveCamera</a><br><a href="https://github.com/mrdoob/three.js/blob/master/src/cameras/PerspectiveCamera.js#L7">https://github.com/mrdoob/three.js/blob/master/src/cameras/PerspectiveCamera.js#L7</a></p>
+<pre><code class="lang-js">THREE<span class="variable">.Camera</span><span class="variable">.call</span>( <span class="keyword">this</span> );
+
+<span class="keyword">this</span><span class="variable">.fov</span> = fov !== undefined ? fov : <span class="number">50</span>;
+<span class="keyword">this</span><span class="variable">.aspect</span> = aspect !== undefined ? aspect : <span class="number">1</span>;
+<span class="keyword">this</span><span class="variable">.near</span> = near !== undefined ? near : <span class="number">0.1</span>;
+<span class="keyword">this</span><span class="variable">.far</span> = far !== undefined ? far : <span class="number">2000</span>;</code></pre>
+<p>而 <code>Camera</code> 是从 <code>Object3D</code> 继承的, 自己定义了 <code>lookAt</code> 方法<br><a href="http://threejs.org/docs/58/#Reference/Cameras/Camera">http://threejs.org/docs/58/#Reference/Cameras/Camera</a><br><a href="https://github.com/mrdoob/three.js/blob/master/src/cameras/Camera.js#L7">https://github.com/mrdoob/three.js/blob/master/src/cameras/Camera.js#L7</a></p>
+<p><code>Object3D</code> 定义的属性和方法就非常多了<br><a href="http://threejs.org/docs/58/#Reference/Core/Object3D">http://threejs.org/docs/58/#Reference/Core/Object3D</a></p>
+<p>感觉能用到的属性有:</p>
+<ul>
+<li><p>.children<br>Array with object&#39;s children.</p>
+</li>
+<li><p>.position<br>Object&#39;s local position.</p>
+</li>
+<li><p>.rotation<br>Object&#39;s local rotation (Euler angles), in radians.</p>
+</li>
+<li><p>.scale<br>Object&#39;s local scale.</p>
+</li>
+<li><p>.visible<br>Object gets rendered if true.</p>
+</li>
+</ul>
+<p>目测能用到的方法有:</p>
+<ul>
+<li><p>.translateX( distance )<br>distance - Distance.<br>Translates object along x axis by distance.</p>
+</li>
+<li><p>.translateY( distance )<br>distance - Distance.<br>Translates object along y axis by distance.</p>
+</li>
+<li><p>.translateZ( distance )<br>distance - Distance.<br>Translates object along z axis by distance.</p>
+</li>
+<li><p>.lookAt( vector )<br>vector - A world vector to look at.<br>Rotates object to face point in space.</p>
+</li>
+<li><p>.add( object )<br>object - An object.<br>Adds object as child of this object.</p>
+</li>
+<li><p>.remove( object )<br>object - An object.<br>Removes object as child of this object.</p>
+</li>
+</ul>
+<p>这样看来文档挺清晰的, 其中很多比如 <code>.position .rotation</code> 是 <code>Vector3</code><br><a href="http://threejs.org/docs/58/#Reference/Math/Vector3">http://threejs.org/docs/58/#Reference/Math/Vector3</a><br>基本的属性就是 <code>x y z</code> 三者, 经常就是坐标了</p>
+<pre><code class="lang-js">THREE<span class="preprocessor">.Vector</span>3 = function ( <span class="built_in">x</span>, <span class="built_in">y</span>, <span class="built_in">z</span> ) {
+
+    this<span class="preprocessor">.x</span> = <span class="built_in">x</span> || <span class="number">0</span><span class="comment">;</span>
+    this<span class="preprocessor">.y</span> = <span class="built_in">y</span> || <span class="number">0</span><span class="comment">;</span>
+    this<span class="preprocessor">.z</span> = <span class="built_in">z</span> || <span class="number">0</span><span class="comment">;</span>
+
+}<span class="comment">;</span></code></pre>
+<p>然后是大量操作 <code>Vector3</code> 的方法, 有数学基础大概能懂意思<br>另外 <code>Vector2</code> <code>Vector4</code> 类似, 以及 <code>Quaternion</code> 四元数</p>
+<p>在类似的在 <code>Math</code> 里定义了一些常用的方法:<br><a href="http://threejs.org/docs/58/#Reference/Math/Math">http://threejs.org/docs/58/#Reference/Math/Math</a><br><code>Color</code> 是封装过的数据类型, 提供了多种方法进行操作:<br><a href="http://threejs.org/docs/58/#Reference/Math/Color">http://threejs.org/docs/58/#Reference/Math/Color</a></p>
+<h2>Object 的 Line 和 Mesh</h2>
+<p><code>Line</code> 和 <code>Mesh</code> 继承在 <code>Object</code> 下, 似乎没啥属性和方法:</p>
+<p><a href="https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js#L5">https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js#L5</a></p>
+<pre><code class="lang-js"><span class="type">THREE</span>.<span class="type">Line</span> = function ( geometry, material, <span class="typedef"><span class="keyword">type</span> ) <span class="container">{
+
+    <span class="type">THREE</span>.<span class="type">Object3D</span>.<span class="title">call</span>( <span class="title">this</span> );
+
+    <span class="title">this</span>.<span class="title">geometry</span> = <span class="title">geometry</span>;
+    <span class="title">this</span>.<span class="title">material</span> = ( <span class="title">material</span> !== <span class="title">undefined</span> ) ? <span class="title">material</span> : <span class="title">new</span> <span class="type">THREE</span>.<span class="type">LineBasicMaterial</span>( { <span class="title">color</span>: <span class="type">Math</span>.<span class="title">random</span>() * 0<span class="title">xffffff</span> }</span> );</span>
+    this.<span class="typedef"><span class="keyword">type</span> = <span class="container">( <span class="title">type</span> !== <span class="title">undefined</span> )</span> ? <span class="keyword">type</span> : <span class="type">THREE</span>.<span class="type">LineStrip</span>;</span>
+
+    <span class="keyword">if</span> ( this.geometry ) {
+
+        <span class="keyword">if</span> ( ! this.geometry.boundingSphere ) {
+
+            this.geometry.computeBoundingSphere();
+
+        }
+
+    }
+
+};</code></pre>
+<p><a href="https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js#L8">https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js#L8</a></p>
+<pre><code class="lang-js"><span class="type">THREE</span>.<span class="type">Line</span> = function ( geometry, material, <span class="typedef"><span class="keyword">type</span> ) <span class="container">{
+
+    <span class="type">THREE</span>.<span class="type">Object3D</span>.<span class="title">call</span>( <span class="title">this</span> );
+
+    <span class="title">this</span>.<span class="title">geometry</span> = <span class="title">geometry</span>;
+    <span class="title">this</span>.<span class="title">material</span> = ( <span class="title">material</span> !== <span class="title">undefined</span> ) ? <span class="title">material</span> : <span class="title">new</span> <span class="type">THREE</span>.<span class="type">LineBasicMaterial</span>( { <span class="title">color</span>: <span class="type">Math</span>.<span class="title">random</span>() * 0<span class="title">xffffff</span> }</span> );</span>
+    this.<span class="typedef"><span class="keyword">type</span> = <span class="container">( <span class="title">type</span> !== <span class="title">undefined</span> )</span> ? <span class="keyword">type</span> : <span class="type">THREE</span>.<span class="type">LineStrip</span>;</span>
+
+    <span class="keyword">if</span> ( this.geometry ) {
+
+        <span class="keyword">if</span> ( ! this.geometry.boundingSphere ) {
+
+            this.geometry.computeBoundingSphere();
+
+        }
+
+    }
+
+};</code></pre>
+<p>现在翻的过程觉得 todo 内容很多, 但底部链接的源码大多都完成的<br>不知道怎样管理进度的, 总之, 不是非常全面的文档</p>
+<h2>Scene</h2>
+<p><code>Scene</code> 也是从 <code>Object3D</code> 继承的<br><a href="http://threejs.org/docs/58/#Reference/Scenes/Scene">http://threejs.org/docs/58/#Reference/Scenes/Scene</a><br><a href="https://github.com/mrdoob/three.js/blob/master/src/scenes/Scene.js">https://github.com/mrdoob/three.js/blob/master/src/scenes/Scene.js</a><br>注意到 <code>Fog</code> 和 <code>Scene</code> 是放在差不多一起的, 但不清楚怎么用</p>
+<h2>Material</h2>
+<p>比较找不到规律...<br><a href="http://threejs.org/docs/58/#Reference/Materials/Material">http://threejs.org/docs/58/#Reference/Materials/Material</a></p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
