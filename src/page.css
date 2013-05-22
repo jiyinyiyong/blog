@@ -81,6 +81,7 @@ pre {
   font-size: 14px;
   padding: 0px 4px;
   overflow-x: auto;
+  background: #f8f8ff;
 }
 blockquote {
   box-shadow: 0px 0px 6px #ccc;

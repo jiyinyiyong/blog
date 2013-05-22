@@ -1,4 +1,4 @@
-<title>130514-threejs-second-try.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>再次尝试 Three.js 绘制图形</h2>
+<title>130514-threejs-second-try.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>再次尝试学习 Three.js 文档</h2>
 <p>起因是之前版本的 <a href="http://weibo.com/1651843872/zwGDOyd2c">Snowflake</a> 被导师说答辩会遇到些困难, 要加功能<br>就是说, 3D, 我现在可以企及的版本是 Three.js , 也需要努力</p>
 <p>此前尝试过用 Three.js 写了个 3D 旋转的平面, 但更多不得要领<br>晚上我想是否可以刻意区分开去学习每个部分的对象怎么调用, 来完成学习<br>用 Bower 安装了 Three.js , 不过耽搁了没开始, 明晚再看看吧</p>
 <p><a href="https://github.com/mrdoob/three.js/wiki/Getting-Started">https://github.com/mrdoob/three.js/wiki/Getting-Started</a><br><a href="http://threejs.org/docs/58/#Manual/Introduction/Creating_a_scene">http://threejs.org/docs/58/#Manual/Introduction/Creating_a_scene</a><br><a href="http://stackoverflow.com/questions/14716336/how-to-drag-a-scene-in-three-js">http://stackoverflow.com/questions/14716336/how-to-drag-a-scene-in-three-js</a></p>
@@ -58,7 +58,7 @@ scene<span class="variable">.add</span> line
 renderer<span class="variable">.render</span> scene, camera</code></pre>
 <p>直线完成, 不过是静态的. 动画是 <code>requestAnimationFrame</code> 写的<br>这里还是能看出来清晰的界面渲染次序, 以及常用的 API<br>Three.js 支持的几个 Feature, 我把上边出现的从中间断开:<br><a href="https://github.com/mrdoob/three.js/wiki/Features">https://github.com/mrdoob/three.js/wiki/Features</a></p>
 <ul>
-<li>Renderers: WebGL, \<canvas\>, \<svg\>, CSS3D, DOM, Software; effects: anaglyph, crosseyed, stereo and more</li>
+<li>Renderers: WebGL, <code>&lt;canvas&gt;</code>, <code>&lt;svg&gt;</code>, CSS3D, DOM, Software; effects: anaglyph, crosseyed, stereo and more</li>
 <li>Scenes: add and remove objects at run-time; fog</li>
 <li>Cameras: perspective and orthographic; controllers: trackball, FPS, path and more</li>
 <li>Animation: morph and keyframe</li>
@@ -115,11 +115,9 @@ renderer<span class="variable">.render</span> scene, camera</code></pre>
 </ul>
 <p>这样看来文档挺清晰的, 其中很多比如 <code>.position .rotation</code> 是 <code>Vector3</code><br><a href="http://threejs.org/docs/58/#Reference/Math/Vector3">http://threejs.org/docs/58/#Reference/Math/Vector3</a><br>基本的属性就是 <code>x y z</code> 三者, 经常就是坐标了</p>
 <pre><code class="lang-js">THREE<span class="preprocessor">.Vector</span>3 = function ( <span class="built_in">x</span>, <span class="built_in">y</span>, <span class="built_in">z</span> ) {
-
-    this<span class="preprocessor">.x</span> = <span class="built_in">x</span> || <span class="number">0</span><span class="comment">;</span>
-    this<span class="preprocessor">.y</span> = <span class="built_in">y</span> || <span class="number">0</span><span class="comment">;</span>
-    this<span class="preprocessor">.z</span> = <span class="built_in">z</span> || <span class="number">0</span><span class="comment">;</span>
-
+  this<span class="preprocessor">.x</span> = <span class="built_in">x</span> || <span class="number">0</span><span class="comment">;</span>
+  this<span class="preprocessor">.y</span> = <span class="built_in">y</span> || <span class="number">0</span><span class="comment">;</span>
+  this<span class="preprocessor">.z</span> = <span class="built_in">z</span> || <span class="number">0</span><span class="comment">;</span>
 }<span class="comment">;</span></code></pre>
 <p>然后是大量操作 <code>Vector3</code> 的方法, 有数学基础大概能懂意思<br>另外 <code>Vector2</code> <code>Vector4</code> 类似, 以及 <code>Quaternion</code> 四元数</p>
 <p>在类似的在 <code>Math</code> 里定义了一些常用的方法:<br><a href="http://threejs.org/docs/58/#Reference/Math/Math">http://threejs.org/docs/58/#Reference/Math/Math</a><br><code>Color</code> 是封装过的数据类型, 提供了多种方法进行操作:<br><a href="http://threejs.org/docs/58/#Reference/Math/Color">http://threejs.org/docs/58/#Reference/Math/Color</a></p>
@@ -128,48 +126,62 @@ renderer<span class="variable">.render</span> scene, camera</code></pre>
 <p><a href="https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js#L5">https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js#L5</a></p>
 <pre><code class="lang-js"><span class="type">THREE</span>.<span class="type">Line</span> = function ( geometry, material, <span class="typedef"><span class="keyword">type</span> ) <span class="container">{
 
-    <span class="type">THREE</span>.<span class="type">Object3D</span>.<span class="title">call</span>( <span class="title">this</span> );
+  <span class="type">THREE</span>.<span class="type">Object3D</span>.<span class="title">call</span>( <span class="title">this</span> );
 
-    <span class="title">this</span>.<span class="title">geometry</span> = <span class="title">geometry</span>;
-    <span class="title">this</span>.<span class="title">material</span> = ( <span class="title">material</span> !== <span class="title">undefined</span> ) ? <span class="title">material</span> : <span class="title">new</span> <span class="type">THREE</span>.<span class="type">LineBasicMaterial</span>( { <span class="title">color</span>: <span class="type">Math</span>.<span class="title">random</span>() * 0<span class="title">xffffff</span> }</span> );</span>
-    this.<span class="typedef"><span class="keyword">type</span> = <span class="container">( <span class="title">type</span> !== <span class="title">undefined</span> )</span> ? <span class="keyword">type</span> : <span class="type">THREE</span>.<span class="type">LineStrip</span>;</span>
+  <span class="title">this</span>.<span class="title">geometry</span> = <span class="title">geometry</span>;
+  <span class="title">this</span>.<span class="title">material</span> = ( <span class="title">material</span> !== <span class="title">undefined</span> ) ?
+    <span class="title">material</span> : <span class="title">new</span> <span class="type">THREE</span>.<span class="type">LineBasicMaterial</span>( { <span class="title">color</span>: <span class="type">Math</span>.<span class="title">random</span>() * 0<span class="title">xffffff</span> }</span> );</span>
+  this.<span class="typedef"><span class="keyword">type</span> = <span class="container">( <span class="title">type</span> !== <span class="title">undefined</span> )</span> ? <span class="keyword">type</span> : <span class="type">THREE</span>.<span class="type">LineStrip</span>;</span>
 
-    <span class="keyword">if</span> ( this.geometry ) {
-
-        <span class="keyword">if</span> ( ! this.geometry.boundingSphere ) {
-
-            this.geometry.computeBoundingSphere();
-
-        }
-
+  <span class="keyword">if</span> ( this.geometry ) {
+    <span class="keyword">if</span> ( ! this.geometry.boundingSphere ) {
+      this.geometry.computeBoundingSphere();
     }
-
+  }
 };</code></pre>
 <p><a href="https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js#L8">https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js#L8</a></p>
 <pre><code class="lang-js"><span class="type">THREE</span>.<span class="type">Line</span> = function ( geometry, material, <span class="typedef"><span class="keyword">type</span> ) <span class="container">{
 
-    <span class="type">THREE</span>.<span class="type">Object3D</span>.<span class="title">call</span>( <span class="title">this</span> );
+  <span class="type">THREE</span>.<span class="type">Object3D</span>.<span class="title">call</span>( <span class="title">this</span> );
 
-    <span class="title">this</span>.<span class="title">geometry</span> = <span class="title">geometry</span>;
-    <span class="title">this</span>.<span class="title">material</span> = ( <span class="title">material</span> !== <span class="title">undefined</span> ) ? <span class="title">material</span> : <span class="title">new</span> <span class="type">THREE</span>.<span class="type">LineBasicMaterial</span>( { <span class="title">color</span>: <span class="type">Math</span>.<span class="title">random</span>() * 0<span class="title">xffffff</span> }</span> );</span>
-    this.<span class="typedef"><span class="keyword">type</span> = <span class="container">( <span class="title">type</span> !== <span class="title">undefined</span> )</span> ? <span class="keyword">type</span> : <span class="type">THREE</span>.<span class="type">LineStrip</span>;</span>
+  <span class="title">this</span>.<span class="title">geometry</span> = <span class="title">geometry</span>;
+  <span class="title">this</span>.<span class="title">material</span> = ( <span class="title">material</span> !== <span class="title">undefined</span> ) ?
+    <span class="title">material</span> : <span class="title">new</span> <span class="type">THREE</span>.<span class="type">LineBasicMaterial</span>( { <span class="title">color</span>: <span class="type">Math</span>.<span class="title">random</span>() * 0<span class="title">xffffff</span> }</span> );</span>
+  this.<span class="typedef"><span class="keyword">type</span> = <span class="container">( <span class="title">type</span> !== <span class="title">undefined</span> )</span> ? <span class="keyword">type</span> : <span class="type">THREE</span>.<span class="type">LineStrip</span>;</span>
 
-    <span class="keyword">if</span> ( this.geometry ) {
-
-        <span class="keyword">if</span> ( ! this.geometry.boundingSphere ) {
-
-            this.geometry.computeBoundingSphere();
-
-        }
-
+  <span class="keyword">if</span> ( this.geometry ) {
+    <span class="keyword">if</span> ( ! this.geometry.boundingSphere ) {
+      this.geometry.computeBoundingSphere();
     }
-
+  }
 };</code></pre>
 <p>现在翻的过程觉得 todo 内容很多, 但底部链接的源码大多都完成的<br>不知道怎样管理进度的, 总之, 不是非常全面的文档</p>
 <h2>Scene</h2>
 <p><code>Scene</code> 也是从 <code>Object3D</code> 继承的<br><a href="http://threejs.org/docs/58/#Reference/Scenes/Scene">http://threejs.org/docs/58/#Reference/Scenes/Scene</a><br><a href="https://github.com/mrdoob/three.js/blob/master/src/scenes/Scene.js">https://github.com/mrdoob/three.js/blob/master/src/scenes/Scene.js</a><br>注意到 <code>Fog</code> 和 <code>Scene</code> 是放在差不多一起的, 但不清楚怎么用</p>
 <h2>Material</h2>
 <p>比较找不到规律...<br><a href="http://threejs.org/docs/58/#Reference/Materials/Material">http://threejs.org/docs/58/#Reference/Materials/Material</a></p>
+<h2>Renderer</h2>
+<p>Renderer 前面用的是 <code>WebGLRenderer</code>, 首先用到 <code>domElement</code> 属性<br>对应画布的范围有 <code>setSize setViewport</code> 之类的方法, 比我想象的多<br><a href="http://threejs.org/docs/58/#Reference/Renderers/WebGLRenderer">http://threejs.org/docs/58/#Reference/Renderers/WebGLRenderer</a></p>
+<h2>Particle</h2>
+<p><code>ParticleSystem</code> 的文档是在的, <code>Particle</code> 部分则没有<br><a href="http://threejs.org/docs/58/#Reference/Objects/ParticleSystem">http://threejs.org/docs/58/#Reference/Objects/ParticleSystem</a><br>总觉得这部分是不完善的</p>
+<h2>Light</h2>
+<p>通常是 <code>PointLight</code> 吧, 用法非常清晰:</p>
+<pre><code class="lang-js">var light = new THREE<span class="preprocessor">.PointLight</span>( <span class="number">0xff0000</span>, <span class="number">1</span>, <span class="number">100</span> )<span class="comment">;</span>
+light<span class="preprocessor">.position</span><span class="preprocessor">.set</span>( <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span> )<span class="comment">;</span>
+scene<span class="preprocessor">.add</span>( light )<span class="comment">;</span></code></pre>
+<p>实现的基本的属性有:</p>
+<pre><code class="lang-js">THREE<span class="variable">.Light</span><span class="variable">.call</span>( <span class="keyword">this</span>, hex );
+
+<span class="keyword">this</span><span class="variable">.intensity</span> = ( intensity !== undefined ) ? intensity : <span class="number">1</span>;
+<span class="keyword">this</span><span class="variable">.distance</span> = ( distance !== undefined ) ? distance : <span class="number">0</span>;</code></pre>
+<p>而 <code>Light</code> 也是从 <code>Object3D</code> 继承下来的, 一些属性也就能用了</p>
+<pre><code class="lang-js">THREE<span class="preprocessor">.Light</span> = function ( hex ) {
+  THREE<span class="preprocessor">.Object</span>3D<span class="preprocessor">.call</span>( this )<span class="comment">;</span>
+  this<span class="preprocessor">.color</span> = new THREE<span class="preprocessor">.Color</span>( hex )<span class="comment">;</span>
+}<span class="comment">;</span></code></pre>
+<h2>小结</h2>
+<p>这样过了一遍就觉得清晰了一些, 结合以前尝试的, 更好理解<br>比如 <code>Camera Cube</code> 都从 <code>Object3D</code> 继承, 因此 <code>position rotation</code> 很明显<br>另外还有 <code>Object3D</code> 的 <code>lookAt</code> 方法, 知道以后就能明白相关物体都该有了<br>面向对象在这个时候把相关的 API 组织得挺好, 熟悉这一套终于能摸到思路了<br>而文档上其实为参数标注了具体的属性, 因而 API 接口可以挺好懂的</p>
+<p>相对来说, 没有 3D 编程的经验是更大的障碍, 因为不知道怎样对应<br>比如我们自己理解的位置变换, Three.js 有 API, 然而怎么对应呢?<br>总之我想用 API 逐渐拼接我对于 3D 的理解, 来达到学习的目的</p>
 </div><div id="disqus_thread"></div>
   <script type="text/javascript">
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

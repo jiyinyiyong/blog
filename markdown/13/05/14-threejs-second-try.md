@@ -1,5 +1,5 @@
 
-再次尝试 Three.js 绘制图形
+再次尝试学习 Three.js 文档
 ------
 
 起因是之前版本的 [Snowflake][snow] 被导师说答辩会遇到些困难, 要加功能
@@ -92,7 +92,7 @@ renderer.render scene, camera
 Three.js 支持的几个 Feature, 我把上边出现的从中间断开:
 https://github.com/mrdoob/three.js/wiki/Features
 
-* Renderers: WebGL, \<canvas\>, \<svg\>, CSS3D, DOM, Software; effects: anaglyph, crosseyed, stereo and more
+* Renderers: WebGL, `<canvas>`, `<svg>`, CSS3D, DOM, Software; effects: anaglyph, crosseyed, stereo and more
 * Scenes: add and remove objects at run-time; fog
 * Cameras: perspective and orthographic; controllers: trackball, FPS, path and more
 * Animation: morph and keyframe
@@ -180,11 +180,9 @@ http://threejs.org/docs/58/#Reference/Math/Vector3
 
 ```js
 THREE.Vector3 = function ( x, y, z ) {
-
-	this.x = x || 0;
-	this.y = y || 0;
-	this.z = z || 0;
-
+  this.x = x || 0;
+  this.y = y || 0;
+  this.z = z || 0;
 };
 ```
 
@@ -205,22 +203,18 @@ https://github.com/mrdoob/three.js/blob/master/src/objects/Line.js#L5
 ```js
 THREE.Line = function ( geometry, material, type ) {
 
-	THREE.Object3D.call( this );
+  THREE.Object3D.call( this );
 
-	this.geometry = geometry;
-	this.material = ( material !== undefined ) ? material : new THREE.LineBasicMaterial( { color: Math.random() * 0xffffff } );
-	this.type = ( type !== undefined ) ? type : THREE.LineStrip;
+  this.geometry = geometry;
+  this.material = ( material !== undefined ) ?
+    material : new THREE.LineBasicMaterial( { color: Math.random() * 0xffffff } );
+  this.type = ( type !== undefined ) ? type : THREE.LineStrip;
 
-	if ( this.geometry ) {
-
-		if ( ! this.geometry.boundingSphere ) {
-
-			this.geometry.computeBoundingSphere();
-
-		}
-
-	}
-
+  if ( this.geometry ) {
+    if ( ! this.geometry.boundingSphere ) {
+      this.geometry.computeBoundingSphere();
+    }
+  }
 };
 ```
 
@@ -228,22 +222,18 @@ https://github.com/mrdoob/three.js/blob/master/src/objects/Mesh.js#L8
 ```js
 THREE.Line = function ( geometry, material, type ) {
 
-	THREE.Object3D.call( this );
+  THREE.Object3D.call( this );
 
-	this.geometry = geometry;
-	this.material = ( material !== undefined ) ? material : new THREE.LineBasicMaterial( { color: Math.random() * 0xffffff } );
-	this.type = ( type !== undefined ) ? type : THREE.LineStrip;
+  this.geometry = geometry;
+  this.material = ( material !== undefined ) ?
+    material : new THREE.LineBasicMaterial( { color: Math.random() * 0xffffff } );
+  this.type = ( type !== undefined ) ? type : THREE.LineStrip;
 
-	if ( this.geometry ) {
-
-		if ( ! this.geometry.boundingSphere ) {
-
-			this.geometry.computeBoundingSphere();
-
-		}
-
-	}
-
+  if ( this.geometry ) {
+    if ( ! this.geometry.boundingSphere ) {
+      this.geometry.computeBoundingSphere();
+    }
+  }
 };
 ```
 
@@ -264,4 +254,57 @@ Material
 比较找不到规律...
 http://threejs.org/docs/58/#Reference/Materials/Material
 
+Renderer
+------
 
+Renderer 前面用的是 `WebGLRenderer`, 首先用到 `domElement` 属性
+对应画布的范围有 `setSize setViewport` 之类的方法, 比我想象的多
+http://threejs.org/docs/58/#Reference/Renderers/WebGLRenderer
+
+Particle
+------
+`ParticleSystem` 的文档是在的, `Particle` 部分则没有
+http://threejs.org/docs/58/#Reference/Objects/ParticleSystem
+总觉得这部分是不完善的
+
+Light
+------
+
+通常是 `PointLight` 吧, 用法非常清晰:
+
+```js
+var light = new THREE.PointLight( 0xff0000, 1, 100 );
+light.position.set( 50, 50, 50 );
+scene.add( light );
+```
+
+实现的基本的属性有:
+
+```js
+THREE.Light.call( this, hex );
+
+this.intensity = ( intensity !== undefined ) ? intensity : 1;
+this.distance = ( distance !== undefined ) ? distance : 0;
+```
+
+而 `Light` 也是从 `Object3D` 继承下来的, 一些属性也就能用了
+
+```js
+THREE.Light = function ( hex ) {
+  THREE.Object3D.call( this );
+  this.color = new THREE.Color( hex );
+};
+```
+
+小结
+------
+
+这样过了一遍就觉得清晰了一些, 结合以前尝试的, 更好理解
+比如 `Camera Cube` 都从 `Object3D` 继承, 因此 `position rotation` 很明显
+另外还有 `Object3D` 的 `lookAt` 方法, 知道以后就能明白相关物体都该有了
+面向对象在这个时候把相关的 API 组织得挺好, 熟悉这一套终于能摸到思路了
+而文档上其实为参数标注了具体的属性, 因而 API 接口可以挺好懂的
+
+相对来说, 没有 3D 编程的经验是更大的障碍, 因为不知道怎样对应
+比如我们自己理解的位置变换, Three.js 有 API, 然而怎么对应呢?
+总之我想用 API 逐渐拼接我对于 3D 的理解, 来达到学习的目的
