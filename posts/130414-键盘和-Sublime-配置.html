@@ -9,11 +9,10 @@
 <span class="title">keycode</span>  <span class="number">34</span> = parenleft parenright
 <span class="title">keycode</span>  <span class="number">35</span> = bracketleft bracketright
 <span class="title">keycode</span>  <span class="number">47</span> = colon semicolon
-<span class="title">keycode</span>  <span class="number">48</span> = quotedbl apostrophe
 
 <span class="title">keycode</span>  <span class="number">51</span> = braceleft braceright</code></pre>
 <p>之前求助@lilydjwg 被推荐用 Fcitx 插件来替代 Xmodmap 映射键位<br>实际使用感觉对进入桌面的速度有明显影响, 最后放弃了<br>另外写钩子在启动 X 自动加载配置的方案, 以后还得再测</p>
-<p>这个脚本主要的功能是调整括号引号冒号的位置<br><code>&quot; &#39;</code> 被交换, <code>: ;</code> 也交换了, 这是针对 CoffeeScript 改的<br>三个括号, 考虑到编辑器自动补全, 被同意放在 <code>p</code> 键右边<br>一次是 <code>( [ {</code>, 加上 <code>Shift</code> 后依次是 <code>) ] }</code><br>受影响的键位也跟着做了调整, <code>9 0</code> 上依次是 <code>| \</code> 两个</p>
+<p>这个脚本主要的功能是调整括号引号冒号的位置<br><code>: ;</code> 交换了, 这是针对 CoffeeScript 改的<br>三个括号, 考虑到编辑器自动补全, 被同意放在 <code>p</code> 键右边<br>一次是 <code>( [ {</code>, 加上 <code>Shift</code> 后依次是 <code>) ] }</code><br>受影响的键位也跟着做了调整, <code>9 0</code> 上依次是 <code>| \</code> 两个</p>
 <h3>Sublime Text 配置</h3>
 <p>受键位的影响, Sublime 的快捷键出错, 设置了前两行:</p>
 <pre><code class="lang-json">[

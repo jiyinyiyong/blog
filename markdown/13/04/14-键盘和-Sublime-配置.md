@@ -21,7 +21,6 @@ keycode  20 = minus underscore
 keycode  34 = parenleft parenright
 keycode  35 = bracketleft bracketright
 keycode  47 = colon semicolon
-keycode  48 = quotedbl apostrophe
 
 keycode  51 = braceleft braceright
 ```
@@ -31,7 +30,7 @@ keycode  51 = braceleft braceright
 另外写钩子在启动 X 自动加载配置的方案, 以后还得再测
 
 这个脚本主要的功能是调整括号引号冒号的位置
-`" '` 被交换, `: ;` 也交换了, 这是针对 CoffeeScript 改的
+`: ;` 交换了, 这是针对 CoffeeScript 改的
 三个括号, 考虑到编辑器自动补全, 被同意放在 `p` 键右边
 一次是 `( [ {`, 加上 `Shift` 后依次是 `) ] }`
 受影响的键位也跟着做了调整, `9 0` 上依次是 `| \` 两个
