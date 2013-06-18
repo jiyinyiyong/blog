@@ -5,5 +5,24 @@
   "devDependencies": {
     "marked": "*",
     "highlight.js": "*"
+  },
+  "readmeFilename": "readme.textile",
+  "gitHead": "c0678c1fa4c16ef9bd1a0476fa4f11f6d6dc1d94",
+  "description": "h2. 我的博客",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jiyinyiyong/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "jiyinyiyong",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/jiyinyiyong/blog/issues"
   }
 }
