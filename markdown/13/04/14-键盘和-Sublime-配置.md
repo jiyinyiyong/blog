@@ -43,13 +43,24 @@ keycode  51 = braceleft braceright
 [
   { "keys": ["ctrl+["], "command": "indent" },
   { "keys": ["ctrl+("], "command": "unindent" },
+  { "keys": ["ctrl+shift+("], "command": "fold" },
+  { "keys": ["ctrl+shift+["], "command": "unfold" },
   { "keys": ["ctrl+tab"], "command": "next_view" },
-  { "keys": ["ctrl+shift+tab"], "command": "prev_view" }
+  { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+  { "keys": [" "], "command": "insert_snippet", "args": {"contents": "  "}, "context":
+    [
+      { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+      { "key": "preceding_text", "operator": "regex_contains", "operand": "^\\s*$", "match_all": true }
+    ]
+  }
 ]
 ```
 
 后两行是为了 `ctrl tab` 能更直观而调整的,
 http://sublimetext.userecho.com/topic/30368-make-ctrltab-only-cycle-tabs-in-current-group-and-in-order-of-appearance/
+
+以及 Folding Code 因为我键位设置而导致的麻烦..
+然后是映射行首为空的, 空格键将插入两个空格, coffee 的缩进是了
 
 另外 Settings 完整的配置是这样的, 后面我将做一些解释:
 https://gist.github.com/jiyinyiyong/5275061

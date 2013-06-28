@@ -18,10 +18,19 @@
 <pre><code class="lang-json">[
   { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+["</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"indent"</span> }</span>,
   { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+("</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"unindent"</span> }</span>,
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+("</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"fold"</span> }</span>,
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+["</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"unfold"</span> }</span>,
   { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+tab"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"next_view"</span> }</span>,
-  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+tab"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"prev_view"</span> }</span>
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+tab"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"prev_view"</span> }</span>,
+  { "<span class="attribute">keys</span>": <span class="value">[<span class="string">" "</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"insert_snippet"</span></span>, "<span class="attribute">args</span>": <span class="value">{"<span class="attribute">contents</span>": <span class="value"><span class="string">"  "</span>}</span></span>, "<span class="attribute">context</span>":
+    <span class="value">[
+      { "<span class="attribute">key</span>": <span class="value"><span class="string">"selection_empty"</span></span>, "<span class="attribute">operator</span>": <span class="value"><span class="string">"equal"</span></span>, "<span class="attribute">operand</span>": <span class="value"><span class="literal">true</span></span>, "<span class="attribute">match_all</span>": <span class="value"><span class="literal">true</span> }</span>,
+      { "<span class="attribute">key</span>": <span class="value"><span class="string">"preceding_text"</span></span>, "<span class="attribute">operator</span>": <span class="value"><span class="string">"regex_contains"</span></span>, "<span class="attribute">operand</span>": <span class="value"><span class="string">"^\\s*$"</span></span>, "<span class="attribute">match_all</span>": <span class="value"><span class="literal">true</span> }</span>
+    ]
+  }</span>
 ]</code></pre>
 <p>后两行是为了 <code>ctrl tab</code> 能更直观而调整的,<br><a href="http://sublimetext.userecho.com/topic/30368-make-ctrltab-only-cycle-tabs-in-current-group-and-in-order-of-appearance/">http://sublimetext.userecho.com/topic/30368-make-ctrltab-only-cycle-tabs-in-current-group-and-in-order-of-appearance/</a></p>
+<p>以及 Folding Code 因为我键位设置而导致的麻烦..<br>然后是映射行首为空的, 空格键将插入两个空格, coffee 的缩进是了</p>
 <p>另外 Settings 完整的配置是这样的, 后面我将做一些解释:<br><a href="https://gist.github.com/jiyinyiyong/5275061">https://gist.github.com/jiyinyiyong/5275061</a></p>
 <pre><code class="lang-json">{
   "<span class="attribute">draw_centered</span>": <span class="value"><span class="literal">true</span></span>,
