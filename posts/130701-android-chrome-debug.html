@@ -1,0 +1,56 @@
+<title>130701-android-chrome-debug.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h1>Android 远程调试 Chrome</h1>
+<p>我买的是小米 1S, 第一只触屏手机, 图廉价和省事, 问题似乎不大<br>开发 Android 的室友让我感到拿不到手机 root 压力很大<br>于是开始学刷机, 距离我买手机 3 个多月, 我还是义务所知<br>和同事打听加网上搜索和本地安装, 终于搞定了无线调试</p>
+<p>这里记录一下我了解到的和刷机过程的操作步骤:</p>
+<h2>CM 的 OS</h2>
+<p>大致了解, CM 是 Android 的非官方的 ROM, 一直在更新<br>全名 Cyanogenmod, 官网在 <a href="http://www.cyanogenmod.org/">http://www.cyanogenmod.org/</a><br>Github 上有这个组织: <a href="https://github.com/CyanogenMod/android">https://github.com/CyanogenMod/android</a><br>小米是基于 CM 改的, 不过在 CM 官方 Wiki 里支持的设备中没有写小米</p>
+<p>Google 了许久之后我找到了个 ROM, 后来大致验证是可行的<br><a href="http://forum.xda-developers.com/showthread.php?t=2067070">http://forum.xda-developers.com/showthread.php?t=2067070</a></p>
+<h2>刷机过程</h2>
+<p>网上教程很容易搜到, 做一遍就懂了. 关机状态电源键及音量增进入 Recovery<br>再按照提示清除 User 数据和 Cache, 另一个选项 All Data 不一定要<br>All Data 不选, 那么刷机后原先安装的应用还在, 可能不好用了</p>
+<p>关机前事先要把 ROM 文件放到 SD 卡根目录命名为 <code>update.zip</code><br>清理后, 选择安装 <code>update.zip</code> 到系统 1, 等待完成然后重启即可<br>文件可以拷贝, 也可开启 Android 的调试功能用 <code>adb</code> 安装:<br><code>adb push ./cm-10.1-20130613-BETA1-mione_plus.zip /sdcard/update.zip</code><br>过程有点长, 我遇到过文件拷贝不全, 只能耐心等待<br>刷机结束后重启, 初次开机有 CM 转圈圈的动画, 时间较长</p>
+<h2>Google 应用问题</h2>
+<p>安装完后, Google 的应用都无法正常使用了, FC 之类的<br>室友提到 CM 和 Google 的纠纷, 至于无法在上边使用 Google 应用<br>当然社区有很多办法, 比如一些取名 <code>gapps-*</code> 的应用, 不过我没成功</p>
+<p>之后听从提示, 安装了小米的开发版, 通过小米应用商店中某应用安装 Google 应用<br><a href="http://www.miui.com/development.html">http://www.miui.com/development.html</a><br>再之后, 发现 Google 应用耗电和退出等问题奇怪, 不想折腾了</p>
+<h2>再次刷机</h2>
+<p>今天在小米论坛搜索到了方案, CM 和 Google Play 都安装成功了<br><a href="http://www.miui.com/thread-1261525-1-2.html">http://www.miui.com/thread-1261525-1-2.html</a><br><a href="http://bbs.xiaomi.cn/forum.php?mod=viewthread&amp;tid=7668654">http://bbs.xiaomi.cn/forum.php?mod=viewthread&amp;tid=7668654</a><br>具体内容在链接里有详细说明, 不打算重复</p>
+<h2>调试工具</h2>
+<p>Android 的调试工具在 Ubuntu 的 mirror 中有, 直接可以安装<br>Android 上开启调试选项, 包括 Chrome 调试选项, 就打开工具了<br>注意到有个网络调试功能, 而在小米开发版上没有看到<br>此外 CM 上 root 权限可以分配给 adb, 而小米上没有得到</p>
+<p>网络调试我参考了以下的链接, 在局域网里开启了调试功能<br><a href="http://geekyogi.tumblr.com/post/24456172929/android-debugging-adb-over-network">http://geekyogi.tumblr.com/post/24456172929/android-debugging-adb-over-network</a><br><a href="http://stackoverflow.com/questions/2604727/how-can-i-connect-to-android-with-adb-over-tcp">http://stackoverflow.com/questions/2604727/how-can-i-connect-to-android-with-adb-over-tcp</a><br>首先在 Android 上开启提示运行之后, 到 Ubuntu 上运行 adb:</p>
+<pre><code><span class="title">adb</span> connect <span class="number">192.168.1.200:5555</span></code></pre>
+<p>很快连接成功, <code>adb shell</code> 有反应, 并且能进行 Vim 操作</p>
+<p>我主要关心 Chrome 调试, 按照 Chrome 远程调试文档:<br><a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging">https://developers.google.com/chrome-developer-tools/docs/remote-debugging</a><br>在 Android 打开远程调试选项, Ubuntu 上输入命令:</p>
+<pre><code><span class="tag">adb</span> <span class="tag">forward</span> <span class="tag">tcp</span><span class="pseudo">:9222</span> <span class="tag">localabstract</span><span class="pseudo">:chrome_devtools_remote</span></code></pre>
+<p>Ubuntu 上 Chrome 打开 <code>locahost:9222</code> 就看到对应界面了<br>有点问题是, 远程调试的文件似乎放在 appspot 上, 网络请求很慢, 用点技俩才打开<br><a href="https://chrome-devtools-frontend.appspot.com/">https://chrome-devtools-frontend.appspot.com/</a><br>总之到此为止, 从 Ubuntu Chrome 无线调试 Android Chrome 是可行了</p>
+<h2><code>adb shell</code> No permisson 问题</h2>
+<p>刚开始频繁遇到 <code>adb shell</code> 提示权限不足的问题, 搜到了方案:<br><a href="http://stackoverflow.com/questions/16364748/must-do-adb-kill-server-and-start-server-everytime-to-recognize-android-device-i">http://stackoverflow.com/questions/16364748/must-do-adb-kill-server-and-start-server-everytime-to-recognize-android-device-i</a><br>需要手动关闭 adb 工具, 再以 root 权限运行, 即可:</p>
+<pre><code>adb kill-server
+su<span class="operator"><span class="keyword">do</span> adb <span class="keyword">start</span>-server</code></pre>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div>
