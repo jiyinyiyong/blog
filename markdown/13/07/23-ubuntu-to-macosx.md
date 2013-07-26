@@ -94,3 +94,22 @@ Java 环境没有配置, XCode 熟悉度很低, 目前还不打算深入
 Linux 带给我的真的很多, 但我希望能话更多时间在学习 Web 和设计上
 
 [issues]: https://github.com/jiyinyiyong/blog
+
+------
+
+一些后续软件使用和配置:
+
+* KeyRemap4MacBook 用来映射了键位, [配置不麻烦][issue]
+* Alfred 2 用来快捷命令, 偶尔会用 SpotLight 搜索命令, Finder 不用
+* 字体按照知乎上配置了冬青黑体, 设置较重的次像素渲染, 只能接受了
+* 安装 RightZoom 视线窗口的快捷键和最大化功能, 挺常用的
+* 按照 LifeHacker 上的方案隐藏了 Dashboard, 以及关闭一些快捷键
+* 配置[终端的脚本][title], 总算当前路径是显示在标题栏上了
+* 关闭 OS X 某快捷键, 使得 Sublime Text 上 Ctrl Shift Up 正常使用
+
+另外搜索到 AskDifferent 上一些东西, 对系统做了配置不详细查了
+OS X 的系统配置里有很多值得留意的配置, 细节很多都能搞定
+现在搞不定主要是多个终端多个窗口切换较慢, 目前只能依赖触摸板
+
+[issue]: https://github.com/tekezo/KeyRemap4MacBook/issues/146
+[title]: http://superuser.com/questions/79972/set-the-title-of-the-terminal-window-to-the-current-directory
