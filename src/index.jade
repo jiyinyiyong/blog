@@ -8,9 +8,9 @@ mixin link(name, title)
 html
   head
     title 题叶
-    link(rel='stylesheet',href='src/index.css')
+    link(rel='stylesheet', href='src/index.css')
+    link(rel="shortcut icon", href="/pic/jiyinyiyong-64x64.png")
     meta(charset='utf-8')
-    //- script(src="http://192.168.1.14:7777/doodle.js")
   body
     #background
     #about
@@ -20,6 +20,7 @@ html
       span JiyinYiyong
     #list
       div Year 2013
+      mixin post("130731-dream-of-coding", '关于编程世界的梦想')
       mixin link("http://www.douban.com/note/289511038/", "失去之后的感动")
       mixin link("http://www.douban.com/note/288826252/", "学编程能编帮助人摆脱孤独吗?")
       mixin post("130723-ubuntu-to-macosx", 'Ubuntu 到 Mac OS X 的头几天')
