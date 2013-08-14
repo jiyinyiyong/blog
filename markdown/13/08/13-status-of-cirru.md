@@ -69,3 +69,66 @@ match 'string or number here',
 
 主要提供了对应 CoffeeScript 里 `switch/when/else` 的功能
 另外额外支持了一些语法糖和正则等复杂的方案备用
+
+Cirru 语法
+------
+
+Cirru 解释器支持的语法现在是这样几条:
+
+* 行内可以使用 `()` 进行代码的嵌套, 两格缩进产生行的嵌套
+* 比如 `"a string"` 这样双引号包裹的 String
+* `a $ b c` 里用 `$` 表示直到行尾的嵌套 `a (b c)`
+
+具体例子在 [README][parser-readme] 里给了比较详细的例子可以对照
+以及做了, 自己觉得比较友好的错误提示, 提示到了字段上
+解释器的作用是把字符串的文件, 转化成为可以递归处理的语法树
+树上除了字段和嵌套结构, 还有为了打印出错信息而附加的行号和文件名的引用
+
+[parser-readme]: https://github.com/jiyinyiyong/cirru-parser#syntax
+
+中间 token 折叠为 AST 的步骤原先想会比较难, 做着发现有简单的方案:
+
+```coffee
+ast: proto.new
+  init: ->
+    @tree = []
+    @entry = [@tree]
+    @errors = []
+  push: (data) ->
+    @entry[@entry.length - 1].push data
+  nest: ->
+    new_entry = []
+    @entry[@entry.length - 1].push new_entry
+    @entry.push new_entry
+  ease: ->
+    @entry.pop()
+  newline: ->
+    @ease()
+    @nest()
+```
+
+只有有看到过用 JS 的引用机制, 巧妙地保留嵌套内数组的引用, 送入 token 的
+上边的代码里, `next` 方法就制造了对内存数组的引用
+这样保证了顺序进入的 token 能被正确折叠为树状, 能被递归函数处理
+代码里用了基于原型的 OOP 可能带来疑惑, 可以看 [proto-scope][proto] 的介绍
+
+[proto]: https://github.com/jiyinyiyong/proto-scope#proto-scope
+
+现在的 Cirru Parser 模块是可以重用的, 如果认可我用缩进的方案的话
+Cirru 现在其实没有其他语法, 很简陋, 只能作为学习用的代码
+如果你用 CoffeeScript, 用 Cirru 意味着不用再手写一遍解释器部分
+也期待有同学帮我改正 Cirru Parser 里一些问题来做更好
+
+使用模块需要熟悉 Node, 然后安装模块到本地的项目里:
+
+```
+npm install --save cirru-parser
+```
+
+```coffee
+{parse, error} = require 'cirru-parser'
+```
+
+模块提供了两个方法, 一个是根据文件名解析出 AST 树, 返回 AST 信息
+另一个是根据给定的数据结构生成错误的格式化输出
+目前这部分文档不够详细, 只能从我简单的代码和 README 里翻了
