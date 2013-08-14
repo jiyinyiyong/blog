@@ -21,10 +21,10 @@
 }
 body {
   margin: 0px;
-  font-family: Marcellus, "wenquanyi micro hei";
+  font-family: Marcellus, 'wenquanyi micro hei', 'MicroSoft Yahei';
   background-color: #242424;
 }
-a {
+#list a {
   display: block;
   text-decoration: none;
   color: #b3b3b3;
@@ -34,7 +34,7 @@ a {
   padding-left: 160px;
   margin-left: 40px;
 }
-a:hover {
+#list a:hover {
   box-shadow: 0px 1px 0px #b3b3b3;
 }
 #background {
@@ -50,6 +50,9 @@ a:hover {
   font-size: 16px;
   top: 20%;
   padding: 40px;
+}
+#about a {
+  text-decoration: none;
 }
 #list {
   position: absolute;

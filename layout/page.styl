@@ -17,7 +17,7 @@
 html
   background hsl(0,0,14)
   color hsl(0,0,14)
-  
+
 @font-face
   font-family 'Marcellus'
   font-style normal
@@ -29,7 +29,8 @@ body
   width 840px
   margin 0px
   padding 40px
-  font-family Marcellus, 'wenquanyi micro hei'
+  font-family Marcellus, 'Hiragino Sans GB',
+    'wenquanyi micro hei', 'MicroSoft Yahei'
   line-height 30px
 
 ::selection
@@ -41,7 +42,7 @@ hr
   border-color hsl(0, 11%, 78%)
   margin 49px 0px
   width 61%
-  
+
 .home
   position fixed
   left 934px
@@ -57,14 +58,17 @@ a
   color blue
   display inline-block
   max-height 30px
+  line-height 30px
+  vertical-align middle
   max-width 660px
   text-overflow ellipsis
   overflow hidden
+  white-space nowrap
   color hsl(240,80,80)
 
 .article
   margin 100px 0px 200px
-  
+
   ::-webkit-scrollbar-track
     background white
 

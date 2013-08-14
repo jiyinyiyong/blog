@@ -28,7 +28,7 @@ body {
   width: 840px;
   margin: 0px;
   padding: 40px;
-  font-family: Marcellus, 'wenquanyi micro hei';
+  font-family: Marcellus, 'Hiragino Sans GB', 'wenquanyi micro hei', 'MicroSoft Yaheo';
   line-height: 30px;
 }
 ::selection {
@@ -56,9 +56,12 @@ a {
   color: #00f;
   display: inline-block;
   max-height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
   max-width: 660px;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
   color: #a3a3f5;
 }
 .article {

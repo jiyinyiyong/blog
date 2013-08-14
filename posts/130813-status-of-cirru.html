@@ -1,0 +1,59 @@
+<title>130813-status-of-cirru.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h2>Cirru, 自己学写解释器</h2>
+<p>自己创造一门编程语言是理解编程语言原理很不错的一个方案<br>而且当我反感了大多数语言中充斥着括号时, 自己就很想尝试做一个<br>我还没有学编译原理, 所以这里参考的都是网上比较粗浅的资料<br>另外还有一些 Compile to JS 的语言, 尝试看了点源码, 尽管看懂挺少</p>
+<p>最早把编程语言原理呈现在我面前的是 <a href="http://norvig.com/">Peter Norvig</a> 的 <a href="http://www.googies.info/articles/lispy.html">Lispy</a><br>那是一个用 Python 写的 Lisp 语法解释器, 把编程语言基本的原理揭示出来了<br>后来他还有增强版的 <a href="http://norvig.com/lispy2.html">Lispy</a>, 可惜主要的部分我没有看懂<br>好在从这里, 基本的编程语言如何运行的概念已经清晰了, 就有了一个开始<br>那时我学着用 CoffeeScript 写了一遍, 可惜现在忘了存哪儿..</p>
+<p>后来有尝试去学 <a href="http://pegjs.majda.cz/">PEG.js</a> 来生成语法树, 当时在缩进方面卡住了<br>我之前尝试写 Cirru 时用的还是 Lispy 的办法解析嵌套的括号<br>到看了 <a href="https://github.com/santoshrajan/lispyscript/">Lispyscript</a> 以后会了点基础的 token 解析<br>但解析缩进语法我还是想不出来, Cirru 的计划就直接搁起来了</p>
+<p>因为对编程语言的疑问, 所以我一直在关注着相关的教程看进展<br>以及我后来<a href="https://github.com/coffee-js/languages/wiki/简化的解释器入门和编程语言了解">收集的编程语言资源</a>, 也是在中间积累起来的<br>还有<a href="http://www.yinwang.org/blog-cn/2012/08/01/interpreter/">王垠也写了关于解释器的教程</a>, 只是那是 Racket 不是基本的编程语言<br>而语法是我学编程语言纠结的第一道坎, 我很想从语法开始解决</p>
+<h2>重写 Cirru parser</h2>
+<p>是在看到 <a href="http://maryrosecook.com/post/little-lisp-interpreter">Little Lisp interpreter</a> 文章以后重新想起这回事的<br>再后来突然想到其实 token 解析的中间状态其实可以更高效保存的, 比如:</p>
+<pre><code><span class="built_in">print</span> <span class="string">"string #{print "</span><span class="built_in">string</span><span class="string">"}"</span></code></pre>
+<p>这样的代码原先我只会通过一个变量保存当前状态, <code>&quot;&quot;</code> 内如何如何<br>那么内部的一个 <code>&quot;string&quot;</code> 结束后遇到括号都不知道在什么状态了<br>这种情况下其实用一个先入后出的栈来解决, 而状态就是堆叠的<br>基于这样的理解, 我计划重写 <a href="https://github.com/jiyinyiyong/cirru-parser"><code>cirru-parser</code></a> 这个模块<br>同时为了方便写判断条件, 我想实现了一个模式匹配的模块 <a href="https://github.com/jiyinyiyong/coffee-pattern#usage">coffee-pattern</a></p>
+<pre><code class="lang-coffee">{match} = require<span class="string"> 'coffee-pattern'</span>
+
+<span class="title">match</span><span class="string"> 'string or number here'</span>,<span class="string">
+  'string'</span>,<span class="string"> 'string'</span>
+  /^head/, (<span class="typedef"><span class="keyword">data</span>) -&gt; print "#<span class="container">{<span class="title">data</span>}</span> matches head"</span>
+  /tail$/, (<span class="typedef"><span class="keyword">data</span>) -&gt; print "#<span class="container">{<span class="title">data</span>}</span> matches tail"</span>
+  /fine/,<span class="string"> 'fine'</span>
+  <span class="number">5</span>, (<span class="typedef"><span class="keyword">data</span>) -&gt; print 'it is five'</span>
+  null, -&gt; print<span class="string"> 'matches null not undefined'</span>
+  undefined, (<span class="typedef"><span class="keyword">data</span>) -&gt; print "#<span class="container">{<span class="title">data</span>}</span> has no matching pattern"</span>
+  key: -&gt;<span class="string"> 'object as a shortcut'</span></code></pre>
+<p>主要提供了对应 CoffeeScript 里 <code>switch/when/else</code> 的功能<br>另外额外支持了一些语法糖和正则等复杂的方案备用</p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41753901-1', 'jiyinyiyong.github.io');
+  ga('send', 'pageview');
+</script>
