@@ -160,7 +160,7 @@ npm install --save cirru-parser
 另一个是根据给定的数据结构生成错误的格式化输出
 目前这部分文档不够详细, 只能从我简单的代码和 README 里翻了
 
-* parse
+#### parse
 
 ```
 parse <filename>
@@ -206,7 +206,7 @@ demo
 
 开头的空数组 `[]` 可以认为是 `parse` 方法的 Bug, 目前不影响使用
 
-* error
+#### error
 
 ```
 error { text: 'msg', x: <x>, y: <line>, file: { path: '', text: '' }}
@@ -237,3 +237,177 @@ file: # 一个对象引用
 
 Cirru 解释器
 ------
+
+目前解释器仅仅完成了基本的 Demo, 没有想通语言特性方面的事情
+主要是基本数据类型, 作用域读写, 跨作用域数据交互, 三个方面
+
+#### 基本数据类型
+
+就是对 JS 原有数据类型的封装, 比如 Number, 通过一个名字比如:
+
+```
+number 2
+```
+
+对应的代码实现要预先检查 token, 生成报错, 下边的例子里我去掉了:
+
+```coffee
+number: (scope, list) ->
+  x = list[1]
+  number = parseInt x.text
+  if isNaN number
+    log_error x, "#{stringify x.text} is not valid number"
+  else
+    number
+```
+
+因为 Cirru 是不通过语法区分数据类型的, 所以其他数据也要名字
+
+```
+string "a string"
+bool yes
+```
+
+复杂的数据类型需要递归调用 `intepret` 方法, 这个是解释器的核心,
+解释器就是需要树状的数据结构, 以便递归结算然后对数据进行合并
+比如 `array` 的实现, 就会从表达式进行递归:
+
+```coffee
+array: (scope, list) ->
+  list[1..].map (x) ->
+    the_type = type x
+    if the_type is 'object' then x
+    else if the_type is 'array'
+      main.interpret scope, x
+```
+
+#### 作用域的实现
+
+每个表达式有对应的作用域, 简单的情况下用一个 `{}` 来保存
+代码执行的过程抽象为对作用域的读写, 主要是 `get set` 操作:
+
+```coffee
+set: (scope, list) ->
+  the_type = type list[1]
+  if the_type is 'object'
+    scope[list[1].text] = main.interpret scope, list[2]
+  else if the_type is 'array'
+    scope[main.interpret scope, list[1]] = main.interpret scope, list[2]
+get: (scope, list) ->
+  the_type = type list[1]
+  if the_type is 'object'
+    scope[list[1].text]
+  else if the_type is 'array'
+    scope[main.interpret scope, list[1]]
+```
+
+在 Cirru 里, 对应的想法被增强了, 作用域应当作为一等公民被传递
+比如把当前作用域取出, 再手动打开作用域运行代码:
+
+```coffee
+'get-scope': (scope, list) -> scope
+'load-scope': (scope, list) ->
+  if (type list[1]) is 'object'
+    child = scope[list[1].text]
+  else if (type list[1]) is 'array'
+    child = main.interpret scope, list[1]
+  list[2..].map (expression) ->
+    main.interpret child, expression
+```
+
+#### 跨作用域的数据
+
+有了上边的想法, 我想做更远, 将作用域传递到其他作用域去执行代码
+前面说, Cirru 是不区分代码和数据的, 意味着代码可以作为数据传递
+这样就不需要通过 Macro 展开, 只要把代码作为数据传递过去即可
+对应需要两个 `code eval` 两个函数完成获取代码和手动执行代码的过程:
+
+```coffee
+code: (scope, list) ->  parent: scope
+  list: list[1..]
+eval: (scope, list) ->  code = main.interpret scope, list[1]
+  child =
+    parent: code.parent
+    outer: scope
+  code.list.map (expression) ->
+    main.interpret child, expression
+```
+
+此外象征性做了一个 `import` 方案, 仅仅是引入代码的功能
+
+```coffee
+import: (scope, list) ->
+  module_path = path.join list[1].file.path, '..', list[1].text
+  unless fs.existsSync module_path
+    log_error list[1], "no file named #{module_path}"
+  main.run scope, (parse module_path)
+```
+
+对应的代码是演示性质的, 并不能真实地使用, 而且我目前不打算继续
+希望这个作为一个学习解释器的例子会有用.. 虽然更可能带上歧途...
+
+猜想: Cirru 的函数
+------
+
+看到这里可能发现, Cirru 里没有尝试做定义函数的语法, 而函数是编程的基础
+对于函数我想这样理解, 函数相当于手动在一个作用域里执行代码,
+手动执行时可以传入原先作用域没有的数据, 以便函数做更强大的操作
+而函数的功能就在于一段代码存入一个变量, 可以被使用者控制而执行
+
+那我想以更底层的一种方式去理解这样一个过程, 函数是很多个操作的组合
+1) 有一段代码, 用户获取了, 但不会立即执行, 而可以在需要时执行
+2) 代码片段附带一个作用域, 用户可以随时将代码在对应作用域的子域执行
+3) 用户执行代码片段时可以传递进来一些其他作用域的数据
+
+我觉得其中有两点可以替换, 来换取比函数更强大的操作方案:
+1) 执行的作用域, 当作用域是一等公民, 可以传递任何作用域给代码执行
+2) 传进数据的方式, 让代码获取当前用户所在作用域, 自己取数据
+
+我的想法是每次执行通过手动管理作用域以及代码之间的组合获得更多灵活性
+代码片段中可以通过 `parent` 和 `outer` 两个引用来直接访问作用域
+比如下边的 Cirru 伪代码展示从 `scope b` 运行 `scope a` 的代码:
+
+```
+scope a
+  set a $ number 2
+  set c $ code
+    print a
+    print $ get parent
+    print $ get outer
+    print $ scope-get parent a
+    print $ scope-get outer a
+scope b
+  set copy-a $ scope-get parent a
+  scope-eval copy-a $ scope-get copy-a c
+```
+
+当然这样的设计严重偏离设计和开发的模式, 让新手更容易写出难以维护的代码
+我主要想说, 如果 Scope Code 都像数据可以随意使用的话,
+Lisp 让函数成为数据自由被调用和传递, 带来了高度灵活的函数式编程
+Go 让 Channel 成为语言里可以赋值传值的数据, 带来强大的并发管理方式
+很多想法在脑海里思考时没有界限, 那么我希望在语言当中可以少一些障碍
+
+一个简单清晰的例子比如我常用 `console.log` 打印数据来看报错,
+为了直观, 打印变量 `juice` 我会写 `console.log "juice", juice`
+我很想, 如果 `console` 可以读到当前作用域, 那同个单词不需要写两遍,
+可以写 `console.log2 "juice"`, Cirru 里是 `console.log2 juice`
+因为后面更接近我们脑子里所想的, 也是更明了的一种表达
+
+更多
+------
+
+这样的设计的确会造成更多的误用, 对于这我是这样考虑的
+首先, 人们需要语言有无比的灵活性, 来避免一些障碍, 或者更快做一些简单的事情
+同时, 人们需要自己学会怎么不犯错误, 而不是用一门永远不会犯错的语言
+Bash 很糟糕, 但有很多场景人们还是用 Bash, 因为有时不需要考虑太多
+我希望 Cirru 有机会是. 当然我先要学好多东西才能做下去
+
+Cirru 另外的计划是图形化的编辑界面, 我说过, 代码就是一棵棵树
+看过 [Python 实现的 Emacs 上语言编程视频][voice]吗? 编程未必是编辑字符串
+需要的是好的代码展示, 还有好的内容编辑, 字符串仅仅是最常用的方式
+很多年以后我们会看到各种新的方式, Cirru 计划有图形, 只是估计很原始
+
+[voice]: http://python-china.org/topic/645
+
+最后我最期待的是来个牛人把图形编程还有灵活语义的语法做出来
+那样就不必我等爱好者冒着风险头脑风暴了 >_<
