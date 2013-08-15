@@ -1,6 +1,6 @@
 
 Cirru, 自己学写解释器
-------
+======
 
 自己创造一门编程语言是理解编程语言原理很不错的一个方案
 而且当我反感了大多数语言中充斥着括号时, 自己就很想尝试做一个
@@ -76,7 +76,7 @@ Cirru 语法
 Cirru 解释器支持的语法现在是这样几条:
 
 * 行内可以使用 `()` 进行代码的嵌套, 两格缩进产生行的嵌套
-* 比如 `"a string"` 这样双引号包裹的 String
+* 比如 `"a string"` 这样双引号包裹的 String, 其中 `\` 用来转义
 * `a $ b c` 里用 `$` 表示直到行尾的嵌套 `a (b c)`
 
 具体例子在 [README][parser-readme] 里给了比较详细的例子可以对照
@@ -107,7 +107,34 @@ ast: proto.new
     @nest()
 ```
 
-只有有看到过用 JS 的引用机制, 巧妙地保留嵌套内数组的引用, 送入 token 的
+Demo:
+
+```coffee
+{protos} = require '../coffee/states'
+ast = protos.ast.new()
+
+print = (args...) -> console.log args...
+
+print ast.tree
+
+ast.push 1
+ast.nest()
+ast.push 2
+ast.nest()
+ast.push 3
+ast.ease()
+ast.push 4
+ast.nest()
+ast.push 6
+ast.nest()
+ast.push 7
+ast.ease()
+ast.push 5
+
+print JSON.stringify ast.tree
+```
+
+之前有看到过用 JS 的引用机制, 巧妙地保留嵌套内数组的引用, 送入 token 的
 上边的代码里, `next` 方法就制造了对内存数组的引用
 这样保证了顺序进入的 token 能被正确折叠为树状, 能被递归函数处理
 代码里用了基于原型的 OOP 可能带来疑惑, 可以看 [proto-scope][proto] 的介绍
@@ -132,3 +159,81 @@ npm install --save cirru-parser
 模块提供了两个方法, 一个是根据文件名解析出 AST 树, 返回 AST 信息
 另一个是根据给定的数据结构生成错误的格式化输出
 目前这部分文档不够详细, 只能从我简单的代码和 README 里翻了
+
+* parse
+
+```
+parse <filename>
+=> { ast: <tree>, errors: [<error string>] }
+```
+
+`parse` 接受一个文件名, 返回解析的 AST 以及语法上的错误
+如果返回结果的 `.errors.length > 0`, 说明有语法错误
+`.errors` 里是已经格式化好的错误内容的字符串, 取出后还有打印
+省略了 `.file` 属性的 AST 看起来是这样的一个树形结构:
+
+```
+
+demo
+  demo $ demo
+```
+```json
+[
+  [],
+  [
+    {
+      "text": "demo",
+      "x": 4,
+      "y": 1
+    },
+    [
+      {
+        "text": "demo",
+        "x": 6,
+        "y": 2
+      },
+      [
+        {
+          "text": "demo",
+          "x": 13,
+          "y": 2
+        }
+      ]
+    ]
+  ]
+]
+```
+
+开头的空数组 `[]` 可以认为是 `parse` 方法的 Bug, 目前不影响使用
+
+* error
+
+```
+error { text: 'msg', x: <x>, y: <line>, file: { path: '', text: '' }}
+=> <error string>
+```
+
+`error` 是通过行号, 文件, 信息来生成错误提示的字符串, 再取出打印
+错误的格式大概是这样的, 包括了需要查看的主要信息:
+
+```
+✗ ./test/piece.cr: 6
+"ddd
+   ^ quote at end
+```
+
+AST 中的一个 token 和 `error` 接受的参数都是同样结构的:
+
+```coffee
+text: 'token' # 在 error 里是错误信息
+x: 0 # 发生错误的行坐标, 从 0 开始
+y: 0 # 发生错误的行号, 从 0 开始
+file: # 一个对象引用
+  path: './code.cr' # 源码文件相对路径
+  text: '' # 文件内容
+```
+
+`parse` 返回的 `.errors` 是在模块内通过 `error` 方法产生的, 样式一致
+
+Cirru 解释器
+------

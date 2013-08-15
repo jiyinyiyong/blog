@@ -44,12 +44,53 @@
   newline: -&gt;
     <span class="variable">@ease</span>()
     <span class="variable">@nest</span>()</code></pre>
-<p>只有有看到过用 JS 的引用机制, 巧妙地保留嵌套内数组的引用, 送入 token 的<br>上边的代码里, <code>next</code> 方法就制造了对内存数组的引用<br>这样保证了顺序进入的 token 能被正确折叠为树状, 能被递归函数处理<br>代码里用了基于原型的 OOP 可能带来疑惑, 可以看 <a href="https://github.com/jiyinyiyong/proto-scope#proto-scope">proto-scope</a> 的介绍</p>
+<p>Demo:</p>
+<pre><code class="lang-coffee"><span class="cell">{protos}</span> = require <span class="string">'../coffee/states'</span>
+ast = <span class="transposed_variable">protos.</span><span class="transposed_variable">ast.</span>new()
+
+print = (<span class="transposed_variable">args...</span>) -&gt; <span class="transposed_variable">console.</span><span class="built_in">log</span> <span class="transposed_variable">args...</span>
+
+print <span class="transposed_variable">ast.</span>tree
+
+<span class="transposed_variable">ast.</span>push <span class="number">1</span>
+<span class="transposed_variable">ast.</span>nest()
+<span class="transposed_variable">ast.</span>push <span class="number">2</span>
+<span class="transposed_variable">ast.</span>nest()
+<span class="transposed_variable">ast.</span>push <span class="number">3</span>
+<span class="transposed_variable">ast.</span>ease()
+<span class="transposed_variable">ast.</span>push <span class="number">4</span>
+<span class="transposed_variable">ast.</span>nest()
+<span class="transposed_variable">ast.</span>push <span class="number">6</span>
+<span class="transposed_variable">ast.</span>nest()
+<span class="transposed_variable">ast.</span>push <span class="number">7</span>
+<span class="transposed_variable">ast.</span>ease()
+<span class="transposed_variable">ast.</span>push <span class="number">5</span>
+
+print <span class="transposed_variable">JSON.</span>stringify <span class="transposed_variable">ast.</span>tree</code></pre>
+<p>之前有看到过用 JS 的引用机制, 巧妙地保留嵌套内数组的引用, 送入 token 的<br>上边的代码里, <code>next</code> 方法就制造了对内存数组的引用<br>这样保证了顺序进入的 token 能被正确折叠为树状, 能被递归函数处理<br>代码里用了基于原型的 OOP 可能带来疑惑, 可以看 <a href="https://github.com/jiyinyiyong/proto-scope#proto-scope">proto-scope</a> 的介绍</p>
 <p>现在的 Cirru Parser 模块是可以重用的, 如果认可我用缩进的方案的话<br>Cirru 现在其实没有其他语法, 很简陋, 只能作为学习用的代码<br>如果你用 CoffeeScript, 用 Cirru 意味着不用再手写一遍解释器部分<br>也期待有同学帮我改正 Cirru Parser 里一些问题来做更好</p>
 <p>使用模块需要熟悉 Node, 然后安装模块到本地的项目里:</p>
 <pre><code><span class="comment">npm</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">save</span> <span class="comment">cirru</span>-<span class="comment">parser</code></pre>
 <pre><code class="lang-coffee">{parse, <span class="built_in">error</span>} = <span class="built_in">require</span> <span class="string">'cirru-parser'</span></code></pre>
 <p>模块提供了两个方法, 一个是根据文件名解析出 AST 树, 返回 AST 信息<br>另一个是根据给定的数据结构生成错误的格式化输出<br>目前这部分文档不够详细, 只能从我简单的代码和 README 里翻了</p>
+<ul>
+<li><code>parse &lt;filename&gt; =&gt; {ast: &lt;tree&gt;, errors: [&lt;error string&gt;]}</code></li>
+</ul>
+<p><code>parse</code> 接受一个文件名, 返回解析的 AST 以及语法上的错误<br>如果返回结果的 <code>.errors.length &gt; 0</code>, 说明有语法错误<br><code>.errors</code> 里是已经格式化好的错误内容的字符串, 取出后还有打印</p>
+<ul>
+<li><code>error text: &#39;msg&#39;, x: &lt;x&gt;, y: &lt;line&gt;, file: {path: &#39;&#39;, text: &#39;&#39;} =&gt; &lt;error string&gt;</code></li>
+</ul>
+<p><code>error</code> 是通过行号, 文件, 信息来生成错误提示的字符串, 再取出打印<br>错误的格式大概是这样的, 包括了需要查看的主要信息:</p>
+<pre><code><span class="comment">✗</span> <span class="string">.</span><span class="comment">/test/piece</span>.<span class="comment">cr:</span> <span class="comment">6</span>
+<span class="comment">"ddd</span>
+   <span class="comment">^</span> <span class="comment">quote</span> <span class="comment">at</span> <span class="comment">end</code></pre>
+<p>AST 中的一个 token 和 <code>error</code> 接受的参数都是同样结构的:</p>
+<pre><code class="lang-coffee"><span class="attribute">text</span>: <span class="string">'token' # 在 error 里是错误信息</span>
+<span class="attribute">x</span>: <span class="string">0 # 发生错误的行坐标, 从 0 开始</span>
+<span class="attribute">y</span>: <span class="string">0 # 发生错误的行号, 从 0 开始</span>
+<span class="attribute">file</span>: <span class="string"># 一个对象引用</span>
+  <span class="attribute">path</span>: <span class="string">'./code.cr' # 源码文件相对路径</span>
+  <span class="attribute">text</span>: <span class="string">'' # 文件内容</span></code></pre>
 </div><div id="disqus_thread"></div>
   <script type="text/javascript">
       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
