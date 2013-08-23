@@ -1,0 +1,64 @@
+<title>130823-try-brackets.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h1>尝试 Brackets 编辑 HTML</h1>
+<p>NetTuts 上有具体的教程, 展示了基本的功能<br><a href="http://net.tutsplus.com/tutorials/tools-and-tips/a-peek-at-brackets/">http://net.tutsplus.com/tutorials/tools-and-tips/a-peek-at-brackets/</a></p>
+<p>Brackets 是通过 Remote Debug 来实现的, 刷新页面非常快<br>我从前没用过 IDE, 对 Brackets 解析语法和智能提示感到非常意外<br>此前有看文章说编辑器太多, 需要用远程调试协议来搞, Brackets 搞了<br><a href="http://kenneth.io/blog/2013/05/21/our-web-development-workflow-is-completely-broken/">http://kenneth.io/blog/2013/05/21/our-web-development-workflow-is-completely-broken/</a></p>
+<p>Brackets 的仓库目前扩展较少, 但考虑 JS 用户数量应该很快<br><a href="https://brackets-registry.aboutweb.com/">https://brackets-registry.aboutweb.com/</a></p>
+<p>Trello 上有 Brackets 进度管理方面的内容, 看起来很累..<br><a href="https://trello.com/b/LCDud1Nd/brackets">https://trello.com/b/LCDud1Nd/brackets</a></p>
+<p>现在 Wiki 上文档不少, 但看起来整理还没做很好<br><a href="https://github.com/adobe/brackets/wiki/_pages">https://github.com/adobe/brackets/wiki/_pages</a><br><a href="https://github.com/adobe/brackets/wiki/How-to-Use-Brackets">https://github.com/adobe/brackets/wiki/How-to-Use-Brackets</a></p>
+<p>还有视频介绍了一些更为强大的功能:<br><a href="http://www.youtube.com/watch?v=xAP8CSMEwZ8">http://www.youtube.com/watch?v=xAP8CSMEwZ8</a><br><a href="http://www.youtube.com/watch?v=-J5LG2bFPMg">http://www.youtube.com/watch?v=-J5LG2bFPMg</a></p>
+<p>Mac 下安装 Brackets, 打开即可使用, 除了启用 Theseus 后 CPU 占用较高<br>Linux 下打开实时预览的调试失败, 似乎是 Remote Debugging 没有开启<br>手动重启 Chrome 29.0 dev, 指定开启端口后可是使用</p>
+<pre><code><span class="comment">google</span>-<span class="comment">chrome</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">remote</span>-<span class="comment">debugging</span>-<span class="comment">port=9222</code></pre>
+<h3>其他浏览器</h3>
+<ul>
+<li>Firefox</li>
+</ul>
+<p>关于 Remote Debugging API, Firefox 也表示会提供全部的支持<br>五个月前 Mozilla 博客上就演示了通过 Sublime Text 进行 Remote Debugging 的功能<br><a href="https://hacks.mozilla.org/2013/03/firefox-developer-tools-work-week-wrap-up/">https://hacks.mozilla.org/2013/03/firefox-developer-tools-work-week-wrap-up/</a></p>
+<ul>
+<li>Sublime WebInspector</li>
+</ul>
+<p>Sublime 对应 Firefox 的 Remote Debugging 插件网上没有找到<br>按博客说 Paul Rouget 博客说的, 仅仅是 Proof of concept 而已<br><a href="http://paulrouget.com/e/devtoolsnext/">http://paulrouget.com/e/devtoolsnext/</a><br>对应 Chrome 的插件之前倒是出风头, 只是相比 Brackets 显得太弱了<br><a href="http://sokolovstas.github.io/SublimeWebInspector/">http://sokolovstas.github.io/SublimeWebInspector/</a></p>
+<p>WebInspector 在安装时有 2 和 3 的区别, 注意从 Sublime 安装时区分<br>安装后搜索 <code>WebInspector</code>, 或者按 <code>Command Shift R</code> 来激活<br>选择 <code>Start Debugging</code>, 然后选择对应已经在 Chrome 打开的网址<br>之后编辑保存网页就能在 Chrome 看到页面元素的更新了<br>具体看上边链接里的视频, 分辨率太高我沒看细... 总之不如 Brackets 的 IDE</p>
+<ul>
+<li>Light Table</li>
+</ul>
+<p>今天 Light Table 更新了 <code>0.5.0</code>, 增加新功能以及优化运行速度<br><a href="http://www.chris-granger.com/2013/08/22/light-table-050/">http://www.chris-granger.com/2013/08/22/light-table-050/</a><br>文档页面現在看也已经不少了, 只能抽时间去对付了<br><a href="http://docs.lighttable.com/">http://docs.lighttable.com/</a></p>
+<h3>感想</h3>
+<p>今天同期看到的 <a href="gist">Web Components Resources</a> 这份精彩的列表<br>Web 终于让我三年前期待的模块嵌套走近了现实的开发的<br>只是对我来说太快了点, 我学东西很慢, 但技术刷新开始之后速度就飞快了</p>
+<p>新技术导致 Web 开发页面回到 HTML 作为主角的页面编写上<br>脚本的功能减弱了, 因为创建新标签就好比后端编程创造一个函数<br>HTML 的抽象还是觉得挺麻烦, 导致脚本的抽象能力无法释放出来<br>好在技术总是会往更好的抽象发展下去的, 希望能早点到设计师能上手的程度</p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41753901-1', 'jiyinyiyong.github.io');
+  ga('send', 'pageview');
+</script>
