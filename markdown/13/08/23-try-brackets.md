@@ -31,6 +31,11 @@ Linux 下打开实时预览的调试失败, 似乎是 Remote Debugging 没有开
 google-chrome --remote-debugging-port=9222
 ```
 
+Brackets 通过 [Theseus 插件来调试 JS][theseus], 记录调用次数和调用栈
+包括服务端 JS 的函数调用, 调用的数据和层次都会被记录下来生成树状的图供调试
+
+[theseus]: http://blog.brackets.io/2013/08/28/theseus-javascript-debugger-for-chrome-and-nodejs/
+
 ### 其他浏览器
 
 * Firefox
