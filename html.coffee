@@ -9,7 +9,8 @@ hljs = require "highlight.js"
 marked.setOptions
   gfm: yes
   breaks: yes
-  highlight: (code, lang) -> hljs.highlightAuto(code).value
+  highlight: (code, lang) ->
+    hljs.highlight(lang, code).value
 
 filename = process.argv[2]
 post_dir = "./posts/"

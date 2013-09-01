@@ -1,0 +1,94 @@
+<title>130901-why-misunderstand-monads-more.md</title><meta charset='utf-8'><link rel='stylesheet' href='../src/page.css' /><link rel='stylesheet'  href='http://softwaremaniacs.org/media/soft/highlight/styles/github.css'><div class='home'><a href='../index.html '>Home</a></div><div class='article'><h1>之前理解 Monads 出错的原因</h1>
+<h3>空值的判断</h3>
+<p>有次项目代码遇到大量的 <code>if data?</code> 判断, 逐渐感到是代码的问题<br>因为我觉得代码应该抽象的话, 不应该每次用重复的代码去判断才对<br>而且 JS 里的判断空值相对麻烦, 我开始寻求好的代码模式来避免重复的判断<br>后来在<a href="http://ruby-china.org/topics/13225#reply5">论坛上看 @luikore 讲 Haskell 用 Maybe Monad</a> 来做这个的<br>当时觉得好像之前遇到过, 现在看来 do notation 的确带来这方面好处了</p>
+<p>于是找了些资料从这个切入点看懂 Maybe Monad 的用法.. 现在能看懂一点了<br>首先是生成一个 Maybe Monad 包裹的数据:</p>
+<pre><code class="lang-haskell"><span class="title">myInt</span> :: <span class="type">Int</span> -&gt; <span class="type">Maybe</span> <span class="type">Int</span>
+<span class="title">myInt</span> x
+  | x &lt; <span class="number">0</span> = <span class="type">Nothing</span>
+  | otherwise = <span class="type">Just</span> x
+
+<span class="comment">-- `Maybe` 类型有两类值, 一个 `Nothing`, 另一个是用 `Just` 封装的数据</span>
+<span class="comment">-- 操作时通过 Haskell 的 Pattern Matching 分别判断数据</span>
+<span class="comment">-- 比如我要个封装上的数据加上一个整数</span>
+
+<span class="title">myAdd</span> :: <span class="type">Maybe</span> <span class="type">Int</span> -&gt; <span class="type">Int</span> -&gt; <span class="type">Maybe</span> <span class="type">Int</span>
+<span class="title">myAdd</span> <span class="type">Nothing</span> _ = <span class="type">Nothing</span>
+<span class="title">myAdd</span> (<span class="type">Just</span> x) y = <span class="type">Just</span> (x + y) 
+
+<span class="comment">-- 后面我再用比较蹩脚的方案把内容打印出来</span>
+
+<span class="title">out</span> :: <span class="type">Maybe</span> <span class="type">Int</span> -&gt; <span class="type">IO</span> ()
+<span class="title">out</span> <span class="type">Nothing</span> = print <span class="string">"Nothing"</span>
+<span class="title">out</span> (<span class="type">Just</span> x) = print $ show x
+
+<span class="title">main</span> = out $ myAdd (myInt <span class="number">3</span>) <span class="number">4</span></code></pre>
+<p>do notation 看来是做了隐式的转换, 对 <code>Nothing</code> 做了一些处理,</p>
+<pre><code class="lang-haskell"><span class="title">a</span> x = <span class="type">Just</span> (x + <span class="number">1</span>)
+<span class="comment">-- a x = Nothing</span>
+<span class="comment">-- 若 `a` 为 `Nothing`, 结果就变了</span>
+<span class="title">b</span> x = <span class="type">Just</span> (x + <span class="number">2</span>)
+<span class="title">c</span> x = <span class="type">Just</span> (x + <span class="number">3</span>)
+<span class="title">d</span> x = <span class="type">Just</span> (x + <span class="number">4</span>)
+
+<span class="title">foo</span> x = <span class="keyword">do</span>
+  x &lt;- a x
+  x &lt;- b x
+  x &lt;- c x
+  x &lt;- d x
+  return x
+
+<span class="title">out</span> :: <span class="type">Maybe</span> <span class="type">Int</span> -&gt; <span class="type">IO</span> ()
+<span class="title">out</span> <span class="type">Nothing</span> = print <span class="string">"Nothing"</span>
+<span class="title">out</span> (<span class="type">Just</span> x) = print $ show x
+
+<span class="title">main</span> = <span class="keyword">do</span>
+  out (foo <span class="number">1</span>)
+  print <span class="string">"end"</span></code></pre>
+<p>对这个的理解大概就是这样了. 估计还会有问题. 那评论吧...</p>
+<h3>理解的 Monads</h3>
+<p>已经花了很多时间在上边, 现在算初步有了解了, 可能还有问题, 先尝试写点<br>关于我看过的文章, 在 <a href="https://github.com/coffee-js/languages/wiki/Monads,-articles-and-videos">coffee-js 的 Wiki 上</a>做了链接的记录<br>大多是通过 JS 描述 Monads 的文章, 因为 JS 相对更好懂一些吧<br>视频特别是 Brian Marick 和 Mark Grant (8th Light) 的介绍让我找到了方向<br>更详细的关于 Monads 的内容还要再学, 具体操作还是太难理解</p>
+<p>Monads 的出发点才是关键的一环, 为什么要用 Monads 呢?<br>通常的解释是纯函数语言不允许有副作用, 因而需要用 Monads 模拟副作用<br>我的疑问是, Monads 怎么在纯函数的基础之上解决了这个问题呢?<br>如果有允许有复杂用了, 不允许有副作用的说法就存在问题了, 到底有没有副作用呢?<br>或者应该说, 副作用被包裹在 Monads 里边了, 就是进行了隔离</p>
+<p>Haskell 里经常出现 Monads 的封装, 我很长时间不懂为什么要封装?<br>现在看来, Monads 主要是实现了命令式语言里原来通过语法生成的行为<br>命令式语言里顺序执行一行行的表达式, 在纯函数的语言里不被允许<br><strong>于是要强行封装成函数的样子, 下一条语句封装成传入当前语句的函数</strong><br>Node 的 CPS 风格有点类似, 可以作为解释的例子, 只是注意并不都一样<br>对比 Node 的回调, 很好理解为什么只要有 Monad 就不再是纯函数了</p>
+<p>行为是传入的, 因此可以控制是回调执行, 或者任何需要的时候执行<br>比如异步的代码会在 Monads 中, 因为后续的操作和 Node 类似封装成函数了<br>并且执行过程中做些处理, 比如判断是否 <code>nil</code>, 就成了 Maybe Monad<br>而 List Monad 是在执行过程中增加了 <code>[]</code> 结构的相应操作<br>具体在 Brian Marick 的视频里很清晰, 我这里的表述大会有漏洞</p>
+<p><a href="https://github.com/mg50">Mark Grant</a> 的视频里用 CoffeeScript 对 Maybe Monad 等进行构造<br>至少看他的演讲比看博客上能更明白点为什么需要加这样的封装<br>可惜视频不够清晰, 他的幻灯片和个人网站都不方便找到.. 看起来比较累<br>而 &quot;Dont fear of the Monad&quot; 基本就在讲数学, 学了数学再看吧免得想歪了</p>
+<h3>概括一下</h3>
+<p>今天弄懂了一些以前不明白的代码, 写了一些用来理解的代码<br><a href="https://gist.github.com/jiyinyiyong/6403773">https://gist.github.com/jiyinyiyong/6403773</a><br>看起来质量很低.. 等纠正... 不过算是我第一次用 Monad 了<br>而且强类型语言在写代码时要思考类型的对应, 就算 Haskell 自动推断类型, 还是要想<br>我用 JS 都没这个意识. 脚本语言让编程更方便, 同时犯错很方便<br>通常写原型最多千行的代码, 能接受脚本的不严谨, 因为动态语言用来随时改的<br>应用再大, 我想思路该变了.. 总之要严谨吧</p>
+<p>鉴于我描述的 Monads 是基于个人理解, 不能保证准确性<br>建议查看我 <a href="https://github.com/coffee-js/languages/wiki/Monads,-articles-and-videos">Wiki</a> 里引用的文章, 还有下边的链接来具体了解 Monads<br><a href="http://www.haskell.org/haskellwiki/Monad_tutorials_timeline">http://www.haskell.org/haskellwiki/Monad_tutorials_timeline</a></p>
+</div><div id="disqus_thread"></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'jiyinyiyong';
+      // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          if (document.getElementsByTagName('head')[0]) {
+            document.getElementsByTagName('body')[0].appendChild(dsq);
+          }
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">
+      comments powered by Disqus.
+    </a>
+  </noscript>
+  <a href="http://disqus.com" class="dsq-brlink">
+    comments powered by
+    <span class="logo-disqus">
+      Disqus
+    </span>
+  </a>
+</div><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41753901-1', 'jiyinyiyong.github.io');
+  ga('send', 'pageview');
+</script>
