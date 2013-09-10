@@ -15,7 +15,7 @@ Bash 一类古怪语法, 学了会增加以后 unlearn 的成本, 我这种智�
 当然 Fish 智能快速的提示给我留下了很深的印象
 
 [fish-shell]: http://fishshell.com/
-![Fish](http://fishshell.com/assets/img/Terminal_Logo_CRT_Small.png)
+![Fish](http://ww3.sinaimg.cn/large/62752320gw1e8hf0xy5aaj20lw0f03zx.jpg)
 
 前几天为了翻 Shell 的例子找出来 Fish, 结果还返出来 [oh-my-fish][oh-my]
 之后又翻出来 [fishmarks][fishmarks], 突然觉得使用的障碍低了不少
