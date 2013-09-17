@@ -10,7 +10,7 @@ marked.setOptions
   gfm: yes
   breaks: yes
   highlight: (code, lang) ->
-    hljs.highlight(lang, code).value
+    hljs.highlightAuto(code).value
 
 filename = process.argv[2]
 post_dir = "./posts/"
