@@ -1,14 +1,14 @@
 
-Blog
+Blog (old)
 ------
 
-Visit: http://jiyinyiyong.github.com/blog/
+URL http://repo.jiyinyiyong.me/blog/
 
-###### This blog is deprecated.
+This blog is no longer active, I'm seeking a new home for my posts.
 
-Now I'm writing on http://segmentfault.com/u/jiyinyiyong/articles
+You may find more about me and my articles at http://jiyinyiyong.me .
 
-Using:
+### Tools
 
 * Marked
 * Highlight.js
