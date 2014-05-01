@@ -2,16 +2,17 @@
   box-sizing: border-box;
 }
 html {
-  background: #242424;
-  color: #242424;
 }
 body {
   background: #fafafa;
-  width: 840px;
-  margin: 0px;
-  padding: 40px;
   font-family: Optima, 'Hiragino Sans GB', 'wenquanyi micro hei', 'MicroSoft Yahei';
   line-height: 30px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }
 ::selection {
   background: #404040;
@@ -23,48 +24,71 @@ hr {
   margin: 49px 0px;
   width: 61%;
 }
-.home {
-  position: fixed;
-  left: 934px;
-  top: 60px;
+#home {
+    width: 38.2%;
+    background-image: url('http://tiye.qiniudn.com/leaf.jpg');
+    background-size: cover;
+    background-position: left center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10%;
 }
-.home a {
-  font-size: 20px;
+#home a {
+  font-size: 16px;
   font-family: Optima, "wenquanyi micro hei";
-  color: #b3b3b3;
+  color: #FFFFFF;
+  line-height: 2.36em;
+  text-shadow: 1px 1px 4px black;
 }
 a {
   text-decoration: none;
-  color: #00f;
-  display: inline-block;
-  max-height: 30px;
-  line-height: 30px;
-  vertical-align: middle;
-  max-width: 660px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  color: #a3a3f5;
 }
-.article {
-  margin: 100px 0px 200px;
+#article {
+  width: 61.8%;
+  overflow: scroll;
+  padding: 30px;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+#markdown {
+    margin-bottom: 8em;
+    font-size: 16px;
+}
+
+#markdown > pre {
+    margin: 0.5em -30px;
+    padding: 0.5em 30px;
+    font-family: Menlo, monospace;
+    font-size: 14px;
+    background-color: rgb(36, 10, 46);
+    border-width: 1px 0;
+    white-space: pre-wrap;
+    color: rgb(176, 182, 167);
+}
+
+#markdown > p > code {
+    font-family: Menlo, monospace;
+    font-size: 14px;
+}
+
+#markdown a {
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
 }
 p {
   margin: 0px;
   padding: 16px 0px;
+  line-height: 2em;
 }
 p img {
   max-width: 100%;
   box-shadow: 0px 0px 8px #666;
-}
-p code,
-pre {
-  box-shadow: 0px 0px 4px #ccc;
-  font-family: monaco, consolas, monospace;
-  font-size: 14px;
-  padding: 0px 4px;
-  overflow-x: auto;
-  background: #f8f8ff;
 }
 blockquote {
   box-shadow: 0px 0px 6px #ccc;
@@ -75,4 +99,12 @@ h1,
 h2,
 h3 {
   margin-top: 50px;
+}
+
+#note {
+    font-style: italic;
+    color: rgb(144, 144, 213);
+    font-size: 13px;
+    text-align: left;
+    display: block;
 }

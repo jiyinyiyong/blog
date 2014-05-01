@@ -5,7 +5,11 @@
 body {
   margin: 0px;
   font-family: Optima, 'wenquanyi micro hei', 'MicroSoft Yahei';
-  background-color: #242424;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 #background {
@@ -17,44 +21,78 @@ body {
 }
 
 #about {
-  position: fixed;
-  width: 400px;
+  width: 38.2%;
   font-size: 16px;
-  top: 20%;
-  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('http://tiye.qiniudn.com/leaf.jpg');
+  background-size: cover;
+  background-position: left center;
+  padding-bottom: 10%;
 }
 
-#about .line {}
+#about .line {
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px black;
+}
 
 #about a {
   text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 #list {
-  position: absolute;
-  left: 200px;
-  width: 800px;
-  padding: 240px 40px 400px;
+  width: 61.8%;
+  overflow: scroll;
+  background: rgb(253, 253, 253);
+  padding: 2em 0px 16em;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.35);
 }
 
-.year {}
+#list > .post {
+    padding-left: 2em;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.year {
+    color: rgb(2, 2, 2);
+    font-size: 42px;
+    font-family: 'Helvetica Neue';
+    padding: 1em;
+    font-weight: 100;
+    margin-top: 4em;
+}
 
 .month {
-    padding-left: 120px;
-    font-size: 12px;
-    line-height: 28px;
+    font-size: 15px;
+    line-height: 2em;
+    color: rgb(189, 189, 189);
+    text-align: center;
+    padding: 0px 1em;
+    font-family: fantasy;
+    font-weight: 200;
+    font-style: italic;
+    margin: 2em 0 1em;
 }
 
 #list a {
-  display: block;
   text-decoration: none;
-  color: #b3b3b3;
   box-shadow: 0px 1px 0px rgba(0,0,0,0);
-  line-height: 36px;
-  -webkit-transition-duration: 0.4s;
-  padding-left: 160px;
-  margin-left: 40px;
+  padding: 0 2em;
+  font-weight: 200;
 }
-#list a:hover {
-  box-shadow: 0px 1px 0px #b3b3b3;
+
+#list a:link {
+    color: rgb(51, 51, 51);
+}
+
+#list a:visited {
+    color: rgb(184, 184, 184);
+    font-size: 13px;
 }
