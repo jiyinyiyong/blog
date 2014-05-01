@@ -14,3 +14,4 @@ html
         @ content
       a#note (:href http://weibo.com/jiyinyiyong)
         = 这里不方便留言, 请到微博上联系
+    @insert ga.html

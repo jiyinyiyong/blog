@@ -17,11 +17,16 @@ pages = new NodeCache stdTTL: 100, checkperiod: 120
 
 app = express()
 
+indexFile = 'cirru/index.cirru'
+indexCode = fs.readFileSync indexFile, 'utf8'
+indexPage = renderer indexCode, '@filename': indexFile
+
 app.get '/', (req, res) ->
-  indexFile = 'cirru/index.cirru'
-  indexCode = fs.readFileSync indexFile, 'utf8'
-  indexPage = renderer indexCode, '@filename': indexFile
   res.send indexPage()
+
+postFile = 'cirru/post.cirru'
+postCode = fs.readFileSync postFile, 'utf8'
+postPage = renderer postCode, '@filename': postFile
 
 app.get '/posts/:year/:month/:name', (req, res) ->
   p = req.params
@@ -35,10 +40,6 @@ app.get '/posts/:year/:month/:name', (req, res) ->
     if item[file]?
       res.end item[file]
       return
-
-    postFile = 'cirru/post.cirru'
-    postCode = fs.readFileSync postFile, 'utf8'
-    postPage = renderer postCode, '@filename': postFile
 
     fs.readFile file, 'utf8', (err, content) ->
       html = postPage

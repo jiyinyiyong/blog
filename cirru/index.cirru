@@ -6,7 +6,6 @@ html
     link (:rel stylesheet) $ :href css/index.css
     link (:rel icon) $ :href http://tiye.qiniudn.com/tiye.jpg
     meta $ :charset utf-8
-    script (:defer) $ @insert ga.js
   body
     #about
       .line
@@ -240,3 +239,4 @@ html
       .post $ a.post (:href posts/12/06/23-暑假前关于编程和学习的想法.md) $ = 暑假前关于编程和学习的想法
       .post $ a.post (:href posts/12/06/15-关于这个博客和柳线.md) $ = 关于这个博客和柳线
     script (:defer) $ @insert save-scroll.js
+    @insert ga.html
