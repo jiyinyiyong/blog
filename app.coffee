@@ -59,4 +59,6 @@ app.get '/css/:file', (req, res) ->
     fs.readFile file, 'utf8', (err, content) ->
       pages.set file, content
 
-app.listen 3000
+port = process.env.PORT or 3000
+app.listen port
+console.log 'Running blog at:', port

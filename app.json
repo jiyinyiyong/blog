@@ -1,0 +1,7 @@
+[{
+  "name": "blog",
+  "script": "./app.coffee",
+  "env": {
+    "PORT": 5001
+  }
+}]

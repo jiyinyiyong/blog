@@ -1,15 +1,7 @@
 
-Blog (old)
+Blog of JiyinYiyong
 ------
 
-URL http://repo.jiyinyiyong.me/blog/
+Site: http://blog.tiye.me/
 
-This blog is no longer active, I'm seeking a new home for my posts.
-
-You may find more about me and my articles at http://jiyinyiyong.me .
-
-### Tools
-
-* Marked
-* Highlight.js
-* Jade
+This is a index page of my blogs. It will be kept update to date manualy.

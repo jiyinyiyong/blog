@@ -4,13 +4,11 @@
   "dependencies": {
     "cirru-html": "^0.1.7",
     "express": "^4.1.1",
-    "highlight.js": "*",
     "marked": "^0.3.2",
     "mime": "^1.2.11",
     "node-cache": "^1.0.0"
   },
   "devDependencies": {
-    "shelljs": "^0.2.6"
   },
   "readmeFilename": "readme.textile",
   "gitHead": "c0678c1fa4c16ef9bd1a0476fa4f11f6d6dc1d94",
