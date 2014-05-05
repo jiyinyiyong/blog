@@ -54,10 +54,15 @@ body {
   box-shadow: -2px 0 6px rgba(0, 0, 0, 0.35);
 }
 
-#list > .post {
+#list .post {
     padding-left: 2em;
     line-height: 40px;
     font-size: 16px;
+}
+
+.post .link:after {
+    content: ' ↗';
+    color: rgb(206, 188, 253);
 }
 
 .year {

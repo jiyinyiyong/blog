@@ -19,7 +19,9 @@ html
     #list
       .year $ = 2014
       .month $ = May
-      .post $ a.link (:href) $ =
+      .post $ a.file
+        :href posts/14/05/05-join-groups.md
+        = 关于加入社团的一些想法
       .month $ = Apr
       .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000474676
@@ -202,7 +204,7 @@ html
       .post $ a.link
         :href http://www.douban.com/note/308616527/
         = 生活的长度
-      .post $ a.post
+      .post $ a.file
         :href posts/13/10/04-cirru-status.md
         = "Cirru 的进展"
       .post $ a.link
@@ -221,7 +223,7 @@ html
       .post $ a.link
         :href http://www.douban.com/note/304497657/
         = 带着某从家乡出来
-      .post $ a.post
+      .post $ a.file
         :href posts/13/09/18-notes-on-zephyros.md
         = "关于 Zephyros 的笔记"
       .post $ a.link
@@ -230,7 +232,7 @@ html
       .post $ a.link
         :href https://medium.com/design-startups/8c537994749b
         = "An idea on geography of the Web"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/09/09-a-taste-of-fish-shell.md
         = "Fish-Shell 的尝试"
       .post $ a.link
@@ -242,10 +244,10 @@ html
       .post $ a.link
         :href https://medium.com/design-startups/71c99a3a3a8b
         = "Way to Combine GUI and CLI"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/09/01-thoughts-on-programming.md
         = 关于图形编程一些想法
-      .post $ a.post
+      .post $ a.file
         :href posts/13/09/01-why-misunderstand-monads-more.md
         = "之前理解 Monads 出错的原因"
       .month $ = Aug
@@ -255,32 +257,32 @@ html
       .post $ a.link
         :href http://www.douban.com/note/298084662/
         = 高中吗
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/26-events-inside-outside.md
         = 输入和输出的事件
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/23-try-brackets.md
         = "尝试 Brackets 编辑 HTML"
       .post $ a.link
         :href http://www.douban.com/note/296672849/
         = "走在前面, 走在后面"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/18-chromebook-notes.md
         = "Chromebook 折腾简记"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/18-one-page-template.md
         = "One Page 模版"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/13-status-of-cirru.md
         = "Cirru, 自己学写解释器"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/04-im-not-as-clever.md
         = "我不是很聪明的人, 但我在想"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/08/01-stylus-browserify-in-deployment.md
         = "基于 Stylus 和 Browserify 前端代码的想法"
       .month $ = Jul
-      .post $ a.post
+      .post $ a.file
         :href posts/13/07/31-dream-of-coding.md
         = 关于编程世界的梦想
       .post $ a.link
@@ -289,19 +291,19 @@ html
       .post $ a.link
         :href http://www.douban.com/note/288826252/
         = 学编程能编帮助人摆脱孤独吗?
-      .post $ a.post
+      .post $ a.file
         :href posts/13/07/23-ubuntu-to-macosx.md
         = "Ubuntu 到 Mac OS X 的头几天"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/07/20-create-plugin.md
         = "Grunt 插件的一些笔记"
       .post $ a.link
         :href http://v2ex.com/t/76461
         = "相对于论坛, 我们是不是更需要 Wiki 和聊天室?"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/07/07-position-of-me.md
         = 人们在网络中的位置
-      .post $ a.post
+      .post $ a.file
         :href posts/13/07/01-android-chrome-debug.md
         = "Android 远程调试 Chrome"
       .post $ a.link
@@ -311,13 +313,13 @@ html
       .post $ a.link
         :href http://www.douban.com/group/topic/40849093/
         = 观念的推送
-      .post $ a.post
+      .post $ a.file
         :href posts/13/06/28-folding-code.md
         = "Sublime 折叠代码的"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/06/20-ubuntu-reinstallation.md
         = "配置 Ubuntu 的一点笔记"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/06/18-far-from-reality.md
         = 可以下载的知识
       .month $ = May
@@ -330,54 +332,54 @@ html
       .post $ a.link
         :href https://medium.com/written-in-chinese-1/a83dc52c3016
         = "大四将尽的 JiyinYiong"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/05/14-threejs-second-try.md
         = "再次尝试学习 Three.js 文档"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/05/19-google-plus-as-page.md
         = "社区和使用 Google+ 的经验"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/05/12-gnome-extension.md
         = "关于 GNOME3 插件开发的想法"
       .post $ a.link
         :href http://www.douban.com/group/topic/39211659/
         = 心态和想法
-      .post $ a.post
+      .post $ a.file
         :href posts/13/05/12-my-page-tools.md
         = 我的页面调试工具
-      .post $ a.post
+      .post $ a.file
         :href posts/13/05/02-what-to-read.md
         = 到哪里找阅读的资源
       .month $ = Apr
-      .post $ a.post
+      .post $ a.file
         :href posts/13/04/29-配置-IBus-Fcitx-输入法.md
         = 配置-IBus-Fcitx-输入法
-      .post $ a.post
+      .post $ a.file
         :href posts/13/04/27-缺失的技术和交流方式.md
         = "缺失的技术, 缺失的交流方式"
       .post $ a.link
         :href https://github.com/coffee-js/languages/issues/56
         = "关于文章 " How To Become A Hacker
-      .post $ a.post
+      .post $ a.file
         :href posts/13/04/21-browserify-入门笔记.md
         = browserify-入门笔记
-      .post $ a.post
+      .post $ a.file
         :href posts/13/04/21-Bower-Grunt-入门笔记.md
         = Bower-Grunt-入门笔记
-      .post $ a.post
+      .post $ a.file
         :href posts/13/04/14-键盘和-Sublime-配置.md
         = 键盘和-Sublime-配置
-      .post $ a.post
+      .post $ a.file
         :href posts/13/04/01-css-flexbox-布局.md
         = css-flexbox-布局
       .post $ a.link
         :href http://jiyinyiyong.lofter.com/post/19ab57_50972a
         = "在用的 gnome-shell 插件"
       .month $ = Mar
-      .post $ a.post
+      .post $ a.file
         :href posts/13/03/31-Arch-Monaco-字体.md
         = Arch-Monaco-字体
-      .post $ a.post
+      .post $ a.file
         :href posts/13/03/29-做不到的事.md
         = 做不到的事
       .post $ a.link
@@ -386,10 +388,10 @@ html
       .post $ a.link
         :href https://github.com/jiyinyiyong/cirru-eval/issues/4
         = 树状的代码
-      .post $ a.post
+      .post $ a.file
         :href posts/13/03/09-重新启用博客.md
         = 重新启用博客
-      .post $ a.post
+      .post $ a.file
         :href posts/13/07/31-arch-second-log.md
         = "第二轮装 Arch... 把用到的几个链接放在这里"
       .post $ a.link
@@ -420,214 +422,214 @@ html
       .post $ a.link
         :href https://github.com/jiyinyiyong/cirru-eval/issues/1
         = "Cirru 语法的思考"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/02/02-impressions-about-problem.md
         = 关于图形编程的模块化的印象
-      .post $ a.post
+      .post $ a.file
         :href posts/13/02/02-read-von-meumann.md
         = "一份关于 John Von Neumann 的 PDF"
       .month $ = Jan
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/16-autocomplete-and-save.md
         = "Vim 自动补全, 以及 `strl+s` 保存"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/14-sicp-chapter-1.md
         = "SICP Notes"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/09-nobody-dance.md
         = "Nobody 舞蹈教程的网络检索"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/09-github-api-blog.md
         = "Github 静态博客用 API 加强"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/08-template-engine.md
         = 从模板引擎所体会到的
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/08-what-structure.md
         = 网络会是什么样的结构?
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/08-lets-start.md
         = "关于为什么要装 FreeBSD, 以及尝试"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/07-scheme-translation.md
         = "关于 Scheme 的资源"
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/06-about-scope.md
         = 关于作用域
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/04-input-output.md
         = 输入输出的设备
-      .post $ a.post
+      .post $ a.file
         :href posts/13/01/02-js-two-dimentions.md
         = "一维的 Lisp, 二维的 JS"
       .year $ = 2012
       .month $ = Dec
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/29-httpie-requests.md
         = "结合 httpie 和 express 演示 HTTP 请求"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/28-interface-of-programes.md
         = 软件与人的交互
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/28-html5-upload.md
         = 尝试上传文件
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/26-direction.md
         = 曾经的梦想
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/24-assumption.md
         = 关于世界的假想
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/20-brief-lang-history.md
         = "一份简短的, 大概会错的编程语言的历史"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/14-describe-world.md
         = 描述世界
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/14-cirru-live.md
         = "重构 Cirru, 增加 watch 函数"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/09-create-a-rock.md
         = "写一个 Lua Rock"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/08-syntax-for-cirru.md
         = "写 Cirru 语法的感想"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/06-drip-and-clojure.md
         = "drip 和 lein 的配置(failed)"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/06-arch-reinstall.md
         = "第二轮装 Arch 用到的链接"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/06-subl-syntax2.md
         = "继续看关于 Sublime Text 语法高亮的文档"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/06-subl-notes.md
         = "关于 Sublime 的一些笔记"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/06-subl-syntax-first-try.md
         = "Sublime 写语法高亮一点尝试"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/06-third-chuangling-code.md
         = 窗棂第三个版本
-      .post $ a.post
+      .post $ a.file
         :href posts/12/12/02-explore-node-gir.md
         = "Node gir 笔记"
       .month $ = Nov
-      .post $ a.post
+      .post $ a.file
         :href posts/12/11/25-page-dev.md
         = 关于网页编写的习惯
-      .post $ a.post
+      .post $ a.file
         :href posts/12/11/25-flexity-in-pkg-and-lang.md
         = 包的灵活性
-      .post $ a.post
+      .post $ a.file
         :href posts/12/11/24-app-in-page.md
         = 网页的应用
       .month $ = Oct
-      .post $ a.post
+      .post $ a.file
         :href posts/12/10/15-said-by-九瓜.md
         = "关于 Node 一些负面评价"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/10/15-hour12.md
         = "第 12 小时"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/10/02-seajs-coffee-的尝试.md
         = "SeaJS 使用 coffee 的尝试"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/10/02-语法计划.md
         = 语法计划
-      .post $ a.post
+      .post $ a.file
         :href posts/12/10/03-幻想中的语言.md
         = 幻想中的语言
       .month $ = Nov
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/26-Shell-的初始设置.md
         = "Shell 的初始设置"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/26-学习-seed-的笔记.md
         = "学习 Seed 的笔记"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/24-作用域和面向对象.md
         = 作用域和面向对象
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/24-更好玩的平台.md
         = 更好玩的平台
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/19-关于学习的观点.md
         = 关于学习的观点
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/15-还不会的语法解析.md
         = 还不会的语法解析
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/15-ssh-config-配置等等.md
         = "ssh config 配置等等"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/10-安装-Arch.md
         = "安装 Arch"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/04-并行的时间.md
         = 并行的时间
-      .post $ a.post
+      .post $ a.file
         :href posts/12/09/01-字符串作为要素.md
         = 字符串作为要素
       .month $ = Aug
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/31-用来玩耍的桌面.md
         = 用来玩耍的桌面
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/29-dataURL-传输文件.md
         = "dataURL 传输文件"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/29-寻找漂亮的语言.md
         = 寻找漂亮的语言
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/23-模式匹配和对象的想法.md
         = 模式匹配和对象的想法
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/21-doodle-刷新页面.md
         = "doodle 刷新页面"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/11-重写聊天应用的感想.md
         = 重写聊天应用的感想
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/06-参考-coffee-设想语法.md
         = "参考 coffee 设想语法"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/05-OAuth-登录-Github-及微博.md
         = "OAuth 登录 Github 及微博"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/08/04-VPS-Node-应用配置.md
         = "VPS Node 应用配置"
       .month $ = July
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/28-IP-地址记录.md
         = IP-地址记录
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/25-里坊-网页的嵌套.md
         = 里坊-网页的嵌套
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/20-未来的灯市.md
         = 未来的灯市
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/15-重装-Ubuntu-记录.md
         = 重装-Ubuntu-记录
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/14-Cirru-可能的遐想.md
         = "Cirru 可能的遐想"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/12-用网络来沟通的构思.md
         = 用网络来沟通的构思
-      .post $ a.post
+      .post $ a.file
         :href posts/12/07/09-Cirru-编辑器的重写.md
         = "Cirru 编辑器的重写"
       .month $ = Jun
-      .post $ a.post
+      .post $ a.file
         :href posts/12/06/24-开始学-Clojure-的模块机制.md
         = "开始学 Clojure 的模块机制"
-      .post $ a.post
+      .post $ a.file
         :href posts/12/06/23-暑假前关于编程和学习的想法.md
         = 暑假前关于编程和学习的想法
-      .post $ a.post
+      .post $ a.file
         :href posts/12/06/15-关于这个博客和柳线.md
         = 关于这个博客和柳线
     script (:defer) $ @insert save-scroll.js
