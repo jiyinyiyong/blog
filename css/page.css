@@ -15,7 +15,7 @@ body {
   margin: 0px;
 }
 ::selection {
-  background: #404040;
+  background: #929292;
   color: #fff;
 }
 hr {
@@ -69,8 +69,12 @@ a {
 }
 
 #markdown > p > code {
-    font-family: Menlo, monospace;
     font-size: 14px;
+    background-color: rgb(199, 78, 180);
+    padding: 3px 6px;
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+    font-family: Monaco, courier, monospace;
 }
 
 #markdown a {
@@ -80,6 +84,9 @@ a {
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: middle;
+}
+#markdown a:link {
+    color: rgb(62, 62, 175);
 }
 p {
   margin: 0px;

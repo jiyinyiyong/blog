@@ -15,7 +15,7 @@ html
         a
           :href https://www.google.com/ncr#q=JiyinYiyong
           = @jiyinyiyong
-      .line $ span $ = "ChenYong, 1991, coding in CoffeeScript & Cirru"
+      .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
       .year $ = 2014
       .month $ = May
