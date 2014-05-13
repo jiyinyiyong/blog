@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "0.2.0",
+  "version": "0.2.0-1",
   "dependencies": {
     "cirru-html": "^0.1.7",
     "express": "^4.1.1",
@@ -9,6 +9,7 @@
     "node-cache": "^1.0.0"
   },
   "devDependencies": {
+    "mission": "0.0.2-0"
   },
   "readmeFilename": "readme.textile",
   "gitHead": "c0678c1fa4c16ef9bd1a0476fa4f11f6d6dc1d94",

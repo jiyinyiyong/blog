@@ -19,6 +19,12 @@ html
     #list
       .year $ = 2014
       .month $ = May
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000503451
+        = "Topics 项目中跨域 Cookie 遇到的问题"
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000498169
+        = 我的前端单页面自动编译刷新工具和环境
       .post $ a.file
         :href posts/14/05/05-join-groups.md
         = 关于加入社团的一些想法
