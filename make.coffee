@@ -6,8 +6,8 @@ mission = require 'mission'
 target.rsync = ->
   mission.rsync
     file: './'
+    dest: 'tiye:~/server/blog/'
     options:
-      dest: 'tiye:~/server/blog/'
       exclude: [
         'node_modules/'
       ]

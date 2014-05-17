@@ -9,7 +9,7 @@
     "node-cache": "^1.0.0"
   },
   "devDependencies": {
-    "mission": "0.0.2-0"
+    "mission": "0.0.4"
   },
   "readmeFilename": "readme.textile",
   "gitHead": "c0678c1fa4c16ef9bd1a0476fa4f11f6d6dc1d94",

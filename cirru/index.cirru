@@ -20,6 +20,9 @@ html
       .year $ = 2014
       .month $ = May
       .post $ a.link
+        :href http://www.douban.com/note/351349066/
+        = "割耳朵的月亮"
+      .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000503451
         = "Topics 项目中跨域 Cookie 遇到的问题"
       .post $ a.link
@@ -28,6 +31,9 @@ html
       .post $ a.file
         :href posts/14/05/05-join-groups.md
         = 关于加入社团的一些想法
+      .post $ a.link
+        :href http://article.tiye.me/10-her-OS-1/
+        = "电影 Her 中的界面设计截图"
       .month $ = Apr
       .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000474676
