@@ -20,6 +20,9 @@ html
       .year $ = 2014
       .month $ = May
       .post $ a.link
+        :href http://ruby-china.org/topics/19306?page=1#reply37
+        = "回帖: 我是怎样一步一步学会编程的"
+      .post $ a.link
         :href http://www.douban.com/note/351349066/
         = "割耳朵的月亮"
       .post $ a.link

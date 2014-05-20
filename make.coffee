@@ -10,4 +10,5 @@ target.rsync = ->
     options:
       exclude: [
         'node_modules/'
+        '.git/'
       ]
