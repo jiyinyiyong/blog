@@ -11,7 +11,7 @@ html
     #home $ a (:href /) $ = "Back to list"
     #article
       #markdown $ @ content
-      a#note
+      a#note (:target _blank)
         :href http://weibo.com/jiyinyiyong
         = "这里不方便留言," 请到微博上联系
     @insert ga.html

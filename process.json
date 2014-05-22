@@ -2,6 +2,7 @@
   "name": "blog",
   "script": "./app.coffee",
   "env": {
-    "PORT": 5001
+    "PORT": 5001,
+    "NODE_ENV": "server"
   }
 }]

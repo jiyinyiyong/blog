@@ -19,6 +19,9 @@ html
     #list
       .year $ = 2014
       .month $ = May
+      .post $ a.file
+        :href posts/14/05/22-thoughts-on-words.md
+        = "对于文字的理解"
       .post $ a.link
         :href http://ruby-china.org/topics/19306?page=1#reply37
         = "回帖: 我是怎样一步一步学会编程的"

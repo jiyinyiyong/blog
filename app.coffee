@@ -14,6 +14,7 @@ marked.setOptions
 NodeCache = require 'node-cache'
 pages = new NodeCache stdTTL: 100, checkperiod: 120
 
+env = process.env.NODE_ENV or 'develop'
 
 app = express()
 
@@ -46,6 +47,7 @@ app.get '/posts/:year/:month/:name', (req, res) ->
         title: name
         content: marked content
       res.end html
+      return if env is 'develop'
       pages.set file, html
 
 app.get '/css/:file', (req, res) ->
@@ -58,6 +60,7 @@ app.get '/css/:file', (req, res) ->
       return
     res.sendfile file
     fs.readFile file, 'utf8', (err, content) ->
+      return if env is 'develop'
       pages.set file, content
 
 port = process.env.PORT or 3000
