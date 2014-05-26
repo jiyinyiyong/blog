@@ -20,6 +20,12 @@ html
       .year $ = 2014
       .month $ = May
       .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000519654
+        = "网上搜到的几个 React CoffeeScript 绑定"
+      .post $ a.file
+        :href posts/14/05/25-talk-to-a-lot-people.md
+        = "网络中同时和很多人交流的问题"
+      .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000518803
         = "最近想通的几个单页面应用开发的重点"
       .post $ a.file
