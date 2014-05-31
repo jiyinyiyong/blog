@@ -18,7 +18,14 @@ html
       .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
       .year $ = 2014
+      .month $ = June
       .month $ = May
+      .post $ a.link
+        :href http://www.douban.com/note/354802158/
+        = "那些人的视野"
+      .post $ a.link
+        :href https://medium.com/@jiyinyiyong/choosing-indentation-as-a-life-style-of-programming-bbaeed7a6291
+        = "Choosing indentation as a life style of programming"
       .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000519654
         = "网上搜到的几个 React CoffeeScript 绑定"
