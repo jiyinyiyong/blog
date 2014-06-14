@@ -19,6 +19,15 @@ html
     #list
       .year $ = 2014
       .month $ = June
+      .post $ a.link
+        :href http://www.douban.com/note/358203300/
+        = "云雾缭绕"
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000576880
+        = "关于从 Backbone 转移到 React 的思考"
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000533324
+        = "一步之遥和长期演进的互联网的改变"
       .month $ = May
       .post $ a.link
         :href http://www.douban.com/note/354802158/
