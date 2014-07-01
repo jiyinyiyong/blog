@@ -43,6 +43,11 @@ app.get '/posts/:year/:month/:name', (req, res) ->
       return
 
     fs.readFile file, 'utf8', (err, content) ->
+
+      if err?
+        res.end '<i>No such page, thanks.</i>'
+        return
+
       html = postPage
         title: name
         content: marked content

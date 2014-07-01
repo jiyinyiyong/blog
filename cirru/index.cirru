@@ -18,13 +18,26 @@ html
       .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
       .year $ = 2014
+      .month $ = July
+      .post $ a.file
+        :href posts/14/07/01-vast-communications.md
+        = "怎样设计同时几万人同时交流的界面?"
       .month $ = June
+      .post $ a.file
+        :href posts/14/06/29-about-memkits.md
+        = "关于 Memkits 项目的想法"
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000590789
+        = "杭 JS 不太相关的一些感想"
       .post $ a.link
         :href http://www.douban.com/note/358203300/
         = "云雾缭绕"
       .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000576880
         = "关于从 Backbone 转移到 React 的思考"
+      .post $ a.link
+        :href http://v2ex.com/t/116201
+        = "做了两个私人的 Todo 工具"
       .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000533324
         = "一步之遥和长期演进的互联网的改变"

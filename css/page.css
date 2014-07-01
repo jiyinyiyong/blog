@@ -95,7 +95,7 @@ p {
 }
 p img {
   max-width: 100%;
-  box-shadow: 0px 0px 8px #666;
+  box-shadow: 0px 0px 8px rgba(102, 102, 102, 0.28);
 }
 blockquote {
   box-shadow: 0px 0px 6px #ccc;
