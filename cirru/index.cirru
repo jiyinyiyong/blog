@@ -20,6 +20,18 @@ html
       .year $ = 2014
       .month $ = July
       .post $ a.file
+        :href posts/14/07/11-without-books.md
+        = "如何不读书, 我们要如何?"
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000599397
+        = "最近关于前端开发效率的想法"
+      .post $ a.link
+        :href http://www.douban.com/note/366907626/
+        = "出了上图"
+      .post $ a.link
+        :href http://www.douban.com/note/366602978/
+        = "怪谈两则"
+      .post $ a.file
         :href posts/14/07/01-vast-communications.md
         = "怎样设计同时几万人同时交流的界面?"
       .month $ = June
