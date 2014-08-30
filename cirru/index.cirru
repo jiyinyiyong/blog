@@ -18,10 +18,21 @@ html
       .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
       .year $ = 2014
+      .month $ = September
+      .month $ = August
+      .post $ a.link
+        :href http://www.douban.com/note/402939696/
+        = "Some note on Aug 23"
+      .post $ a.link
+        :href http://blog.segmentfault.com/jiyinyiyong/1190000000636303
+        = "Cirru 解析缩进的方案"
       .month $ = July
+      .post $ a.link
+        :href http://www.douban.com/note/374520535/
+        = "有了汽车之后, 那种平静是不能比的"
       .post $ a.file
         :href posts/14/07/11-without-books.md
-        = "如何不读书, 我们要如何?"
+        = "如果不读书, 我们要如何?"
       .post $ a.link
         :href http://blog.segmentfault.com/jiyinyiyong/1190000000599397
         = "最近关于前端开发效率的想法"
