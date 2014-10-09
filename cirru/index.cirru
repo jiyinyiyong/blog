@@ -18,8 +18,25 @@ html
       .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
       .year $ = 2014
-      .month $ = September
-      .month $ = August
+      .month $ = Nov
+      .month $ = Oct
+      .post $ a.link
+        :href http://www.douban.com/note/432497089/
+        = "一个人的世界"
+      .month $ = Sep
+      .post $ a.link
+        :href http://www.douban.com/note/429903076/
+        = "一日在杭州"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000693651
+        = "React.js 概览"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000692457
+        = "变量名是有害的"
+      .post $ a.link
+        :href http://www.douban.com/note/426189432/
+        = "Drown in knowledges"
+      .month $ = Aug
       .post $ a.link
         :href http://www.douban.com/note/402939696/
         = "Some note on Aug 23"
