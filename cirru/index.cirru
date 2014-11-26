@@ -19,7 +19,55 @@ html
     #list
       .year $ = 2014
       .month $ = Nov
+      .post $ a.link
+        :href http://www.douban.com/note/453336413/
+        = "关于编程有点灰心"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000001648081
+        = "关于 WebCity 界面的一些想法"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000001638575
+        = "以 Flux 角度从头考虑后端架构"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000001469143
+        = "我参与过的产品回顾"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000001022809
+        = "思考线上技术社区"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000781144
+        = "思考程序隔离和通信"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000764614
+        = "晚上在公司(Teambition)分享 React 的底稿"
+      .post $ a.link
+        :href http://www.douban.com/note/444725352/
+        = "关于 WebCity 一些新的想法"
+      .post $ a.link
+        :href http://www.douban.com/note/443990247/
+        = "过去一周的情况"
       .month $ = Oct
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000751795
+        = "浏览器平台的改造"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000742201
+        = "代码不是怎么想就怎么写的"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000742193
+        = "单页面应用越来越像游戏, 我们是否有好的架构来对待?"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000742126
+        = "参加 D2 的这个周末"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000741911
+        = "React China 的 HTTPS 是如何配置的"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000000719013
+        = "假如软件正在生长"
+      .post $ a.link
+        :href http://www.douban.com/note/433095808/
+        = "幽灵"
       .post $ a.link
         :href http://www.douban.com/note/432497089/
         = "一个人的世界"
