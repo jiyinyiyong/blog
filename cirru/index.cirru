@@ -17,7 +17,37 @@ html
           = @jiyinyiyong
       .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
+      .year $ = 2015
+      .month $ = Feb
+
+      .month $ = Jan
+      .post $ a.file
+        :href posts/15/01/02-sights-of-2015.md
+        = "2015 年展望"
+
       .year $ = 2014
+
+      .month $ = Dec
+      .post $ a.link
+        :href http://www.douban.com/note/474400150/
+        = "她是谁呢?"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000002441027
+        = "写 gulp requirejs 编译流程的笔记"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000002432718
+        = "使用 React 的一些经验"
+      .post $ a.link
+        :href http://www.douban.com/note/471984054/
+        = "那些最初所想的"
+
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000002411278
+        = "关于 FP 和 OOP 区别不成熟的想法"
+      .post $ a.link
+        :href http://segmentfault.com/blog/jiyinyiyong/1190000002407016
+        = "我很在乎社区的原因"
+
       .month $ = Nov
       .post $ a.link
         :href http://www.douban.com/note/453336413/
