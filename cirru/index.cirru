@@ -18,9 +18,160 @@ html
       .line $ span $ = "ChenYong, 1991, in CoffeeScript & Cirru"
     #list
       .year $ = 2015
+      .month $ = Jul
+      .month $ = Jun
+
+      .post $ a.link
+        :href https://medium.com/cirru-project/cirru-sepal-project-5b30786444b5
+        = "Cirru Sepal Project"
+      .post $ a.link
+        :href https://medium.com/cirru-project/resources-on-elixir-ast-e045b613f284
+        = "Resources on Elixir AST"
+      .post $ a.link
+        :href http://www.douban.com/note/504737332/
+        = "别人的照片"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002909224
+        = "笔记 immutable-js 基本操作"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002905071
+        = "最近关于 Web 和 VR 开发的一些随想"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002889630
+        = "关于简聊 Webpack 配置的一些注释"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002882642
+        = "笔记, Cirru Table Redo 失败, 经验教训"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002878171
+        = "对视觉编程"
+
+      .month $ = May
+      .post $ a.link
+        :href http://www.qianduan.net/react-virtual-dom-speed-develop/
+        = "用 Virtual DOM 加速开发"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002801220
+        = "为什么一个 Todolist 是不够的"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002800505
+        = "简聊前端中的 React.js"
+      .post $ a.link
+        :href http://www.douban.com/note/501156521/
+        = "Sea of Cold"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002773901
+        = "[译] 真实的设计(Authentic Design)"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002753143
+        = "笔记, 如何生成一个 Haskell 模块, Hackage"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002740741
+        = "关于 Elm 的分享, 底稿"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002738508
+        = "[译]: MVC, MVP 和 MVVM 模式的对比"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002724223
+        = "关于 Monad 的学习笔记"
+
+      .month $ = Apr
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002713985
+        = "在线面试, 前端, 提纲, 草稿"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002709773
+        = "编写 Racket 模块一些简单的记录"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002707567
+        = "梳理下我至今对界面和编程方面的想法"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002707257
+        = "Julia 和 Ruby 提交 package 流程一点记录跟疑问"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002687298
+        = "在 Julia 当中实现 Cirru 解释器的初步想法"
+      .post $ a.link
+        :href http://www.douban.com/note/494212440/
+        = "想念的颜色"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002678689
+        = "基于 React 中文社区, 对开源社区最近的思考(2015.04)"
+      .post $ a.link
+        :href http://www.douban.com/note/493686558/
+        = "West Lake Seasons, Inc."
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002669213
+        = "周末花了点时间看 LLVM IR, 闲扯几句"
+      .post $ a.link
+        :href http://www.douban.com/note/493320358/
+        = "关于桌面足球经验策略"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002646285
+        = "Scirpus(Cirru -> ES6 AST) 底稿"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002642281
+        = "[译] PureScript: 一门编译到 JavaScript 的 Haskell 方言"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002639770
+        = "搜集用 LLVM 创造动态语言的例子"
+
+      .month $ = Mar
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002635243
+        = "编程不是乐趣"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002620695
+        = "备份一点笔记, 关于用 escodegen 将 JavaScript AST 转化为代码"
+      .post $ a.link
+        :href http://www.douban.com/note/490044726/
+        = "晴了的周末"
+      .post $ a.link
+        :href http://www.douban.com/note/488659621/
+        = "下雨的周末"
+      .post $ a.link
+        :href https://medium.com/cirru-project/a-lisp-syntax-with-less-parentheses-915384011008
+        = "A Lisp syntax with fewer parentheses"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002576013
+        = "Nim 语言有哪些特点"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002573437
+        = "开始使用 Nim(翻译)"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002570899
+        = "关于浏览器端 Canvas Hit Region API 和结构化的图形"
+
       .month $ = Feb
+      .post $ a.link
+        :href http://www.douban.com/note/485439163/
+        = "春节几日"
+      .post $ a.link
+        :href https://medium.com/cirru-project/cirru-cumulo-quamolit-and-my-new-year-ed096221ef8f
+        = "Cirru, Cumulo, Quamolit and my new year"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002552008
+        = "Webpack 怎么用"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002551952
+        = "Webpack 入门指迷"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002533958
+        = "最近困扰我的问题, 关于写动画"
+      .post $ a.link
+        :href http://www.douban.com/note/482870699/
+        = "日记, 新手机和多看"
 
       .month $ = Jan
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002523389
+        = "React Native 的一些介绍(正式发布之前的, 已过时)"
+      .post $ a.link
+        :href http://www.douban.com/note/481521846/
+        = "失眠"
+      .post $ a.link
+        :href http://segmentfault.com/a/1190000002462378
+        = "[翻译] WikiBooks: Haskell 调试"
       .post $ a.file
         :href posts/15/01/02-sights-of-2015.md
         = "2015 年展望"
